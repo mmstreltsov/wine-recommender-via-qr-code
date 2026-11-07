@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "note": "Правила сочетания категорий — фолбэк каскада рекомендаций (docs/30-contracts/recommender.md §3). from_category/to_categories — точные названия категорий menu.json.",
+  "rules": [
+    { "from_category": "Супы",     "to_categories": ["Хачапури", "Чебуреки", "Тандырный хлеб"] },
+    { "from_category": "Хачапури", "to_categories": ["Салаты", "Холодные закуски", "Соусы"] },
+    { "from_category": "Хинкали",  "to_categories": ["Холодные закуски", "Салаты", "Соусы"] },
+    { "from_category": "Блюда на углях", "to_categories": ["Овощи на углях и гарниры", "Соусы", "Салаты"] },
+    { "from_category": "Основные блюда", "to_categories": ["Соусы", "Овощи на углях и гарниры", "Десерты"] },
+    { "from_category": "Салаты",   "to_categories": ["Горячие закуски", "Основные блюда"] },
+    { "from_category": "Холодные закуски", "to_categories": ["Основные блюда", "Блюда на углях"] },
+    { "from_category": "Горячие закуски", "to_categories": ["Салаты", "Напитки"] },
+    { "from_category": "Чебуреки", "to_categories": ["Салаты", "Напитки"] },
+    { "from_category": "Десерты",  "to_categories": ["Напитки"] },
+    { "from_category": "Напитки",  "to_categories": ["Десерты", "Холодные закуски"] },
+    { "from_category": "Овощи на углях и гарниры", "to_categories": ["Основные блюда", "Блюда на углях"] },
+    { "from_category": "Соусы",    "to_categories": ["Хачапури", "Тандырный хлеб"] },
+    { "from_category": "Тандырный хлеб", "to_categories": ["Супы", "Соусы"] }
+  ]
+}

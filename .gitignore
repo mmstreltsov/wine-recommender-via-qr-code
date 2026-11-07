@@ -1,0 +1,19 @@
+# env
+.env
+
+# go
+backend/bin/
+*.test
+coverage.out
+
+# node
+frontend/node_modules/
+frontend/dist/
+
+# data: локальные фото ресторана (89 МБ) — скачиваются parser.py, в git не храним
+data/aidabaran/photos/
+
+# misc
+.DS_Store
+*.log
+events.csv

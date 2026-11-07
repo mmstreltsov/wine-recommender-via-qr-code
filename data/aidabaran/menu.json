@@ -1,0 +1,3024 @@
+{
+ "restaurant": "АйДаБаран",
+ "source": "https://aidabaran.ru/menu (Tilda Catalog API: store.tildaapi.com/api/getproductslist/)",
+ "parsed_at": "2026-11-07",
+ "items_count": 125,
+ "items": [
+  {
+   "uid": 876201943922,
+   "title": "Большой овощной салат с сыром фета и джонджоли",
+   "category": "Салаты",
+   "price": 1390,
+   "description": "600 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 569,1 ккал Белки: 11,2 г Жиры: 48,3 г Углеводы: 22,4 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3737-3463-4633-a665-346330336434/b8cd63778d5b6de895415349c1d3f471.jpg"
+   ],
+   "upsell_options": [
+    {
+     "name": "Молодой сулугуни (75г) 200₽",
+     "add_price": 200
+    },
+    {
+     "name": "Тигровые креветки (50г) 420₽",
+     "add_price": 420
+    },
+    {
+     "name": "Мурманский лосось (75г) 420₽",
+     "add_price": 420
+    },
+    {
+     "name": "Фета (75г) 200₽",
+     "add_price": 200
+    },
+    {
+     "name": "Жареный грецкий орех (30г) 100₽",
+     "add_price": 100
+    },
+    {
+     "name": "Сезонные грибы (вешенки) (75г) 350₽",
+     "add_price": 350
+    },
+    {
+     "name": "Куриная грудка (75г) 250₽",
+     "add_price": 250
+    }
+   ],
+   "editions": [
+    {
+     "price": 1390,
+     "img": "https://static.tildacdn.com/stor3737-3463-4633-a665-346330336434/b8cd63778d5b6de895415349c1d3f471.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/876201943922-bolshoi-ovoschnoi-salat-s-sirom-feta-i-d",
+   "local_photo": "photos/dishes/salati__bolsoj_ovohnoj_salat_s_sirom_feta_i_deondeoli.jpg"
+  },
+  {
+   "uid": 366609864022,
+   "title": "Овощной по-грузински с грецким орехом",
+   "category": "Салаты",
+   "price": 690,
+   "description": "230 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 103,2 ккал Белки: 3,6 г Жиры: 6,2 г Углеводы: 8,6 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6562-3632-4833-b561-316362363561/ec40fd9c288063ca4e8f9b4ee1a171fb.jpg"
+   ],
+   "upsell_options": [
+    {
+     "name": "Молодой сулугуни (75г) 200₽",
+     "add_price": 200
+    },
+    {
+     "name": "Тигровые креветки (50г) 420₽",
+     "add_price": 420
+    },
+    {
+     "name": "Мурманский лосось (75г) 420₽",
+     "add_price": 420
+    },
+    {
+     "name": "Фета (75г) 200₽",
+     "add_price": 200
+    },
+    {
+     "name": "Жареный грецкий орех (30г) 100₽",
+     "add_price": 100
+    },
+    {
+     "name": "Сезонные грибы (вешенки) (75г) 350₽",
+     "add_price": 350
+    },
+    {
+     "name": "Куриная грудка (75г) 250₽",
+     "add_price": 250
+    }
+   ],
+   "editions": [
+    {
+     "price": 690,
+     "img": "https://static.tildacdn.com/stor6562-3632-4833-b561-316362363561/ec40fd9c288063ca4e8f9b4ee1a171fb.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/366609864022-ovoschnoi-po-gruzinski-s-gretskim-orehom",
+   "local_photo": "photos/dishes/salati__ovohnoj_po_gruzinski_s_greckim_orehom.jpg"
+  },
+  {
+   "uid": 267806359892,
+   "title": "Овощной по-грузински с сыром сулугуни",
+   "category": "Салаты",
+   "price": 690,
+   "description": "230 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 208 ккал Белки: 2,6 г Жиры: 14,2 г Углеводы: 18,1 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3834-3963-4537-a464-373437646337/d09285b1e6b6878db936dbf0c46c2003.png"
+   ],
+   "upsell_options": [
+    {
+     "name": "Молодой сулугуни (75г) 200₽",
+     "add_price": 200
+    },
+    {
+     "name": "Тигровые креветки (50г) 420₽",
+     "add_price": 420
+    },
+    {
+     "name": "Мурманский лосось (75г) 420₽",
+     "add_price": 420
+    },
+    {
+     "name": "Фета (75г) 200₽",
+     "add_price": 200
+    },
+    {
+     "name": "Жареный грецкий орех (30г) 100₽",
+     "add_price": 100
+    },
+    {
+     "name": "Сезонные грибы (вешенки) (75г) 350₽",
+     "add_price": 350
+    },
+    {
+     "name": "Куриная грудка (75г) 250₽",
+     "add_price": 250
+    }
+   ],
+   "editions": [
+    {
+     "price": 690,
+     "img": "https://static.tildacdn.com/stor3834-3963-4537-a464-373437646337/d09285b1e6b6878db936dbf0c46c2003.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/267806359892-ovoschnoi-po-gruzinski-s-sirom-suluguni",
+   "local_photo": "photos/dishes/salati__ovohnoj_po_gruzinski_s_sirom_suluguni.jpg"
+  },
+  {
+   "uid": 693049741272,
+   "title": "Жареные баклажаны с миндалем и сыром страчателла",
+   "category": "Салаты",
+   "price": 750,
+   "description": "210 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 360 ккал Белки: 9 г Жиры: 20 г Углеводы: 35 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3130-3363-4233-b633-643364363130/009ee824b79e1c6dea13525a6aa4b979.jpg"
+   ],
+   "upsell_options": [
+    {
+     "name": "Молодой сулугуни (75г) 200₽",
+     "add_price": 200
+    },
+    {
+     "name": "Тигровые креветки (50г) 420₽",
+     "add_price": 420
+    },
+    {
+     "name": "Мурманский лосось (75г) 420₽",
+     "add_price": 420
+    },
+    {
+     "name": "Фета (75г) 200₽",
+     "add_price": 200
+    },
+    {
+     "name": "Жареный грецкий орех (30г) 100₽",
+     "add_price": 100
+    },
+    {
+     "name": "Сезонные грибы (вешенки) (75г) 350₽",
+     "add_price": 350
+    },
+    {
+     "name": "Куриная грудка (75г) 250₽",
+     "add_price": 250
+    }
+   ],
+   "editions": [
+    {
+     "price": 750,
+     "img": "https://static.tildacdn.com/stor3130-3363-4233-b633-643364363130/009ee824b79e1c6dea13525a6aa4b979.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/693049741272-zharenie-baklazhani-s-mindalem-i-sirom-s",
+   "local_photo": "photos/dishes/salati__earenie_baklaeani_s_mindalem_i_sirom_strasatella.jpg"
+  },
+  {
+   "uid": 692651426842,
+   "title": "Цезарь с курицей",
+   "category": "Салаты",
+   "price": 720,
+   "description": "250 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 383,3 ккал Белки: 47,3 г Жиры: 13,2 г Углеводы: 18 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6361-6461-4964-a531-313538663333/d534323fed202f75756f9badf05f3b9d.png"
+   ],
+   "upsell_options": [
+    {
+     "name": "Молодой сулугуни (75г) 200₽",
+     "add_price": 200
+    },
+    {
+     "name": "Тигровые креветки (50г) 420₽",
+     "add_price": 420
+    },
+    {
+     "name": "Мурманский лосось (75г) 420₽",
+     "add_price": 420
+    },
+    {
+     "name": "Фета (75г) 200₽",
+     "add_price": 200
+    },
+    {
+     "name": "Жареный грецкий орех (30г) 100₽",
+     "add_price": 100
+    },
+    {
+     "name": "Сезонные грибы (вешенки) (75г) 350₽",
+     "add_price": 350
+    },
+    {
+     "name": "Куриная грудка (75г) 250₽",
+     "add_price": 250
+    }
+   ],
+   "editions": [
+    {
+     "price": 720,
+     "img": "https://static.tildacdn.com/stor6361-6461-4964-a531-313538663333/d534323fed202f75756f9badf05f3b9d.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/692651426842-tsezar-s-kuritsei",
+   "local_photo": "photos/dishes/salati__cezar_s_kuricej.jpg"
+  },
+  {
+   "uid": 486722956972,
+   "title": "Цезарь с креветками",
+   "category": "Салаты",
+   "price": 850,
+   "description": "250 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 291,5 ккал Белки: 19,8 г Жиры: 17,2 г Углеводы: 14,3 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6564-6466-4465-b438-613465386338/37971057aea3395a0219500fe50b8d57.jpg"
+   ],
+   "upsell_options": [
+    {
+     "name": "Молодой сулугуни (75г) 200₽",
+     "add_price": 200
+    },
+    {
+     "name": "Тигровые креветки (50г) 420₽",
+     "add_price": 420
+    },
+    {
+     "name": "Мурманский лосось (75г) 420₽",
+     "add_price": 420
+    },
+    {
+     "name": "Фета (75г) 200₽",
+     "add_price": 200
+    },
+    {
+     "name": "Жареный грецкий орех (30г) 100₽",
+     "add_price": 100
+    },
+    {
+     "name": "Сезонные грибы (вешенки) (75г) 350₽",
+     "add_price": 350
+    },
+    {
+     "name": "Куриная грудка (75г) 250₽",
+     "add_price": 250
+    }
+   ],
+   "editions": [
+    {
+     "price": 850,
+     "img": "https://static.tildacdn.com/stor6564-6466-4465-b438-613465386338/37971057aea3395a0219500fe50b8d57.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/486722956972-tsezar-s-krevetkami",
+   "local_photo": "photos/dishes/salati__cezar_s_krevetkami.jpg"
+  },
+  {
+   "uid": 904076493563,
+   "title": "Фермерская буратта с южными томатами и песто из трав",
+   "category": "Салаты",
+   "price": 990,
+   "description": "260 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 494,8 ккал Белки: 17,7 г Жиры: 36,7 г Углеводы: 6 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3861-6463-4039-b039-383563363332/a82a6481a8d8184a1d5ab3be318cdeb4.jpg"
+   ],
+   "upsell_options": [
+    {
+     "name": "Молодой сулугуни (75г) 200₽",
+     "add_price": 200
+    },
+    {
+     "name": "Тигровые креветки (50г) 420₽",
+     "add_price": 420
+    },
+    {
+     "name": "Мурманский лосось (75г) 420₽",
+     "add_price": 420
+    },
+    {
+     "name": "Фета (75г) 200₽",
+     "add_price": 200
+    },
+    {
+     "name": "Жареный грецкий орех (30г) 100₽",
+     "add_price": 100
+    },
+    {
+     "name": "Сезонные грибы (вешенки) (75г) 350₽",
+     "add_price": 350
+    },
+    {
+     "name": "Куриная грудка (75г) 250₽",
+     "add_price": 250
+    }
+   ],
+   "editions": [
+    {
+     "price": 990,
+     "img": "https://static.tildacdn.com/stor3861-6463-4039-b039-383563363332/a82a6481a8d8184a1d5ab3be318cdeb4.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/904076493563-fermerskaya-buratta-s-yuzhnimi-tomatami",
+   "local_photo": "photos/dishes/salati__fermerska_buratta_s_aenimi_tomatami_i_pesto_iz_trav.jpg"
+  },
+  {
+   "uid": 876369952933,
+   "title": "Салат с кальмаром, огурцом и фасолью эдамаме",
+   "category": "Салаты",
+   "price": 830,
+   "description": "220гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 121,2 ккал Белки: 19,8 г Жиры: 2,4 г Углеводы: 4,6 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3735-6262-4537-b131-633662346466/93c779fdf270ec8269dfdce84fe336d4.png"
+   ],
+   "upsell_options": [
+    {
+     "name": "Молодой сулугуни (75г) 200₽",
+     "add_price": 200
+    },
+    {
+     "name": "Тигровые креветки (50г) 420₽",
+     "add_price": 420
+    },
+    {
+     "name": "Мурманский лосось (75г) 420₽",
+     "add_price": 420
+    },
+    {
+     "name": "Фета (75г) 200₽",
+     "add_price": 200
+    },
+    {
+     "name": "Жареный грецкий орех (30г) 100₽",
+     "add_price": 100
+    },
+    {
+     "name": "Сезонные грибы (вешенки) (75г) 350₽",
+     "add_price": 350
+    },
+    {
+     "name": "Куриная грудка (75г) 250₽",
+     "add_price": 250
+    }
+   ],
+   "editions": [
+    {
+     "price": 830,
+     "img": "https://static.tildacdn.com/stor3735-6262-4537-b131-633662346466/93c779fdf270ec8269dfdce84fe336d4.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/876369952933-salat-s-kalmarom-ogurtsom-i-fasolyu-edam",
+   "local_photo": "photos/dishes/salati__salat_s_kalmarom_ogurcom_i_fasola_idamame.jpg"
+  },
+  {
+   "uid": 569159451603,
+   "title": "Арбуз с рассольным сыром и зеленой аджикой",
+   "category": "Салаты",
+   "price": 830,
+   "description": "460гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 229,5 ккал Белки: 11,2 г Жиры: 15,6 г Углеводы: 11,7 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3332-3765-4466-a433-323061376362/28cb45316c0a166f699147f11a700f5a.jpg"
+   ],
+   "upsell_options": [
+    {
+     "name": "Молодой сулугуни (75г) 200₽",
+     "add_price": 200
+    },
+    {
+     "name": "Тигровые креветки (50г) 420₽",
+     "add_price": 420
+    },
+    {
+     "name": "Мурманский лосось (75г) 420₽",
+     "add_price": 420
+    },
+    {
+     "name": "Фета (75г) 200₽",
+     "add_price": 200
+    },
+    {
+     "name": "Жареный грецкий орех (30г) 100₽",
+     "add_price": 100
+    },
+    {
+     "name": "Сезонные грибы (вешенки) (75г) 350₽",
+     "add_price": 350
+    },
+    {
+     "name": "Куриная грудка (75г) 250₽",
+     "add_price": 250
+    }
+   ],
+   "editions": [
+    {
+     "price": 830,
+     "img": "https://static.tildacdn.com/stor3332-3765-4466-a433-323061376362/28cb45316c0a166f699147f11a700f5a.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/569159451603-arbuz-s-rassolnim-sirom-i-zelenoi-adzhik",
+   "local_photo": "photos/dishes/salati__arbuz_s_rassolnim_sirom_i_zelenoj_adeikoj.jpg"
+  },
+  {
+   "uid": 293109021772,
+   "title": "Сезонные овощи с ароматной зеленью",
+   "category": "Холодные закуски",
+   "price": 790,
+   "description": "380 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 85,6 ккал Белки: 4 г Жиры: 0,8 г Углеводы: 14,4 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6264-3330-4332-a564-343537663736/82157987f417bd0efadd868a609f4670.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 790,
+     "img": "https://static.tildacdn.com/stor6264-3330-4332-a564-343537663736/82157987f417bd0efadd868a609f4670.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/293109021772-sezonnie-ovoschi-s-aromatnoi-zelenyu",
+   "local_photo": "photos/dishes/holodnie_zakuski__sezonnie_ovohi_s_aromatnoj_zelena.jpg"
+  },
+  {
+   "uid": 153321892992,
+   "title": "Аджапсандали с грузинскими травами",
+   "category": "Холодные закуски",
+   "price": 680,
+   "description": "200 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 145,9 ккал Белки: 3,1 г Жиры: 8,4 г Углеводы: 13,9 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6165-3230-4464-a665-643737643864/31233078c06df6969f79537889771eed.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 680,
+     "img": "https://static.tildacdn.com/stor6165-3230-4464-a665-643737643864/31233078c06df6969f79537889771eed.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/153321892992-adzhapsandali-s-gruzinskimi-travami",
+   "local_photo": "photos/dishes/holodnie_zakuski__adeapsandali_s_gruzinskimi_travami.jpg"
+  },
+  {
+   "uid": 270034433122,
+   "title": "Сациви из подкопченого цыпленка",
+   "category": "Холодные закуски",
+   "price": 720,
+   "description": "180 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 427,8 ккал Белки: 36,1 г Жиры: 9,2 г Углеводы: 11,3 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3437-3831-4631-b064-383432373665/5fa50c8100a54682af36446dd91747d5.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 720,
+     "img": "https://static.tildacdn.com/stor3437-3831-4631-b064-383432373665/5fa50c8100a54682af36446dd91747d5.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/270034433122-satsivi-iz-podkopchenogo-tsiplenka",
+   "local_photo": "photos/dishes/holodnie_zakuski__sacivi_iz_podkopsenogo_ciplenka.jpg"
+  },
+  {
+   "uid": 221117691522,
+   "title": "Лобио из красной фасоли",
+   "category": "Холодные закуски",
+   "price": 630,
+   "description": "230 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 373,9 ккал Белки: 11,7 г Жиры: 23,7 г Углеводы: 27,8 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6162-6364-4461-a233-343333616665/ea693a1724d3ab9fe5e4924115338594.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 630,
+     "img": "https://static.tildacdn.com/stor6162-6364-4461-a233-343333616665/ea693a1724d3ab9fe5e4924115338594.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/221117691522-lobio-iz-krasnoi-fasoli",
+   "local_photo": "photos/dishes/holodnie_zakuski__lobio_iz_krasnoj_fasoli.jpg"
+  },
+  {
+   "uid": 588160226782,
+   "title": "Пхали ассорти",
+   "category": "Холодные закуски",
+   "price": 690,
+   "description": "200 гр.",
+   "kbju": null,
+   "photos": [
+    "https://static.tildacdn.com/stor6633-3730-4630-b831-613335333164/8ebdeee4d06e06b6e4e298b68f1b55d4.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 690,
+     "img": "https://static.tildacdn.com/stor6633-3730-4630-b831-613335333164/8ebdeee4d06e06b6e4e298b68f1b55d4.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/588160226782-phali-assorti",
+   "local_photo": "photos/dishes/holodnie_zakuski__phali_assorti.jpg"
+  },
+  {
+   "uid": 381279700502,
+   "title": "Рулетики из баклажана и сладкого перца с начинкой из грецкого ореха",
+   "category": "Холодные закуски",
+   "price": 620,
+   "description": "150 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 481 ккал Белки: 9,69 г Жиры: 48,1 г Углеводы: 5,7 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3936-3236-4339-a532-353436333635/484484e9f35f6ead0d52495e5f90d7f5.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 620,
+     "img": "https://static.tildacdn.com/stor3936-3236-4339-a532-353436333635/484484e9f35f6ead0d52495e5f90d7f5.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/381279700502-ruletiki-iz-baklazhana-i-sladkogo-pertsa",
+   "local_photo": "photos/dishes/holodnie_zakuski__ruletiki_iz_baklaeana_i_sladkogo_perca_s_nasinkoj_iz_greckog.jpg"
+  },
+  {
+   "uid": 605443137872,
+   "title": "Соленья из домашнего погреба",
+   "category": "Холодные закуски",
+   "price": 690,
+   "description": "300 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 126 ккал Белки: 14,4 г Жиры: 0 г Углеводы: 10,2 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3238-3066-4566-b337-323332646437/53eb57aa2114f0082b00288f55e46e6e.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 690,
+     "img": "https://static.tildacdn.com/stor3238-3066-4566-b337-323332646437/53eb57aa2114f0082b00288f55e46e6e.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/605443137872-solenya-iz-domashnego-pogreba",
+   "local_photo": "photos/dishes/holodnie_zakuski__solen_iz_domasnego_pogreba.jpg"
+  },
+  {
+   "uid": 507171197452,
+   "title": "Мясное ассорти",
+   "category": "Холодные закуски",
+   "price": 1500,
+   "description": "400 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 544 ккал Белки: 54,8 г Жиры: 22,8 г Углеводы: 29,2 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3232-3431-4231-b439-656666613764/095415069348e119a29fc1c433a29942.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 1500,
+     "img": "https://static.tildacdn.com/stor3232-3431-4231-b439-656666613764/095415069348e119a29fc1c433a29942.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/507171197452-myasnoe-assorti",
+   "local_photo": "photos/dishes/holodnie_zakuski__m_snoe_assorti.jpg"
+  },
+  {
+   "uid": 283776706382,
+   "title": "Ассорти из грузинских сыров",
+   "category": "Холодные закуски",
+   "price": 1100,
+   "description": "350 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 1368 ккал Белки: 83,6 г Жиры: 114 г Углеводы: 1,5 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6135-3965-4964-a239-343339393237/1c07543f6535346a2f8096b4689bc73b.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 1100,
+     "img": "https://static.tildacdn.com/stor6135-3965-4964-a239-343339393237/1c07543f6535346a2f8096b4689bc73b.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/283776706382-assorti-iz-gruzinskih-sirov",
+   "local_photo": "photos/dishes/holodnie_zakuski__assorti_iz_gruzinskih_sirov.jpg"
+  },
+  {
+   "uid": 456357387792,
+   "title": "Ассорти из европейских сыров",
+   "category": "Холодные закуски",
+   "price": 1450,
+   "description": "600 гр.",
+   "kbju": null,
+   "photos": [
+    "https://static.tildacdn.com/stor3135-3861-4231-b766-376435396462/1ee63fa0e01cfa4720a0ef3ecd0e074e.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 1450,
+     "img": "https://static.tildacdn.com/stor3135-3861-4231-b766-376435396462/1ee63fa0e01cfa4720a0ef3ecd0e074e.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/456357387792-assorti-iz-evropeiskih-sirov",
+   "local_photo": "photos/dishes/holodnie_zakuski__assorti_iz_evropejskih_sirov.jpg"
+  },
+  {
+   "uid": 774747422523,
+   "title": "Тартар из говядины на лепешке со страчателлой и копченым сулугуни",
+   "category": "Холодные закуски",
+   "price": 790,
+   "description": "280 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 392 ккал Белки: 28,1 г Жиры: 28,1 г Углеводы: 7 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6630-3163-4235-a137-356364363365/fcdb55b403a0889df3829ce7a358971c.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 790,
+     "img": "https://static.tildacdn.com/stor6630-3163-4235-a137-356364363365/fcdb55b403a0889df3829ce7a358971c.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/774747422523-tartar-iz-govyadini-na-lepeshke-so-strac",
+   "local_photo": "photos/dishes/holodnie_zakuski__tartar_iz_gov_dini_na_lepeske_so_strasatelloj_i_kopsenim_sul.jpg"
+  },
+  {
+   "uid": 808267771773,
+   "title": "Крабовый барашек с хвостом из лаваша",
+   "category": "Холодные закуски",
+   "price": 990,
+   "description": "120 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 360,37 ккал Белки: 18,43 г Жиры: 7,63 г Углеводы: 53,41 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6531-3637-4265-a361-623966303836/b848cf74686159f8fe933b6a56b53744.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 990,
+     "img": "https://static.tildacdn.com/stor6531-3637-4265-a361-623966303836/b848cf74686159f8fe933b6a56b53744.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/808267771773-krabovii-barashek-s-hvostom-iz-lavasha",
+   "local_photo": "photos/dishes/holodnie_zakuski__krabovij_barasek_s_hvostom_iz_lavasa.jpg"
+  },
+  {
+   "uid": 390598731692,
+   "title": "Куриная лапша с чесночными крутонами",
+   "category": "Супы",
+   "price": 590,
+   "description": "350 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 267,1 ккал Белки: 14 г Жиры: 3,9 г Углеводы: 42,7 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3736-6466-4333-b764-633730373333/34b894c71bd82b266907b7767cb3ee78.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 590,
+     "img": "https://static.tildacdn.com/stor3736-6466-4333-b764-633730373333/34b894c71bd82b266907b7767cb3ee78.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/390598731692-kurinaya-lapsha-s-chesnochnimi-krutonami",
+   "local_photo": "photos/dishes/supi__kurina_lapsa_s_sesnosnimi_krutonami.jpg"
+  },
+  {
+   "uid": 321577451772,
+   "title": "Борщ с говядиной и чесночными гренками",
+   "category": "Супы",
+   "price": 620,
+   "description": "350 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 143,9 ккал Белки: 13,3 г Жиры: 3,9 г Углеводы: 14 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3866-3833-4232-b536-313034323061/08e99f1e9c7b013f892559d8ffcb7118.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 620,
+     "img": "https://static.tildacdn.com/stor3866-3833-4232-b536-313034323061/08e99f1e9c7b013f892559d8ffcb7118.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/321577451772-borsch-s-govyadinoi-i-chesnochnimi-grenk",
+   "local_photo": "photos/dishes/supi__borh_s_gov_dinoj_i_sesnosnimi_grenkami.jpg"
+  },
+  {
+   "uid": 931901390172,
+   "title": "Харчо с говядиной",
+   "category": "Супы",
+   "price": 650,
+   "description": "350 гр.",
+   "kbju": null,
+   "photos": [
+    "https://static.tildacdn.com/stor6533-6238-4439-a138-313234643366/36975759e0bf91697259e2c768376c2d.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 650,
+     "img": "https://static.tildacdn.com/stor6533-6238-4439-a138-313234643366/36975759e0bf91697259e2c768376c2d.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/931901390172-harcho-s-govyadinoi",
+   "local_photo": "photos/dishes/supi__harso_s_gov_dinoj.jpg"
+  },
+  {
+   "uid": 373068944782,
+   "title": "Уха сливочная",
+   "category": "Супы",
+   "price": 720,
+   "description": "350 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 130,2 ккал Белки: 8,8 г Жиры: 5,3 г Углеводы: 11,6 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3165-6339-4237-b334-363735653633/34c6a34c8cac4b64aea313590947030a.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 720,
+     "img": "https://static.tildacdn.com/stor3165-6339-4237-b334-363735653633/34c6a34c8cac4b64aea313590947030a.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/373068944782-uha-slivochnaya",
+   "local_photo": "photos/dishes/supi__uha_slivosna.jpg"
+  },
+  {
+   "uid": 237673658133,
+   "title": "Кукурузный суп с беконом и яйцом пашот",
+   "category": "Супы",
+   "price": 590,
+   "description": "450 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 378,4 ккал Белки: 9,89 г Жиры: 22,36 г Углеводы: 33,97 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6135-6364-4635-b735-333961343464/bc030bc393e1c7b47d0c41df71b8d0b7.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 590,
+     "img": "https://static.tildacdn.com/stor6135-6364-4635-b735-333961343464/bc030bc393e1c7b47d0c41df71b8d0b7.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/237673658133-kukuruznii-sup-s-bekonom-i-yaitsom-pasho",
+   "local_photo": "photos/dishes/supi__kukuruznij_sup_s_bekonom_i_jcom_pasot.jpg"
+  },
+  {
+   "uid": 872278461583,
+   "title": "Грибная похлебка с трюфельной сметаной",
+   "category": "Супы",
+   "price": 650,
+   "description": "350 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 239,8 ккал Белки: 1,4 г Жиры: 11,6 г Углеводы: 32,6 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3231-3730-4230-b165-306131636433/f66460844b4349bcb73e952be3d14481.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 650,
+     "img": "https://static.tildacdn.com/stor3231-3730-4230-b165-306131636433/f66460844b4349bcb73e952be3d14481.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/872278461583-gribnaya-pohlebka-s-tryufelnoi-smetanoi",
+   "local_photo": "photos/dishes/supi__gribna_pohlebka_s_trafelnoj_smetanoj.jpg"
+  },
+  {
+   "uid": 188209721232,
+   "title": "Пеновани с сыром сулугуни",
+   "category": "Хачапури",
+   "price": 650,
+   "description": "225 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 728,8 ккал Белки: 22,5 г Жиры: 46,6 г Углеводы: 58,1 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3439-3763-4063-b031-633334376362/678cc3d23e780235922961bdecb9bf0c.jpg"
+   ],
+   "upsell_options": [
+    {
+     "name": "Нежный шпинат (75г) 350₽",
+     "add_price": 350
+    },
+    {
+     "name": "Бакинские томаты (40г) 150₽",
+     "add_price": 150
+    },
+    {
+     "name": "Фермерское яйцо (1шт) 50₽",
+     "add_price": 50
+    },
+    {
+     "name": "Молодой сулугуни (75г) 190₽",
+     "add_price": 190
+    },
+    {
+     "name": "Имеретинский сыр(75г) 190₽",
+     "add_price": 190
+    },
+    {
+     "name": "Жареный бекон (75г) 190₽",
+     "add_price": 190
+    }
+   ],
+   "editions": [
+    {
+     "price": 650,
+     "img": "https://static.tildacdn.com/stor3439-3763-4063-b031-633334376362/678cc3d23e780235922961bdecb9bf0c.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/188209721232-penovani-s-sirom-suluguni",
+   "local_photo": "photos/dishes/hasapuri__penovani_s_sirom_suluguni.jpg"
+  },
+  {
+   "uid": 622333855672,
+   "title": "Хачапури на мангале",
+   "category": "Хачапури",
+   "price": 650,
+   "description": "230 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 811,9 ккал Белки: 28,5 г Жиры: 49,7 г Углеводы: 62,8 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6239-3064-4962-b230-333665313131/0a1a8a774e18bfe527706ef03a61385e.jpg"
+   ],
+   "upsell_options": [
+    {
+     "name": "Нежный шпинат (75г) 350₽",
+     "add_price": 350
+    },
+    {
+     "name": "Бакинские томаты (40г) 150₽",
+     "add_price": 150
+    },
+    {
+     "name": "Фермерское яйцо (1шт) 50₽",
+     "add_price": 50
+    },
+    {
+     "name": "Молодой сулугуни (75г) 190₽",
+     "add_price": 190
+    },
+    {
+     "name": "Имеретинский сыр(75г) 190₽",
+     "add_price": 190
+    },
+    {
+     "name": "Жареный бекон (75г) 190₽",
+     "add_price": 190
+    }
+   ],
+   "editions": [
+    {
+     "price": 650,
+     "img": "https://static.tildacdn.com/stor6239-3064-4962-b230-333665313131/0a1a8a774e18bfe527706ef03a61385e.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/622333855672-hachapuri-na-mangale",
+   "local_photo": "photos/dishes/hasapuri__hasapuri_na_mangale.jpg"
+  },
+  {
+   "uid": 306795817632,
+   "title": "Хачапури по-мегрельски",
+   "category": "Хачапури",
+   "price": 790,
+   "description": "500 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 1510 ккал Белки: 60 г Жиры: 88 г Углеводы: 115 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6230-3235-4135-a661-666538353566/c0b542d13f71e3f7b08d50294ff0fca6.jpg"
+   ],
+   "upsell_options": [
+    {
+     "name": "Нежный шпинат (75г) 350₽",
+     "add_price": 350
+    },
+    {
+     "name": "Бакинские томаты (40г) 150₽",
+     "add_price": 150
+    },
+    {
+     "name": "Фермерское яйцо (1шт) 50₽",
+     "add_price": 50
+    },
+    {
+     "name": "Молодой сулугуни (75г) 190₽",
+     "add_price": 190
+    },
+    {
+     "name": "Имеретинский сыр(75г) 190₽",
+     "add_price": 190
+    },
+    {
+     "name": "Жареный бекон (75г) 190₽",
+     "add_price": 190
+    }
+   ],
+   "editions": [
+    {
+     "price": 790,
+     "img": "https://static.tildacdn.com/stor6230-3235-4135-a661-666538353566/c0b542d13f71e3f7b08d50294ff0fca6.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/306795817632-hachapuri-po-megrelski",
+   "local_photo": "photos/dishes/hasapuri__hasapuri_po_megrelski.jpg"
+  },
+  {
+   "uid": 717994604062,
+   "title": "Хачапури по-имеретински",
+   "category": "Хачапури",
+   "price": 790,
+   "description": "500 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 1583,3 ккал Белки: 62,4 г Жиры: 92,6 г Углеводы: 154,4 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3464-3330-4635-a338-653430316530/04d60c78c197f5116e386df600f0ad5b.jpg"
+   ],
+   "upsell_options": [
+    {
+     "name": "Нежный шпинат (75г) 350₽",
+     "add_price": 350
+    },
+    {
+     "name": "Бакинские томаты (40г) 150₽",
+     "add_price": 150
+    },
+    {
+     "name": "Фермерское яйцо (1шт) 50₽",
+     "add_price": 50
+    },
+    {
+     "name": "Молодой сулугуни (75г) 190₽",
+     "add_price": 190
+    },
+    {
+     "name": "Имеретинский сыр(75г) 190₽",
+     "add_price": 190
+    },
+    {
+     "name": "Жареный бекон (75г) 190₽",
+     "add_price": 190
+    }
+   ],
+   "editions": [
+    {
+     "price": 790,
+     "img": "https://static.tildacdn.com/stor3464-3330-4635-a338-653430316530/04d60c78c197f5116e386df600f0ad5b.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/717994604062-hachapuri-po-imeretinski",
+   "local_photo": "photos/dishes/hasapuri__hasapuri_po_imeretinski.jpg"
+  },
+  {
+   "uid": 854999693272,
+   "title": "Хачапури по-аджарски",
+   "category": "Хачапури",
+   "price": 690,
+   "description": "330 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 858 ккал Белки: 36,3 г Жиры: 36,3 г Углеводы: 99 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3332-6635-4032-b564-363462636265/0cc45f73bb0006729ca658e0b7744176.jpg"
+   ],
+   "upsell_options": [
+    {
+     "name": "Нежный шпинат (75г) 350₽",
+     "add_price": 350
+    },
+    {
+     "name": "Бакинские томаты (40г) 150₽",
+     "add_price": 150
+    },
+    {
+     "name": "Фермерское яйцо (1шт) 50₽",
+     "add_price": 50
+    },
+    {
+     "name": "Молодой сулугуни (75г) 190₽",
+     "add_price": 190
+    },
+    {
+     "name": "Имеретинский сыр(75г) 190₽",
+     "add_price": 190
+    },
+    {
+     "name": "Жареный бекон (75г) 190₽",
+     "add_price": 190
+    }
+   ],
+   "editions": [
+    {
+     "price": 690,
+     "img": "https://static.tildacdn.com/stor3332-6635-4032-b564-363462636265/0cc45f73bb0006729ca658e0b7744176.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/854999693272-hachapuri-po-adzharski",
+   "local_photo": "photos/dishes/hasapuri__hasapuri_po_adearski.jpg"
+  },
+  {
+   "uid": 500004468472,
+   "title": "Хачапури по-аджарски АйДа",
+   "category": "Хачапури",
+   "price": 1150,
+   "description": "1000 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 2600 ккал Белки: 110 г Жиры: 110 г Углеводы: 300 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6664-3662-4364-a130-306262646130/88d260556edffe1a7f8384a6751a4ec7.jpg"
+   ],
+   "upsell_options": [
+    {
+     "name": "Нежный шпинат (75г) 350₽",
+     "add_price": 350
+    },
+    {
+     "name": "Бакинские томаты (40г) 150₽",
+     "add_price": 150
+    },
+    {
+     "name": "Фермерское яйцо (1шт) 50₽",
+     "add_price": 50
+    },
+    {
+     "name": "Молодой сулугуни (75г) 190₽",
+     "add_price": 190
+    },
+    {
+     "name": "Имеретинский сыр(75г) 190₽",
+     "add_price": 190
+    },
+    {
+     "name": "Жареный бекон (75г) 190₽",
+     "add_price": 190
+    }
+   ],
+   "editions": [
+    {
+     "price": 1150,
+     "img": "https://static.tildacdn.com/stor6664-3662-4364-a130-306262646130/88d260556edffe1a7f8384a6751a4ec7.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/500004468472-hachapuri-po-adzharski-aida",
+   "local_photo": "photos/dishes/hasapuri__hasapuri_po_adearski_ajda.jpg"
+  },
+  {
+   "uid": 406838418802,
+   "title": "Хачапури со страчателлой и томатами",
+   "category": "Хачапури",
+   "price": 920,
+   "description": "600 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 3139,8 ккал Белки: 144,6 г Жиры: 232,8 г Углеводы: 232,8 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3230-6538-4365-a636-326634623139/b69ea1ae57f8bad4e29cffa161a3a6d4.jpg"
+   ],
+   "upsell_options": [
+    {
+     "name": "Нежный шпинат (75г) 350₽",
+     "add_price": 350
+    },
+    {
+     "name": "Бакинские томаты (40г) 150₽",
+     "add_price": 150
+    },
+    {
+     "name": "Фермерское яйцо (1шт) 50₽",
+     "add_price": 50
+    },
+    {
+     "name": "Молодой сулугуни (75г) 190₽",
+     "add_price": 190
+    },
+    {
+     "name": "Имеретинский сыр(75г) 190₽",
+     "add_price": 190
+    },
+    {
+     "name": "Жареный бекон (75г) 190₽",
+     "add_price": 190
+    }
+   ],
+   "editions": [
+    {
+     "price": 920,
+     "img": "https://static.tildacdn.com/stor3230-6538-4365-a636-326634623139/b69ea1ae57f8bad4e29cffa161a3a6d4.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/406838418802-hachapuri-so-strachatelloi-i-tomatami",
+   "local_photo": "photos/dishes/hasapuri__hasapuri_so_strasatelloj_i_tomatami.jpg"
+  },
+  {
+   "uid": 171584065232,
+   "title": "Лахмаджун с говядиной",
+   "category": "Хачапури",
+   "price": 650,
+   "description": "320 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 688 ккал Белки: 25,6 г Жиры: 32 г Углеводы: 70,4 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3030-6235-4533-b630-646438393833/aef9defa56c178b581b770a278eaa159.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 650,
+     "img": "https://static.tildacdn.com/stor3030-6235-4533-b630-646438393833/aef9defa56c178b581b770a278eaa159.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/171584065232-lahmadzhun-s-govyadinoi",
+   "local_photo": "photos/dishes/hasapuri__lahmadeun_s_gov_dinoj.jpg"
+  },
+  {
+   "uid": 977604609092,
+   "title": "Хинкали дегустационный сет 5 шт",
+   "category": "Хинкали",
+   "price": 990,
+   "description": "450 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 1150,2 ккал Белки: 35,86 г Жиры: 28,94 г Углеводы: 55,08 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3165-3363-4363-a136-316263666438/38d9d670aa841c609ee12111e0f910f6.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 990,
+     "img": "https://static.tildacdn.com/stor3165-3363-4363-a136-316263666438/38d9d670aa841c609ee12111e0f910f6.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/977604609092-hinkali-degustatsionnii-set-5-sht",
+   "local_photo": "photos/dishes/hinkali__hinkali_degustacionnij_set_5_st.jpg"
+  },
+  {
+   "uid": 655892482392,
+   "title": "Хинкали говядина-свинина 3 шт",
+   "category": "Хинкали",
+   "price": 530,
+   "description": "210 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 666,9 ккал Белки: 27 г Жиры: 29,7 г Углеводы: 72,9 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6538-3463-4439-b535-623838333262/2007b40feffb03ff18e968f3832d7c56.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 530,
+     "img": "https://static.tildacdn.com/stor6538-3463-4439-b535-623838333262/2007b40feffb03ff18e968f3832d7c56.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/655892482392-hinkali-govyadina-svinina-3-sht",
+   "local_photo": "photos/dishes/hinkali__hinkali_gov_dina_svinina_3_st.jpg"
+  },
+  {
+   "uid": 636416760392,
+   "title": "Хинкали сулугуни 3 шт",
+   "category": "Хинкали",
+   "price": 490,
+   "description": "210 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 594 ккал Белки: 51,3 г Жиры: 40,5 г Углеводы: 8,1 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3437-6439-4933-b362-366334303730/efb4718aee11d75968eb62155937a34e.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 490,
+     "img": "https://static.tildacdn.com/stor3437-6439-4933-b362-366334303730/efb4718aee11d75968eb62155937a34e.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/636416760392-hinkali-suluguni-3-sht",
+   "local_photo": "photos/dishes/hinkali__hinkali_suluguni_3_st.jpg"
+  },
+  {
+   "uid": 985593736762,
+   "title": "Хинкали индейка 3шт",
+   "category": "Хинкали",
+   "price": 490,
+   "description": "210 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 327,5 ккал Белки: 24,6 г Жиры: 3,5 г Углеводы: 45,1 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3631-3036-4964-b765-306461333532/e4b0e6159577a0bd1bfab560100ae4f0.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 490,
+     "img": "https://static.tildacdn.com/stor3631-3036-4964-b765-306461333532/e4b0e6159577a0bd1bfab560100ae4f0.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/985593736762-hinkali-indeika-3sht",
+   "local_photo": "photos/dishes/hinkali__hinkali_indejka_3st.jpg"
+  },
+  {
+   "uid": 596153601122,
+   "title": "Хинкали телятина 3шт",
+   "category": "Хинкали",
+   "price": 550,
+   "description": "210 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 551,3 ккал Белки: 24,3 г Жиры: 18,6 г Углеводы: 72,1 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3639-6137-4866-a438-626636396133/1b9280d7ef75e7749ddb018a1d803f06.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 550,
+     "img": "https://static.tildacdn.com/stor3639-6137-4866-a438-626636396133/1b9280d7ef75e7749ddb018a1d803f06.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/596153601122-hinkali-telyatina-3sht",
+   "local_photo": "photos/dishes/hinkali__hinkali_tel_tina_3st.jpg"
+  },
+  {
+   "uid": 440760390622,
+   "title": "Хинкали баранина 3шт",
+   "category": "Хинкали",
+   "price": 530,
+   "description": "210 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 561,6 ккал Белки: 24,3 г Жиры: 21,65 г Углеводы: 67,5 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3734-3663-4862-b563-633538366239/bf427c15a7ba348c02b950f1d9a4acf6.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 530,
+     "img": "https://static.tildacdn.com/stor3734-3663-4862-b563-633538366239/bf427c15a7ba348c02b950f1d9a4acf6.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/440760390622-hinkali-baranina-3sht",
+   "local_photo": "photos/dishes/hinkali__hinkali_baranina_3st.jpg"
+  },
+  {
+   "uid": 964013096402,
+   "title": "Кутаб с бараниной",
+   "category": "Горячие закуски",
+   "price": 590,
+   "description": "210 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 404 ккал Белки: 16,4 г Жиры: 15,8 г Углеводы: 48,7 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3761-6164-4764-b761-313236373465/e142c09e56885f7948f9959f6cfabdea.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 590,
+     "img": "https://static.tildacdn.com/stor3761-6164-4764-b761-313236373465/e142c09e56885f7948f9959f6cfabdea.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/964013096402-kutab-s-baraninoi",
+   "local_photo": "photos/dishes/gor_sie_zakuski__kutab_s_baraninoj.jpg"
+  },
+  {
+   "uid": 133028870102,
+   "title": "Кутаб с телятиной",
+   "category": "Горячие закуски",
+   "price": 590,
+   "description": "210 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 480,9 ккал Белки: 25,2 г Жиры: 14,7 г Углеводы: 60,9 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3761-6164-4764-b761-313236373465/e142c09e56885f7948f9959f6cfabdea.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 590,
+     "img": "https://static.tildacdn.com/stor3761-6164-4764-b761-313236373465/e142c09e56885f7948f9959f6cfabdea.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/133028870102-kutab-s-telyatinoi",
+   "local_photo": "photos/dishes/gor_sie_zakuski__kutab_s_tel_tinoj.jpg"
+  },
+  {
+   "uid": 855239806112,
+   "title": "Кутаб с сулугуни",
+   "category": "Горячие закуски",
+   "price": 590,
+   "description": "210 гр.",
+   "kbju": null,
+   "photos": [
+    "https://static.tildacdn.com/stor3761-6164-4764-b761-313236373465/e142c09e56885f7948f9959f6cfabdea.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 590,
+     "img": "https://static.tildacdn.com/stor3761-6164-4764-b761-313236373465/e142c09e56885f7948f9959f6cfabdea.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/855239806112-kutab-s-suluguni",
+   "local_photo": "photos/dishes/gor_sie_zakuski__kutab_s_suluguni.jpg"
+  },
+  {
+   "uid": 851206967922,
+   "title": "Кутаб с зеленью",
+   "category": "Горячие закуски",
+   "price": 590,
+   "description": "210 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 322,6 ккал Белки: 12 г Жиры: 1,5 г Углеводы: 64,9 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3761-6164-4764-b761-313236373465/e142c09e56885f7948f9959f6cfabdea.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 590,
+     "img": "https://static.tildacdn.com/stor3761-6164-4764-b761-313236373465/e142c09e56885f7948f9959f6cfabdea.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/851206967922-kutab-s-zelenyu",
+   "local_photo": "photos/dishes/gor_sie_zakuski__kutab_s_zelena.jpg"
+  },
+  {
+   "uid": 164834011242,
+   "title": "Традиционная долма с говядиной и свининой",
+   "category": "Горячие закуски",
+   "price": 620,
+   "description": "160 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 257,6 ккал Белки: 16 г Жиры: 12,8 г Углеводы: 14,4 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3263-3936-4964-b037-613462393633/3eca92eef979759fc07223cb9690a936.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 620,
+     "img": "https://static.tildacdn.com/stor3263-3936-4964-b037-613462393633/3eca92eef979759fc07223cb9690a936.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/164834011242-traditsionnaya-dolma-s-govyadinoi-i-svin",
+   "local_photo": "photos/dishes/gor_sie_zakuski__tradicionna_dolma_s_gov_dinoj_i_svininoj.jpg"
+  },
+  {
+   "uid": 292582418782,
+   "title": "Ташмиджаби с сезонными грибами",
+   "category": "Горячие закуски",
+   "price": 690,
+   "description": "400 гр",
+   "kbju": "КБЖУ на порцию Калорийность: 732 ккал Белки: 33 г Жиры: 56 г Углеводы: 24 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3361-6163-4731-b265-343864376330/38510494.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 690,
+     "img": "https://static.tildacdn.com/stor3361-6163-4731-b265-343864376330/38510494.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/292582418782-tashmidzhabi-s-sezonnimi-gribami",
+   "local_photo": "photos/dishes/gor_sie_zakuski__tasmideabi_s_sezonnimi_gribami.jpg"
+  },
+  {
+   "uid": 914964949052,
+   "title": "Дэда - чебурек с сулугуни",
+   "category": "Чебуреки",
+   "price": 750,
+   "description": "400 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 1562,4 ккал Белки: 50,4 г Жиры: 93,6 г Углеводы: 128,3 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3836-6239-4633-b130-646336653932/a9549e5ddf4756f4c3d8be0787cc8a06.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 750,
+     "img": "https://static.tildacdn.com/stor3836-6239-4633-b130-646336653932/a9549e5ddf4756f4c3d8be0787cc8a06.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/914964949052-deda-cheburek-s-suluguni",
+   "local_photo": "photos/dishes/sebureki__dida_seburek_s_suluguni.jpg"
+  },
+  {
+   "uid": 513971294142,
+   "title": "Дэда - чебурек с телятиной",
+   "category": "Чебуреки",
+   "price": 750,
+   "description": "400 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 945 ккал Белки: 63 г Жиры: 48,2 г Углеводы: 63 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3836-6239-4633-b130-646336653932/a9549e5ddf4756f4c3d8be0787cc8a06.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 750,
+     "img": "https://static.tildacdn.com/stor3836-6239-4633-b130-646336653932/a9549e5ddf4756f4c3d8be0787cc8a06.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/513971294142-deda-cheburek-s-telyatinoi",
+   "local_photo": "photos/dishes/sebureki__dida_seburek_s_tel_tinoj.jpg"
+  },
+  {
+   "uid": 518463871422,
+   "title": "Айда чебурек с бараниной",
+   "category": "Чебуреки",
+   "price": 650,
+   "description": "300 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 860,1 ккал Белки: 33 г Жиры: 48,9 г Углеводы: 72 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3938-3936-4636-b736-333966326131/564e3e4c239a9cda13897cf49571e4c5.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 650,
+     "img": "https://static.tildacdn.com/stor3938-3936-4636-b736-333966326131/564e3e4c239a9cda13897cf49571e4c5.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/518463871422-aida-cheburek-s-baraninoi",
+   "local_photo": "photos/dishes/sebureki__ajda_seburek_s_baraninoj.jpg"
+  },
+  {
+   "uid": 733209707552,
+   "title": "Айда чебурек с телятиной",
+   "category": "Чебуреки",
+   "price": 650,
+   "description": "300 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 630 ккал Белки: 42 г Жиры: 32,1 г Углеводы: 42 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3938-3936-4636-b736-333966326131/564e3e4c239a9cda13897cf49571e4c5.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 650,
+     "img": "https://static.tildacdn.com/stor3938-3936-4636-b736-333966326131/564e3e4c239a9cda13897cf49571e4c5.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/733209707552-aida-cheburek-s-telyatinoi",
+   "local_photo": "photos/dishes/sebureki__ajda_seburek_s_tel_tinoj.jpg"
+  },
+  {
+   "uid": 221438608572,
+   "title": "Айда чебурек с сулугуни",
+   "category": "Чебуреки",
+   "price": 650,
+   "description": "300 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 1041,6 ккал Белки: 33,6 г Жиры: 62,4 г Углеводы: 85,5 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3938-3936-4636-b736-333966326131/564e3e4c239a9cda13897cf49571e4c5.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 650,
+     "img": "https://static.tildacdn.com/stor3938-3936-4636-b736-333966326131/564e3e4c239a9cda13897cf49571e4c5.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/221438608572-aida-cheburek-s-suluguni",
+   "local_photo": "photos/dishes/sebureki__ajda_seburek_s_suluguni.jpg"
+  },
+  {
+   "uid": 963670495683,
+   "title": "Айда чебурек с крабом",
+   "category": "Чебуреки",
+   "price": 1100,
+   "description": "300 гр.",
+   "kbju": null,
+   "photos": [
+    "https://static.tildacdn.com/stor3938-3936-4636-b736-333966326131/564e3e4c239a9cda13897cf49571e4c5.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 1100,
+     "img": "https://static.tildacdn.com/stor3938-3936-4636-b736-333966326131/564e3e4c239a9cda13897cf49571e4c5.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/963670495683-aida-cheburek-s-krabom",
+   "local_photo": "photos/dishes/sebureki__ajda_seburek_s_krabom.jpg"
+  },
+  {
+   "uid": 303689490322,
+   "title": "Чахохбили из курицы со спелыми томатами и зеленью",
+   "category": "Основные блюда",
+   "price": 750,
+   "description": "270 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 323,2 ккал Белки: 18,6 г Жиры: 24 г Углеводы: 8,9 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6636-3833-4036-b335-363661363666/92fcee57c1ff561a9644c8ceada0d079.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 750,
+     "img": "https://static.tildacdn.com/stor6636-3833-4036-b335-363661363666/92fcee57c1ff561a9644c8ceada0d079.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/303689490322-chahohbili-iz-kuritsi-so-spelimi-tomatam",
+   "local_photo": "photos/dishes/osnovnie_blada__sahohbili_iz_kurici_so_spelimi_tomatami_i_zelena.jpg"
+  },
+  {
+   "uid": 833187471142,
+   "title": "Чашушули из телятины с томлеными овощами",
+   "category": "Основные блюда",
+   "price": 820,
+   "description": "270 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 260,8 ккал Белки: 37,3 г Жиры: 5,1 г Углеводы: 16,7 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6162-6163-4233-b538-396633333732/d9fe5179d20f87d92eb81e39ac10fa17.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 820,
+     "img": "https://static.tildacdn.com/stor6162-6163-4233-b538-396633333732/d9fe5179d20f87d92eb81e39ac10fa17.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/833187471142-chashushuli-iz-telyatini-s-tomlenimi-ovo",
+   "local_photo": "photos/dishes/osnovnie_blada__sasusuli_iz_tel_tini_s_tomlenimi_ovohami.jpg"
+  },
+  {
+   "uid": 530896620972,
+   "title": "Оджахури из свинины с картофелем",
+   "category": "Основные блюда",
+   "price": 750,
+   "description": "320 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 676,8 ккал Белки: 28,2 г Жиры: 49,6 г Углеводы: 29,4 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6137-3532-4664-b365-623430356630/9f337b6a84c20d9d8917b72703ce4e01.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 750,
+     "img": "https://static.tildacdn.com/stor6137-3532-4664-b365-623430356630/9f337b6a84c20d9d8917b72703ce4e01.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/530896620972-odzhahuri-iz-svinini-s-kartofelem",
+   "local_photo": "photos/dishes/osnovnie_blada__odeahuri_iz_svinini_s_kartofelem.jpg"
+  },
+  {
+   "uid": 827153817332,
+   "title": "Язычки ягненка с картофелем",
+   "category": "Основные блюда",
+   "price": 850,
+   "description": "340 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 484 ккал Белки: 48 г Жиры: 30 г Углеводы: 5,4 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3665-3263-4863-b039-333462333364/6ebb337aae126e813aaa6cf329029c78.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 850,
+     "img": "https://static.tildacdn.com/stor3665-3263-4863-b039-333462333364/6ebb337aae126e813aaa6cf329029c78.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/827153817332-yazichki-yagnenka-s-kartofelem",
+   "local_photo": "photos/dishes/osnovnie_blada__ziski_gnenka_s_kartofelem.jpg"
+  },
+  {
+   "uid": 303938634302,
+   "title": "Айдабифштекс из мраморной говядины на 2 персоны",
+   "category": "Основные блюда",
+   "price": 2800,
+   "description": "650 гр",
+   "kbju": "КБЖУ на порцию Калорийность: 1404 ккал Белки: 189,8 г Жиры: 72,8 г Углеводы: 0,89 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6232-3037-4466-a236-626632383761/31022340.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 2800,
+     "img": "https://static.tildacdn.com/stor6232-3037-4466-a236-626632383761/31022340.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/303938634302-aidabifshteks-iz-mramornoi-govyadini-na",
+   "local_photo": "photos/dishes/osnovnie_blada__ajdabifsteks_iz_mramornoj_gov_dini_na_2_personi.jpg"
+  },
+  {
+   "uid": 988436681252,
+   "title": "Ребрышки ягненка длительного томления с томатной сальсой на 2-3 персоны",
+   "category": "Основные блюда",
+   "price": 4500,
+   "description": "1200 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 1843,2 ккал Белки: 142,8 г Жиры: 120 г Углеводы: 45,6 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6631-3565-4536-a438-336661633839/8aca8e18ae37acf8e06af2e9d19a2947.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 4500,
+     "img": "https://static.tildacdn.com/stor6631-3565-4536-a438-336661633839/8aca8e18ae37acf8e06af2e9d19a2947.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/988436681252-rebrishki-yagnenka-dlitelnogo-tomleniya",
+   "local_photo": "photos/dishes/osnovnie_blada__rebriski_gnenka_dlitelnogo_tomleni_s_tomatnoj_salsoj_na_2_3_.jpg"
+  },
+  {
+   "uid": 230052183762,
+   "title": "Шкмерули из мурманских креветок",
+   "category": "Основные блюда",
+   "price": 950,
+   "description": "200 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 567 ккал Белки: 43,8 г Жиры: 43,8 г Углеводы: 6,3 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3431-6464-4230-a465-643365396337/27de4e80b648539b296b51c5c69616ff.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 950,
+     "img": "https://static.tildacdn.com/stor3431-6464-4230-a465-643365396337/27de4e80b648539b296b51c5c69616ff.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/230052183762-shkmeruli-iz-murmanskih-krevetok",
+   "local_photo": "photos/dishes/osnovnie_blada__skmeruli_iz_murmanskih_krevetok.jpg"
+  },
+  {
+   "uid": 538899551122,
+   "title": "Стейк из лосося с сезонным кабачком",
+   "category": "Основные блюда",
+   "price": 1350,
+   "description": "250 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 265,6 ккал Белки: 30,4 г Жиры: 16 г Углеводы: 0 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3962-3432-4365-b963-653331386538/cbaf4355bab645e166a17eb7687d7e29.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 1350,
+     "img": "https://static.tildacdn.com/stor3962-3432-4365-b963-653331386538/cbaf4355bab645e166a17eb7687d7e29.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/538899551122-steik-iz-lososya-s-sezonnim-kabachkom",
+   "local_photo": "photos/dishes/osnovnie_blada__stejk_iz_losos_s_sezonnim_kabaskom.jpg"
+  },
+  {
+   "uid": 759806895422,
+   "title": "Дорадо с гранатовым соусом на гриле",
+   "category": "Основные блюда",
+   "price": 1450,
+   "description": "1 шт.",
+   "kbju": "КБЖУ на порцию Калорийность: 294,3 ккал Белки: 47,3 г Жиры: 11,2 г Углеводы: 1,3 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3130-6365-4364-b230-306434353833/a1310e89b0ca088eecb7506d361c3f27.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 1450,
+     "img": "https://static.tildacdn.com/stor3130-6365-4364-b230-306434353833/a1310e89b0ca088eecb7506d361c3f27.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/759806895422-dorado-s-granatovim-sousom-na-grile",
+   "local_photo": "photos/dishes/osnovnie_blada__dorado_s_granatovim_sousom_na_grile.jpg"
+  },
+  {
+   "uid": 159551626192,
+   "title": "Дорадо с гранатовым соусом на пару",
+   "category": "Основные блюда",
+   "price": 1450,
+   "description": "1 шт.",
+   "kbju": "КБЖУ на порцию Калорийность: 294,3 ккал Белки: 47,3 г Жиры: 11,2 г Углеводы: 1,3 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3130-6365-4364-b230-306434353833/a1310e89b0ca088eecb7506d361c3f27.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 1450,
+     "img": "https://static.tildacdn.com/stor3130-6365-4364-b230-306434353833/a1310e89b0ca088eecb7506d361c3f27.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/159551626192-dorado-s-granatovim-sousom-na-paru",
+   "local_photo": "photos/dishes/osnovnie_blada__dorado_s_granatovim_sousom_na_paru.jpg"
+  },
+  {
+   "uid": 761682796242,
+   "title": "Цыпленок шкмерули",
+   "category": "Основные блюда",
+   "price": 1100,
+   "description": "1 шт.",
+   "kbju": "КБЖУ на порцию Калорийность: 759,6 ккал Белки: 51,3 г Жиры: 57,5 г Углеводы: 8,8 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6166-3263-4465-b262-313963373734/60327085a368b9399d9aaf2dc8be6ae4.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 1100,
+     "img": "https://static.tildacdn.com/stor6166-3263-4465-b262-313963373734/60327085a368b9399d9aaf2dc8be6ae4.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/761682796242-tsiplenok-shkmeruli",
+   "local_photo": "photos/dishes/osnovnie_blada__ciplenok_skmeruli.jpg"
+  },
+  {
+   "uid": 173154936692,
+   "title": "Цыпленок тапака",
+   "category": "Основные блюда",
+   "price": 1100,
+   "description": "1 шт.",
+   "kbju": "КБЖУ на порцию Калорийность: 463,2 ккал Белки: 50,4 г Жиры: 26,4 г Углеводы: 1,4 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3533-3564-4130-a564-343563306532/7a7911caf4b1560050ebdef4edacabf8.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 1100,
+     "img": "https://static.tildacdn.com/stor3533-3564-4130-a564-343563306532/7a7911caf4b1560050ebdef4edacabf8.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/173154936692-tsiplenok-tapaka",
+   "local_photo": "photos/dishes/osnovnie_blada__ciplenok_tapaka.jpg"
+  },
+  {
+   "uid": 183588997633,
+   "title": "Черная треска с аджапсандалом и сливочно-лимонным соусом",
+   "category": "Основные блюда",
+   "price": 990,
+   "description": "220 гр",
+   "kbju": "КБЖУ на порцию Калорийность: 161,3 ккал Белки: 22,7 г Жиры: 1,1 г Углеводы: 15,6 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3338-3462-4666-a138-326438323463/24878a4066d3990c4ab93d1e83668ed3.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 990,
+     "img": "https://static.tildacdn.com/stor3338-3462-4666-a138-326438323463/24878a4066d3990c4ab93d1e83668ed3.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/183588997633-chernaya-treska-s-adzhapsandalom-i-slivo",
+   "local_photo": "photos/dishes/osnovnie_blada__serna_treska_s_adeapsandalom_i_slivosno_limonnim_sousom.jpg"
+  },
+  {
+   "uid": 944299729662,
+   "title": "Шашлык из телятины с домашним сацебели",
+   "category": "Блюда на углях",
+   "price": 990,
+   "description": "200 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 240 ккал Белки: 38 г Жиры: 9,2 г Углеводы: 1,3 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6134-3236-4339-b466-363432303535/a626169ab3b3ac8ad33c92fdf485445c.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 990,
+     "img": "https://static.tildacdn.com/stor6134-3236-4339-b466-363432303535/a626169ab3b3ac8ad33c92fdf485445c.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/944299729662-shashlik-iz-telyatini-s-domashnim-satseb",
+   "local_photo": "photos/dishes/blada_na_ugl_h__saslik_iz_tel_tini_s_domasnim_sacebeli.jpg"
+  },
+  {
+   "uid": 357866772752,
+   "title": "Шашлык из куриных бедрышек с домашним сацебели",
+   "category": "Блюда на углях",
+   "price": 690,
+   "description": "200 гр.",
+   "kbju": null,
+   "photos": [
+    "https://static.tildacdn.com/stor6263-6461-4430-a530-323162616564/289a2830e4c6b5b91526d59e0abf56f8.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 690,
+     "img": "https://static.tildacdn.com/stor6263-6461-4430-a530-323162616564/289a2830e4c6b5b91526d59e0abf56f8.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/357866772752-shashlik-iz-kurinih-bedrishek-s-domashni",
+   "local_photo": "photos/dishes/blada_na_ugl_h__saslik_iz_kurinih_bedrisek_s_domasnim_sacebeli.jpg"
+  },
+  {
+   "uid": 219414720772,
+   "title": "Шашлык из свиной шейки с домашним сацебели",
+   "category": "Блюда на углях",
+   "price": 750,
+   "description": "200 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 640 ккал Белки: 40 г Жиры: 48 г Углеводы: 1 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3034-3461-4834-a136-373862306630/15b1c78c8337dc58322e25cc96d894f8.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 750,
+     "img": "https://static.tildacdn.com/stor3034-3461-4834-a136-373862306630/15b1c78c8337dc58322e25cc96d894f8.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/219414720772-shashlik-iz-svinoi-sheiki-s-domashnim-sa",
+   "local_photo": "photos/dishes/blada_na_ugl_h__saslik_iz_svinoj_sejki_s_domasnim_sacebeli.jpg"
+  },
+  {
+   "uid": 662047004422,
+   "title": "Шашлык из корейки ягненка с домашним сацебели",
+   "category": "Блюда на углях",
+   "price": 1550,
+   "description": "200 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 766 ккал Белки: 24,8 г Жиры: 72,8 г Углеводы: 2 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3035-6461-4461-b739-333930363462/fce130590ede389a7dbea56dc52979fe.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 1550,
+     "img": "https://static.tildacdn.com/stor3035-6461-4461-b739-333930363462/fce130590ede389a7dbea56dc52979fe.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/662047004422-shashlik-iz-koreiki-yagnenka-s-domashnim",
+   "local_photo": "photos/dishes/blada_na_ugl_h__saslik_iz_korejki_gnenka_s_domasnim_sacebeli.jpg"
+  },
+  {
+   "uid": 753190587262,
+   "title": "Шашлык из мякоти ягненка с домашним сацебели",
+   "category": "Блюда на углях",
+   "price": 950,
+   "description": "200 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 450 ккал Белки: 36,9 г Жиры: 32,9 г Углеводы: 4,1 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6134-3236-4339-b466-363432303535/a626169ab3b3ac8ad33c92fdf485445c.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 950,
+     "img": "https://static.tildacdn.com/stor6134-3236-4339-b466-363432303535/a626169ab3b3ac8ad33c92fdf485445c.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/753190587262-shashlik-iz-myakoti-yagnenka-s-domashnim",
+   "local_photo": "photos/dishes/blada_na_ugl_h__saslik_iz_m_koti_gnenka_s_domasnim_sacebeli.jpg"
+  },
+  {
+   "uid": 797295405062,
+   "title": "Люля-кебаб из телятины с домашним сацебели",
+   "category": "Блюда на углях",
+   "price": 850,
+   "description": "200 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 469,4 ккал Белки: 31,6 г Жиры: 36,4 г Углеводы: 1,8 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6534-6634-4337-a335-653966663737/f7b023e66a83b23aab9da10eb5ca997c.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 850,
+     "img": "https://static.tildacdn.com/stor6534-6634-4337-a335-653966663737/f7b023e66a83b23aab9da10eb5ca997c.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/797295405062-lyulya-kebab-iz-telyatini-s-domashnim-sa",
+   "local_photo": "photos/dishes/blada_na_ugl_h__lal_kebab_iz_tel_tini_s_domasnim_sacebeli.jpg"
+  },
+  {
+   "uid": 269543400942,
+   "title": "Люля-кебаб из курицы с домашним сацебели",
+   "category": "Блюда на углях",
+   "price": 690,
+   "description": "200 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 400 ккал Белки: 36 г Жиры: 24 г Углеводы: 5 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6435-3934-4637-b261-663962346135/6fc847729ef85c0de8a2a608a587c8f0.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 690,
+     "img": "https://static.tildacdn.com/stor6435-3934-4637-b261-663962346135/6fc847729ef85c0de8a2a608a587c8f0.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/269543400942-lyulya-kebab-iz-kuritsi-s-domashnim-sats",
+   "local_photo": "photos/dishes/blada_na_ugl_h__lal_kebab_iz_kurici_s_domasnim_sacebeli.jpg"
+  },
+  {
+   "uid": 709247437982,
+   "title": "Люля-кебаб из телятины и баранины с домашним сацебели",
+   "category": "Блюда на углях",
+   "price": 850,
+   "description": "200 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 756 ккал Белки: 58 г Жиры: 56 г Углеводы: 8 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6537-3431-4131-b930-336339363333/07c68df8e72fa97b266bc1283bc906a7.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 850,
+     "img": "https://static.tildacdn.com/stor6537-3431-4131-b930-336339363333/07c68df8e72fa97b266bc1283bc906a7.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/709247437982-lyulya-kebab-iz-telyatini-i-baranini-s-d",
+   "local_photo": "photos/dishes/blada_na_ugl_h__lal_kebab_iz_tel_tini_i_baranini_s_domasnim_sacebeli.jpg"
+  },
+  {
+   "uid": 577945503202,
+   "title": "Лодочка с люля-кебаб из баранины с салатом и мятным соусом",
+   "category": "Блюда на углях",
+   "price": 1150,
+   "description": "250 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 700 ккал Белки: 27,4 г Жиры: 46 г Углеводы: 12,6 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6530-6166-4338-b435-633531303866/9c99ff7adf9ef46490b1e6d33a761849.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 1150,
+     "img": "https://static.tildacdn.com/stor6530-6166-4338-b435-633531303866/9c99ff7adf9ef46490b1e6d33a761849.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/577945503202-lodochka-s-lyulya-kebab-iz-baranini-s-sa",
+   "local_photo": "photos/dishes/blada_na_ugl_h__lodoska_s_lal_kebab_iz_baranini_s_salatom_i_m_tnim_sousom.jpg"
+  },
+  {
+   "uid": 573190167622,
+   "title": "Молодой картофель",
+   "category": "Овощи на углях и гарниры",
+   "price": 350,
+   "description": "120 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 76 ккал Белки: 2 г Жиры: 0,4 г Углеводы: 16 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6365-3165-4633-b339-383438626132/e704b5226d1992f08363ce966cb80ccb.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 350,
+     "img": "https://static.tildacdn.com/stor6365-3165-4633-b339-383438626132/e704b5226d1992f08363ce966cb80ccb.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/573190167622-molodoi-kartofel",
+   "local_photo": "photos/dishes/ovohi_na_ugl_h_i_garniri__molodoj_kartofel.jpg"
+  },
+  {
+   "uid": 849843401872,
+   "title": "Картофель фри",
+   "category": "Овощи на углях и гарниры",
+   "price": 350,
+   "description": "150 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 277 ккал Белки: 1,1 г Жиры: 24 г Углеводы: 12,18 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3463-6638-4363-b461-316166643765/4895f60a45253e8626aadc86908b0fb6.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 350,
+     "img": "https://static.tildacdn.com/stor3463-6638-4363-b461-316166643765/4895f60a45253e8626aadc86908b0fb6.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/849843401872-kartofel-fri",
+   "local_photo": "photos/dishes/ovohi_na_ugl_h_i_garniri__kartofel_fri.jpg"
+  },
+  {
+   "uid": 355750474032,
+   "title": "Картофельное пюре",
+   "category": "Овощи на углях и гарниры",
+   "price": 350,
+   "description": "150 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 102,5 ккал Белки: 2,09 г Жиры: 4,22 г Углеводы: 14,05 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6232-3438-4137-a536-636165663838/8989f834b3ccb67ba54d2d78217e3001.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 350,
+     "img": "https://static.tildacdn.com/stor6232-3438-4137-a536-636165663838/8989f834b3ccb67ba54d2d78217e3001.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/355750474032-kartofelnoe-pyure",
+   "local_photo": "photos/dishes/ovohi_na_ugl_h_i_garniri__kartofelnoe_pare.jpg"
+  },
+  {
+   "uid": 262497043702,
+   "title": "Жареные грибы",
+   "category": "Овощи на углях и гарниры",
+   "price": 450,
+   "description": "150 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 80 ккал Белки: 2 г Жиры: 0,8 г Углеводы: 16 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3234-6533-4337-b631-316166656139/58f1ed267014d08c0e55eee758d40e24.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 450,
+     "img": "https://static.tildacdn.com/stor3234-6533-4337-b631-316166656139/58f1ed267014d08c0e55eee758d40e24.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/262497043702-zharenie-gribi",
+   "local_photo": "photos/dishes/ovohi_na_ugl_h_i_garniri__earenie_gribi.jpg"
+  },
+  {
+   "uid": 733465955822,
+   "title": "Овощи на гриле",
+   "category": "Овощи на углях и гарниры",
+   "price": 550,
+   "description": "150 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 45,25 ккал Белки: 0,98 г Жиры: 2,73 г Углеводы: 4,2 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3661-3134-4032-b663-346333643334/a128655b2c25c2046623038dc5db9996.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 550,
+     "img": "https://static.tildacdn.com/stor3661-3134-4032-b663-346333643334/a128655b2c25c2046623038dc5db9996.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/733465955822-ovoschi-na-grile",
+   "local_photo": "photos/dishes/ovohi_na_ugl_h_i_garniri__ovohi_na_grile.jpg"
+  },
+  {
+   "uid": 100824680423,
+   "title": "Батат фри с трюфельным майо",
+   "category": "Овощи на углях и гарниры",
+   "price": 550,
+   "description": "150 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 195 ккал Белки: 1,5 г Жиры: 24 г Углеводы: 9 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3735-6262-4537-b131-633662346466/93c779fdf270ec8269dfdce84fe336d4.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 550,
+     "img": "https://static.tildacdn.com/stor3735-6262-4537-b131-633662346466/93c779fdf270ec8269dfdce84fe336d4.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/100824680423-batat-fri-s-tryufelnim-maio",
+   "local_photo": "photos/dishes/ovohi_na_ugl_h_i_garniri__batat_fri_s_trafelnim_majo.jpg"
+  },
+  {
+   "uid": 397344866022,
+   "title": "Сливочно-пряный",
+   "category": "Соусы",
+   "price": 150,
+   "description": "50 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 112,5 ккал Белки: 2 г Жиры: 6,7 г Углеводы: 10,9 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3732-3032-4638-b238-306230643936/6ada70049c011228f392da4b991ff949.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 150,
+     "img": "https://static.tildacdn.com/stor3732-3032-4638-b238-306230643936/6ada70049c011228f392da4b991ff949.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/397344866022-slivochno-pryanii",
+   "local_photo": "photos/dishes/sousi__slivosno_pr_nij.jpg"
+  },
+  {
+   "uid": 231821651422,
+   "title": "Ткемали",
+   "category": "Соусы",
+   "price": 150,
+   "description": "50 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 55 ккал Белки: 0,5 г Жиры: 2 г Углеводы: 14 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6330-6633-4139-a666-626635653733/230d3eafb378445a505e33c91d3b22af.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 150,
+     "img": "https://static.tildacdn.com/stor6330-6633-4139-a666-626635653733/230d3eafb378445a505e33c91d3b22af.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/231821651422-tkemali",
+   "local_photo": "photos/dishes/sousi__tkemali.jpg"
+  },
+  {
+   "uid": 371673418532,
+   "title": "Наршараб",
+   "category": "Соусы",
+   "price": 150,
+   "description": "50 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 155 ккал Белки: 0 г Жиры: 0 г Углеводы: 35 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6261-3234-4064-b231-373530326366/ac2e557ff7504fb70227408aa13ba0ad.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 150,
+     "img": "https://static.tildacdn.com/stor6261-3234-4064-b231-373530326366/ac2e557ff7504fb70227408aa13ba0ad.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/371673418532-narsharab",
+   "local_photo": "photos/dishes/sousi__narsarab.jpg"
+  },
+  {
+   "uid": 780347364082,
+   "title": "Чесночный",
+   "category": "Соусы",
+   "price": 150,
+   "description": "50 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 167,5 ккал Белки: 0,8 г Жиры: 16,1 г Углеводы: 4,6 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6662-3831-4639-b933-333738316133/672e8ab067246186135f851f676bfb7f.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 150,
+     "img": "https://static.tildacdn.com/stor6662-3831-4639-b933-333738316133/672e8ab067246186135f851f676bfb7f.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/780347364082-chesnochnii",
+   "local_photo": "photos/dishes/sousi__sesnosnij.jpg"
+  },
+  {
+   "uid": 329216982342,
+   "title": "Сацебели",
+   "category": "Соусы",
+   "price": 150,
+   "description": "50 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 47,5 ккал Белки: 1,8 г Жиры: 0,5 г Углеводы: 9 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6536-3938-4239-b266-313165386530/5966866b89202eb5104ee8662fe7a1b2.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 150,
+     "img": "https://static.tildacdn.com/stor6536-3938-4239-b266-313165386530/5966866b89202eb5104ee8662fe7a1b2.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/329216982342-satsebeli",
+   "local_photo": "photos/dishes/sousi__sacebeli.jpg"
+  },
+  {
+   "uid": 416504493152,
+   "title": "Баже",
+   "category": "Соусы",
+   "price": 150,
+   "description": "50 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 146,1 ккал Белки: 3,7 г Жиры: 13,2 г Углеводы: 3,3 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3234-3262-4431-b830-366436353738/be59a672faf584d9d0531b43ef9fe22c.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 150,
+     "img": "https://static.tildacdn.com/stor3234-3262-4431-b830-366436353738/be59a672faf584d9d0531b43ef9fe22c.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/416504493152-bazhe",
+   "local_photo": "photos/dishes/sousi__baee.jpg"
+  },
+  {
+   "uid": 508792056462,
+   "title": "Дзадзики",
+   "category": "Соусы",
+   "price": 150,
+   "description": "50 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 48,1 ккал Белки: 1,5 г Жиры: 3,7 г Углеводы: 1,9 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3765-3532-4334-a130-666136333437/38ecffb916102c5c5ee8d4e6d44135b3.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 150,
+     "img": "https://static.tildacdn.com/stor3765-3532-4334-a130-666136333437/38ecffb916102c5c5ee8d4e6d44135b3.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/508792056462-dzadziki",
+   "local_photo": "photos/dishes/sousi__dzadziki.jpg"
+  },
+  {
+   "uid": 172923136723,
+   "title": "Трюфельный майо",
+   "category": "Соусы",
+   "price": 150,
+   "description": "50 гр.",
+   "kbju": null,
+   "photos": [
+    "https://static.tildacdn.com/stor3035-6532-4566-b430-396435396230/f49be9281b1bc28cabf1becc67ac5d15.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 150,
+     "img": "https://static.tildacdn.com/stor3035-6532-4566-b430-396435396230/f49be9281b1bc28cabf1becc67ac5d15.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/172923136723-tryufelnii-maio",
+   "local_photo": "photos/dishes/sousi__trafelnij_majo.jpg"
+  },
+  {
+   "uid": 939802252842,
+   "title": "Медовик с цветочным медом",
+   "category": "Десерты",
+   "price": 550,
+   "description": "180 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 435,2 ккал Белки: 7,8 г Жиры: 12,5 г Углеводы: 73,6 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6334-6464-4537-b562-353265656664/0b911b81406cae0053725e5c25d73214.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 550,
+     "img": "https://static.tildacdn.com/stor6334-6464-4537-b562-353265656664/0b911b81406cae0053725e5c25d73214.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/939802252842-medovik-s-tsvetochnim-medom",
+   "local_photo": "photos/dishes/deserti__medovik_s_cvetosnim_medom.jpg"
+  },
+  {
+   "uid": 294668460962,
+   "title": "Айдабанан",
+   "category": "Десерты",
+   "price": 590,
+   "description": "150 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 179,6 ккал Белки: 8 г Жиры: 5,7 г Углеводы: 23,6 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3532-3430-4264-b336-643135653661/2828a62e52d21a01e7b9cf6556374ade.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 590,
+     "img": "https://static.tildacdn.com/stor3532-3430-4264-b336-643135653661/2828a62e52d21a01e7b9cf6556374ade.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/294668460962-aidabanan",
+   "local_photo": "photos/dishes/deserti__ajdabanan.jpg"
+  },
+  {
+   "uid": 498744643142,
+   "title": "Тирамису",
+   "category": "Десерты",
+   "price": 750,
+   "description": "350 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 785 ккал Белки: 12,3 г Жиры: 26 г Углеводы: 126,3 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6633-3337-4539-b630-346531613831/b68823f46589e5f3ecc12d75f0426250.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 750,
+     "img": "https://static.tildacdn.com/stor6633-3337-4539-b630-346531613831/b68823f46589e5f3ecc12d75f0426250.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/498744643142-tiramisu",
+   "local_photo": "photos/dishes/deserti__tiramisu.jpg"
+  },
+  {
+   "uid": 951817158352,
+   "title": "Мороженое в ассортименте",
+   "category": "Десерты",
+   "price": 200,
+   "description": "50 гр.",
+   "kbju": "КБЖУ на порцию 50 г Мороженое ванильное: 90 ккал, Б 2,2 г, Ж 4 г, У 11,5 г Мороженое халва: 146 ккал, Б 2,9 г, Ж 10 г, У 16 г Мороженое ягодное: 50,5 ккал, Б 0,2 г, Ж 0 г, У 13,5 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3537-3039-4237-b765-613530663362/52075973.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 200,
+     "img": "https://static.tildacdn.com/stor3537-3039-4237-b765-613530663362/52075973.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/951817158352-morozhenoe-v-assortimente",
+   "local_photo": "photos/dishes/deserti__moroeenoe_v_assortimente.jpg"
+  },
+  {
+   "uid": 202125751092,
+   "title": "Слоеный пирог со сливой и крем карамель",
+   "category": "Десерты",
+   "price": 690,
+   "description": "280 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 943,39 ккал Белки: 23,16 г Жиры: 73,07 г Углеводы: 83,63 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3339-3338-4364-b761-393731356137/deb79b5909311bae2eda230240a57ed5.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 690,
+     "img": "https://static.tildacdn.com/stor3339-3338-4364-b761-393731356137/deb79b5909311bae2eda230240a57ed5.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/202125751092-sloenii-pirog-so-slivoi-i-krem-karamel",
+   "local_photo": "photos/dishes/deserti__sloenij_pirog_so_slivoj_i_krem_karamel.jpg"
+  },
+  {
+   "uid": 361663365393,
+   "title": "Чизкейк с халвой и соленой карамелью",
+   "category": "Десерты",
+   "price": 690,
+   "description": "230 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 1005,2 ккал Белки: 13,18 г Жиры: 72,25 г Углеводы: 75,2 г",
+   "photos": [
+    "https://static.tildacdn.com/stor3537-3039-4237-b765-613530663362/52075973.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 690,
+     "img": "https://static.tildacdn.com/stor3537-3039-4237-b765-613530663362/52075973.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/361663365393-chizkeik-s-halvoi-i-solenoi-karamelyu",
+   "local_photo": "photos/dishes/deserti__sizkejk_s_halvoj_i_solenoj_karamela.jpg"
+  },
+  {
+   "uid": 496885548332,
+   "title": "Лаваш Армянский",
+   "category": "Тандырный хлеб",
+   "price": 150,
+   "description": "50 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 300 ккал Белки: 8,8 г Жиры: 3,3 г Углеводы: 72 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6164-3436-4265-a531-363838643361/fb01b38a993af972b8477522642ad677.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 150,
+     "img": "https://static.tildacdn.com/stor6164-3436-4265-a531-363838643361/fb01b38a993af972b8477522642ad677.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/496885548332-lavash-armyanskii",
+   "local_photo": "photos/dishes/tandirnij_hleb__lavas_arm_nskij.jpg"
+  },
+  {
+   "uid": 608277433292,
+   "title": "Шотис Пури",
+   "category": "Тандырный хлеб",
+   "price": 150,
+   "description": "100 гр.",
+   "kbju": "КБЖУ на порцию Калорийность: 347 ккал Белки: 8 г Жиры: 3 г Углеводы: 65 г",
+   "photos": [
+    "https://static.tildacdn.com/stor6137-6265-4266-b336-333962613039/6a6ebd27973f2f087f9c85cc7a532460.jpg"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 150,
+     "img": "https://static.tildacdn.com/stor6137-6265-4266-b336-333962613039/6a6ebd27973f2f087f9c85cc7a532460.jpg"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/608277433292-shotis-puri",
+   "local_photo": "photos/dishes/tandirnij_hleb__sotis_puri.jpg"
+  },
+  {
+   "uid": 213295374113,
+   "title": "Сок яблочный",
+   "category": "Напитки",
+   "price": 250,
+   "description": "200&nbsp;мл",
+   "kbju": "Освежающий напиток, который придётся по&nbsp;вкусу любителям яблочного вкуса. Имеет ярко выраженный фруктовый вкус и&nbsp;аромат. Подходит для&nbsp;утоления жажды. Напиток собственного производства",
+   "photos": [
+    "https://static.tildacdn.com/tila6164-3031-4231-b733-633539613036/aida-drink-disk08png.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 250,
+     "img": "https://static.tildacdn.com/tila6164-3031-4231-b733-633539613036/aida-drink-disk08png.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/213295374113-sok-yablochnii",
+   "local_photo": "photos/dishes/napitki__sok_blosnij.jpg"
+  },
+  {
+   "uid": 535784606723,
+   "title": "Сок апельсиновый",
+   "category": "Напитки",
+   "price": 250,
+   "description": "200&nbsp;мл",
+   "kbju": "Освежитесь вкусным апельсиновым соком! Идеальный напиток для&nbsp;тех, кто ценит яркий фруктовый вкус. Напиток собственного производства",
+   "photos": [
+    "https://static.tildacdn.com/tila3961-3435-4537-b634-616437356563/aida-drink-disk03png.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 250,
+     "img": "https://static.tildacdn.com/tila3961-3435-4537-b634-616437356563/aida-drink-disk03png.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/535784606723-sok-apelsinovii",
+   "local_photo": "photos/dishes/napitki__sok_apelsinovij.jpg"
+  },
+  {
+   "uid": 844016957853,
+   "title": "Сок вишнёвый",
+   "category": "Напитки",
+   "price": 250,
+   "description": "200&nbsp;мл",
+   "kbju": "Ищете идеальный напиток, чтобы взбодриться и&nbsp;освежиться? Попробуйте наш вишневый сок. Напиток собственного производства",
+   "photos": [
+    "https://static.tildacdn.com/tila3861-3435-4464-a461-323336626539/aida-drink-disk07png.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 250,
+     "img": "https://static.tildacdn.com/tila3861-3435-4464-a461-323336626539/aida-drink-disk07png.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/844016957853-sok-vishnyovii",
+   "local_photo": "photos/dishes/napitki__sok_visnevij.jpg"
+  },
+  {
+   "uid": 795073179343,
+   "title": "Сок томатный",
+   "category": "Напитки",
+   "price": 250,
+   "description": "200&nbsp;мл",
+   "kbju": "Хотите заказать напиток, который утоляет жажду и&nbsp;наполняет организм витаминами? Попробуйте наш сок томатный! Напиток собственного производства",
+   "photos": [
+    "https://static.tildacdn.com/tila3139-6532-4833-b666-626638363131/aida-drink-disk06png.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 250,
+     "img": "https://static.tildacdn.com/tila3139-6532-4833-b666-626638363131/aida-drink-disk06png.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/795073179343-sok-tomatnii",
+   "local_photo": "photos/dishes/napitki__sok_tomatnij.jpg"
+  },
+  {
+   "uid": 981442240863,
+   "title": "Свежевыжатый апельсиновый фреш",
+   "category": "Напитки",
+   "price": 490,
+   "description": "200&nbsp;мл",
+   "kbju": "Свежевыжатый апельсиновый фреш&nbsp;—&nbsp;это заряд бодрости и&nbsp;витаминов в&nbsp;каждом глотке! Идеальный выбор для&nbsp;ценителей ярких и&nbsp;сочных вкусов. Напиток приготовлен из&nbsp;спелых и&nbsp;сладких апельсинов",
+   "photos": [
+    "https://static.tildacdn.com/tila3537-3333-4339-b231-626662663866/aida-drink-disk05png.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 490,
+     "img": "https://static.tildacdn.com/tila3537-3333-4339-b231-626662663866/aida-drink-disk05png.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/981442240863-svezhevizhatii-apelsinovii-fresh",
+   "local_photo": "photos/dishes/napitki__sveeevieatij_apelsinovij_fres.jpg"
+  },
+  {
+   "uid": 784383492083,
+   "title": "Свежевыжатый яблочный фреш",
+   "category": "Напитки",
+   "price": 490,
+   "description": "200&nbsp;мл",
+   "kbju": "Свежевыжатый яблочный фреш&nbsp;—&nbsp;это вкусный и&nbsp;полезный напиток из&nbsp;натуральных ингредиентов. Готовится из&nbsp;свежих яблок",
+   "photos": [
+    "https://static.tildacdn.com/tila3732-3435-4134-b139-663636336132/aida-drink-disk04png.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 490,
+     "img": "https://static.tildacdn.com/tila3732-3435-4134-b139-663636336132/aida-drink-disk04png.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/784383492083-svezhevizhatii-yablochnii-fresh",
+   "local_photo": "photos/dishes/napitki__sveeevieatij_blosnij_fres.jpg"
+  },
+  {
+   "uid": 547730300163,
+   "title": "Свежевыжатый морковный фреш",
+   "category": "Напитки",
+   "price": 490,
+   "description": "200&nbsp;мл",
+   "kbju": "Освежающий напиток, который бодрит своим ярким вкусом. Он сочетает в&nbsp;себе сладость и&nbsp;лёгкую терпкость, а&nbsp;также обладает насыщенным ароматом. Этот напиток точно не&nbsp;оставит вас равнодушным. Свежевыжатый морковный фреш&nbsp;—&nbsp;отличный выбор для&nbsp;тех, кто ценит вкус и&nbsp;пользу",
+   "photos": [
+    "https://static.tildacdn.com/tila3262-6439-4466-b231-393234393332/aida-drink-disk00png.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 490,
+     "img": "https://static.tildacdn.com/tila3262-6439-4466-b231-393234393332/aida-drink-disk00png.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/547730300163-svezhevizhatii-morkovnii-fresh",
+   "local_photo": "photos/dishes/napitki__sveeevieatij_morkovnij_fres.jpg"
+  },
+  {
+   "uid": 770598310813,
+   "title": "Свежевыжатый грейпфрутовый фреш",
+   "category": "Напитки",
+   "price": 490,
+   "description": "200&nbsp;мл",
+   "kbju": "Бодрящий и&nbsp;ароматный, этот напиток подарит вам ощущение свежести и&nbsp;наполнит энергией. Сочный грейпфрут, известный своими полезными свойствами, является основным ингредиентом этого напитка",
+   "photos": [
+    "https://static.tildacdn.com/tila3265-3836-4465-b463-313664393839/aida-drink-disk02png.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 490,
+     "img": "https://static.tildacdn.com/tila3265-3836-4465-b463-313664393839/aida-drink-disk02png.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/770598310813-svezhevizhatii-greipfrutovii-fresh",
+   "local_photo": "photos/dishes/napitki__sveeevieatij_grejpfrutovij_fres.jpg"
+  },
+  {
+   "uid": 445870875313,
+   "title": "Гранатовый фреш",
+   "category": "Напитки",
+   "price": 990,
+   "description": "200&nbsp;мл",
+   "kbju": "Этот напиток имеет насыщенный вкус и&nbsp;яркий аромат. Он сладкий, но&nbsp;с ощутимой кислинкой, которая оставляет приятное послевкусие. Идеален для&nbsp;тех, кто хочет освежиться и&nbsp;утолить жажду.",
+   "photos": [
+    "https://static.tildacdn.com/tila6635-3634-4539-a362-646438393139/aida-drink-eda_imggr.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 990,
+     "img": "https://static.tildacdn.com/tila6635-3634-4539-a362-646438393139/aida-drink-eda_imggr.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/445870875313-granatovii-fresh",
+   "local_photo": "photos/dishes/napitki__granatovij_fres.jpg"
+  },
+  {
+   "uid": 191838857173,
+   "title": "Вода Саирме газированная",
+   "category": "Напитки",
+   "price": 390,
+   "description": "500&nbsp;мл",
+   "kbju": "Натуральная минеральная вода из&nbsp;Грузии. Источник Саирме расположен в&nbsp;горах, на&nbsp;высоте 950&nbsp;метров над уровнем моря, чуть южнее города Кутаиси. По&nbsp;своему основному ионному составу Саирме относится к&nbsp;гидрокарбонатным кальциево-натриевым минеральным водам. Благодаря своей малой минерализации её можно пить ежедневно, в&nbsp;умеренных количествах",
+   "photos": [
+    "https://static.tildacdn.com/tila6161-6435-4633-b161-303939636564/aida-drink-disk13png.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 390,
+     "img": "https://static.tildacdn.com/tila6161-6435-4633-b161-303939636564/aida-drink-disk13png.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/191838857173-voda-sairme-gazirovannaya",
+   "local_photo": "photos/dishes/napitki__voda_sairme_gazirovanna.jpg"
+  },
+  {
+   "uid": 301501361763,
+   "title": "Вода Саирме негазированная",
+   "category": "Напитки",
+   "price": 390,
+   "description": "500&nbsp;мл",
+   "kbju": "Натуральная минеральная вода из&nbsp;Грузии. Источник Саирме расположен в&nbsp;горах, на&nbsp;высоте 950&nbsp;метров над уровнем моря, чуть южнее города Кутаиси. По&nbsp;своему основному ионному составу Саирме относится к&nbsp;гидрокарбонатным кальциево-натриевым минеральным водам. Благодаря своей малой минерализации её можно пить ежедневно, в&nbsp;умеренных количествах",
+   "photos": [
+    "https://static.tildacdn.com/tila6361-3431-4834-b530-313731346536/aida-drink-disk14png.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 390,
+     "img": "https://static.tildacdn.com/tila6361-3431-4834-b530-313731346536/aida-drink-disk14png.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/301501361763-voda-sairme-negazirovannaya",
+   "local_photo": "photos/dishes/napitki__voda_sairme_negazirovanna.jpg"
+  },
+  {
+   "uid": 238582192523,
+   "title": "Вода Borjomi газированная",
+   "category": "Напитки",
+   "price": 420,
+   "description": "500&nbsp;мл",
+   "kbju": "Borjomi&nbsp;—&nbsp;легендарная вода, которой больше 130&nbsp;лет. Она зарождается в&nbsp;вулканических глубинах Грузии в&nbsp;экологически чистой долине Боржоми на&nbsp;глубине 8000&nbsp;метров и, поднимаясь сквозь слои вулканических пород, насыщается природной композицией из&nbsp;более чем 60 полезных минералов",
+   "photos": [
+    "https://static.tildacdn.com/tila6337-3936-4230-b132-363137356232/aida-drink-disk15png.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 420,
+     "img": "https://static.tildacdn.com/tila6337-3936-4230-b132-363137356232/aida-drink-disk15png.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/238582192523-voda-borjomi-gazirovannaya",
+   "local_photo": "photos/dishes/napitki__voda_borjomi_gazirovanna.jpg"
+  },
+  {
+   "uid": 575654137123,
+   "title": "Морс домашний",
+   "category": "Напитки",
+   "price": 220,
+   "description": "200&nbsp;мл / 1&nbsp;л",
+   "kbju": "Освежающий напиток с&nbsp;ярким вкусом ягод и&nbsp;легкой кислинкой. Отлично утоляет жажду и&nbsp;заряжает витаминами. Негазированный собственного приготовления",
+   "photos": [
+    "https://static.tildacdn.com/tila6635-6135-4361-b861-313031316463/aida-drink-disk10png.png",
+    "https://static.tildacdn.com/tila3339-6461-4338-b837-353034313635/aida-drink-disk11png.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 220,
+     "img": "https://static.tildacdn.com/tila6635-6135-4361-b861-313031316463/aida-drink-disk10png.png"
+    },
+    {
+     "price": 990,
+     "img": "https://static.tildacdn.com/tila3339-6461-4338-b837-353034313635/aida-drink-disk11png.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/575654137123-mors-domashnii",
+   "local_photo": "photos/dishes/napitki__mors_domasnij.jpg"
+  },
+  {
+   "uid": 923360279353,
+   "title": "Компот сезонный из сухофруктов",
+   "category": "Напитки",
+   "price": 220,
+   "description": "200&nbsp;мл / 1&nbsp;л",
+   "kbju": "Обладает ярким вкусом и&nbsp;ароматом сухофруктов, которые вызывают воспоминания о&nbsp;детстве. Освежающий и&nbsp;лёгкий, прекрасно утоляет жажду.",
+   "photos": [
+    "https://static.tildacdn.com/tila3932-3433-4332-b236-656636333066/aida-drink-disk01png.png",
+    "https://static.tildacdn.com/tila6561-6132-4438-b364-373365353462/aida-drink-disk17png.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 220,
+     "img": "https://static.tildacdn.com/tila3932-3433-4332-b236-656636333066/aida-drink-disk01png.png"
+    },
+    {
+     "price": 990,
+     "img": "https://static.tildacdn.com/tila6561-6132-4438-b364-373365353462/aida-drink-disk17png.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/923360279353-kompot-sezonnii-iz-suhofruktov",
+   "local_photo": "photos/dishes/napitki__kompot_sezonnij_iz_suhofruktov.jpg"
+  },
+  {
+   "uid": 875106956773,
+   "title": "Лимонад Тархун с грушей",
+   "category": "Напитки",
+   "price": 450,
+   "description": "400&nbsp;мл / 1,2&nbsp;л",
+   "kbju": "Домашний лимонад собственного производства. Из&nbsp;свежего тархуна и&nbsp;сочной груши, содовая.",
+   "photos": [
+    "https://static.tildacdn.com/tila6263-3138-4231-b531-383536346339/aida-drink-disk38png.png",
+    "https://static.tildacdn.com/tila3265-3137-4536-b566-393264396639/aida-drink-disk39png.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 450,
+     "img": "https://static.tildacdn.com/tila6263-3138-4231-b531-383536346339/aida-drink-disk38png.png"
+    },
+    {
+     "price": 1100,
+     "img": "https://static.tildacdn.com/tila3265-3137-4536-b566-393264396639/aida-drink-disk39png.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/875106956773-limonad-tarhun-s-grushei",
+   "local_photo": "photos/dishes/napitki__limonad_tarhun_s_grusej.jpg"
+  },
+  {
+   "uid": 615279107673,
+   "title": "Лимонад Аранчата-лемонграсс",
+   "category": "Напитки",
+   "price": 450,
+   "description": "400&nbsp;мл / 1,2&nbsp;л",
+   "kbju": "Домашний лимонад собственного производства из&nbsp;микса цитрусовых с&nbsp;лемонграссом, содовая",
+   "photos": [
+    "https://static.tildacdn.com/tila3933-6234-4239-a534-616231616132/aida-drink-disk42png.png",
+    "https://static.tildacdn.com/tila3631-3235-4833-b061-313666333163/aida-drink-disk43png.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 450,
+     "img": "https://static.tildacdn.com/tila3933-6234-4239-a534-616231616132/aida-drink-disk42png.png"
+    },
+    {
+     "price": 1100,
+     "img": "https://static.tildacdn.com/tila3631-3235-4833-b061-313666333163/aida-drink-disk43png.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/615279107673-limonad-aranchata-lemongrass",
+   "local_photo": "photos/dishes/napitki__limonad_aransata_lemongrass.jpg"
+  },
+  {
+   "uid": 327985571533,
+   "title": "Лимонад Дыня-маракуйя",
+   "category": "Напитки",
+   "price": 370,
+   "description": "400&nbsp;мл / 1&nbsp;л",
+   "kbju": "Домашний лимонад собственного производства",
+   "photos": [
+    "https://static.tildacdn.com/tila6231-6463-4564-b037-376166626162/aida-drink-disk34png.png",
+    "https://static.tildacdn.com/tila3062-3237-4261-b931-666132333364/aida-drink-disk35png.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 370,
+     "img": "https://static.tildacdn.com/tila6231-6463-4564-b037-376166626162/aida-drink-disk34png.png"
+    },
+    {
+     "price": 790,
+     "img": "https://static.tildacdn.com/tila3062-3237-4261-b931-666132333364/aida-drink-disk35png.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/327985571533-limonad-dinya-marakuiya",
+   "local_photo": "photos/dishes/napitki__limonad_din_marakuj.jpg"
+  },
+  {
+   "uid": 993286476193,
+   "title": "Лимонад Клубника-маракуйя",
+   "category": "Напитки",
+   "price": 450,
+   "description": "400&nbsp;мл / 1,2&nbsp;л",
+   "kbju": "Домашний лимонад. Напиток собственного производства",
+   "photos": [
+    "https://static.tildacdn.com/tila3131-3035-4237-b536-393931643661/aida-drink-disk37png.png",
+    "https://static.tildacdn.com/tila6464-6366-4363-b535-623137376231/aida-drink-disk36png.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 450,
+     "img": "https://static.tildacdn.com/tila3131-3035-4237-b536-393931643661/aida-drink-disk37png.png"
+    },
+    {
+     "price": 1100,
+     "img": "https://static.tildacdn.com/tila6464-6366-4363-b535-623137376231/aida-drink-disk36png.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/993286476193-limonad-klubnika-marakuiya",
+   "local_photo": "photos/dishes/napitki__limonad_klubnika_marakuj.jpg"
+  },
+  {
+   "uid": 248605967853,
+   "title": "Лимонад Ягодный",
+   "category": "Напитки",
+   "price": 450,
+   "description": "450&nbsp;мл / 1&nbsp;л",
+   "kbju": "Напиток собственного производства изготавливается на&nbsp;основе натуральных сиропов",
+   "photos": [
+    "https://static.tildacdn.com/tila3663-3835-4132-a265-366262363366/aida-drink-disk44png.png",
+    "https://static.tildacdn.com/tila3239-3035-4638-a363-343931326164/aida-drink-disk45png.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 450,
+     "img": "https://static.tildacdn.com/tila3663-3835-4132-a265-366262363366/aida-drink-disk44png.png"
+    },
+    {
+     "price": 990,
+     "img": "https://static.tildacdn.com/tila3239-3035-4638-a363-343931326164/aida-drink-disk45png.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/248605967853-limonad-yagodnii",
+   "local_photo": "photos/dishes/napitki__limonad_godnij.jpg"
+  },
+  {
+   "uid": 820724492393,
+   "title": "Лимонад сезонный",
+   "category": "Напитки",
+   "price": 490,
+   "description": "400&nbsp;мл / 1,2&nbsp;л",
+   "kbju": "Домашний лимонад собственного производства из&nbsp;сезонного фрукта и&nbsp;ягоды, содовая",
+   "photos": [
+    "https://static.tildacdn.com/tila3133-3732-4039-a432-646538333762/aida-drink-disk40png.png",
+    "https://static.tildacdn.com/tila3266-3732-4366-b664-376630383033/aida-drink-disk41png.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 490,
+     "img": "https://static.tildacdn.com/tila3133-3732-4039-a432-646538333762/aida-drink-disk40png.png"
+    },
+    {
+     "price": 1200,
+     "img": "https://static.tildacdn.com/tila3266-3732-4366-b664-376630383033/aida-drink-disk41png.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/820724492393-limonad-sezonnii",
+   "local_photo": "photos/dishes/napitki__limonad_sezonnij.jpg"
+  },
+  {
+   "uid": 254367554413,
+   "title": "Лимонад Дюшес",
+   "category": "Напитки",
+   "price": 370,
+   "description": "400&nbsp;мл / 1&nbsp;л",
+   "kbju": "Домашний лимонад собственного производства",
+   "photos": [
+    "https://static.tildacdn.com/tila3365-3230-4264-a432-643538336439/aida-drink-disk25png.png",
+    "https://static.tildacdn.com/tila6638-6638-4339-b736-656231616437/aida-drink-disk22png.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 370,
+     "img": "https://static.tildacdn.com/tila3365-3230-4264-a432-643538336439/aida-drink-disk25png.png"
+    },
+    {
+     "price": 790,
+     "img": "https://static.tildacdn.com/tila6638-6638-4339-b736-656231616437/aida-drink-disk22png.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/254367554413-limonad-dyushes",
+   "local_photo": "photos/dishes/napitki__limonad_dases.jpg"
+  },
+  {
+   "uid": 349542270703,
+   "title": "Лимонад Лагидзе Тархун",
+   "category": "Напитки",
+   "price": 450,
+   "description": "400&nbsp;мл / 1&nbsp;л",
+   "kbju": "Напиток собственного производства изготавливается на&nbsp;основе натуральных сиропов",
+   "photos": [
+    "https://static.tildacdn.com/tila3637-6236-4230-b432-343463303933/aida-drink-disk18png.png",
+    "https://static.tildacdn.com/tila6363-3339-4237-b339-623961306363/aida-drink-disk19png.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 450,
+     "img": "https://static.tildacdn.com/tila3637-6236-4230-b432-343463303933/aida-drink-disk18png.png"
+    },
+    {
+     "price": 990,
+     "img": "https://static.tildacdn.com/tila6363-3339-4237-b339-623961306363/aida-drink-disk19png.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/349542270703-limonad-lagidze-tarhun",
+   "local_photo": "photos/dishes/napitki__limonad_lagidze_tarhun.jpg"
+  },
+  {
+   "uid": 316058397693,
+   "title": "Лимонад Лагидзе Лимон",
+   "category": "Напитки",
+   "price": 450,
+   "description": "450&nbsp;мл / 1&nbsp;л",
+   "kbju": "Напиток собственного производства, изготавливается на&nbsp;основе натуральных сиропов",
+   "photos": [
+    "https://static.tildacdn.com/tila3361-3435-4761-a631-623366626230/aida-drink-disk20png.png",
+    "https://static.tildacdn.com/tila6333-6533-4863-b035-373864363736/aida-drink-disk21png.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 450,
+     "img": "https://static.tildacdn.com/tila3361-3435-4761-a631-623366626230/aida-drink-disk20png.png"
+    },
+    {
+     "price": 990,
+     "img": "https://static.tildacdn.com/tila6333-6533-4863-b035-373864363736/aida-drink-disk21png.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/316058397693-limonad-lagidze-limon",
+   "local_photo": "photos/dishes/napitki__limonad_lagidze_limon.jpg"
+  },
+  {
+   "uid": 314183598113,
+   "title": "Лимонад Лагидзе Фейхоа",
+   "category": "Напитки",
+   "price": 450,
+   "description": "400&nbsp;мл / 1&nbsp;л",
+   "kbju": "Напиток собственного производства, изготавливается на&nbsp;основе натуральных сиропов",
+   "photos": [
+    "https://static.tildacdn.com/tila6531-3562-4237-b462-616332643634/aida-drink-disk23png.png",
+    "https://static.tildacdn.com/tila6234-6233-4337-a231-373736303837/aida-drink-disk24png.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 450,
+     "img": "https://static.tildacdn.com/tila6531-3562-4237-b462-616332643634/aida-drink-disk23png.png"
+    },
+    {
+     "price": 990,
+     "img": "https://static.tildacdn.com/tila6234-6233-4337-a231-373736303837/aida-drink-disk24png.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/314183598113-limonad-lagidze-feihoa",
+   "local_photo": "photos/dishes/napitki__limonad_lagidze_fejhoa.jpg"
+  },
+  {
+   "uid": 293997095213,
+   "title": "Лимонад Лагидзе Крем-сода",
+   "category": "Напитки",
+   "price": 450,
+   "description": "400&nbsp;мл / 1,2&nbsp;л",
+   "kbju": "Напиток собственного производства, изготавливается на&nbsp;основе натуральных сиропов.",
+   "photos": [
+    "https://static.tildacdn.com/tila6662-6631-4030-a631-666161386665/aida-drink-disk26png.png",
+    "https://static.tildacdn.com/tila6531-6666-4363-a264-396366323366/aida-drink-disk27png.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 450,
+     "img": "https://static.tildacdn.com/tila6662-6631-4030-a631-666161386665/aida-drink-disk26png.png"
+    },
+    {
+     "price": 990,
+     "img": "https://static.tildacdn.com/tila6531-6666-4363-a264-396366323366/aida-drink-disk27png.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/293997095213-limonad-lagidze-krem-soda",
+   "local_photo": "photos/dishes/napitki__limonad_lagidze_krem_soda.jpg"
+  },
+  {
+   "uid": 882741287353,
+   "title": "Лимонад Лагидзе Вишня",
+   "category": "Напитки",
+   "price": 450,
+   "description": "450&nbsp;мл / 1&nbsp;л",
+   "kbju": "Домашний лимонад. Напиток собственного производства",
+   "photos": [
+    "https://static.tildacdn.com/tila6438-3465-4933-a537-366664663463/aida-drink-disk28png.png",
+    "https://static.tildacdn.com/tila3237-3931-4066-a532-633966643132/aida-drink-disk29png.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 450,
+     "img": "https://static.tildacdn.com/tila6438-3465-4933-a537-366664663463/aida-drink-disk28png.png"
+    },
+    {
+     "price": 990,
+     "img": "https://static.tildacdn.com/tila3237-3931-4066-a532-633966643132/aida-drink-disk29png.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/882741287353-limonad-lagidze-vishnya",
+   "local_photo": "photos/dishes/napitki__limonad_lagidze_visn.jpg"
+  },
+  {
+   "uid": 445203463583,
+   "title": "Лимонад Лагидзе Ситро",
+   "category": "Напитки",
+   "price": 450,
+   "description": "400&nbsp;мл / 1&nbsp;л",
+   "kbju": "Домашний лимонад собственного производства",
+   "photos": [
+    "https://static.tildacdn.com/tila3265-3839-4439-a337-633138343161/aida-drink-disk32png.png",
+    "https://static.tildacdn.com/tila3231-6366-4065-a430-383265343134/aida-drink-disk33png.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 450,
+     "img": "https://static.tildacdn.com/tila3265-3839-4439-a337-633138343161/aida-drink-disk32png.png"
+    },
+    {
+     "price": 1100,
+     "img": "https://static.tildacdn.com/tila3231-6366-4065-a430-383265343134/aida-drink-disk33png.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/445203463583-limonad-lagidze-sitro",
+   "local_photo": "photos/dishes/napitki__limonad_lagidze_sitro.jpg"
+  },
+  {
+   "uid": 731512193893,
+   "title": "Лимонад Лагидзе Исинди",
+   "category": "Напитки",
+   "price": 450,
+   "description": "450&nbsp;мл / 1&nbsp;л",
+   "kbju": "Напиток собственного производства, изготавливается на&nbsp;основе натуральных сиропов",
+   "photos": [
+    "https://static.tildacdn.com/tila3431-6661-4461-b566-353938313062/aida-drink-disk31png.png",
+    "https://static.tildacdn.com/tila6165-6661-4232-b261-646137356163/aida-drink-disk30png.png"
+   ],
+   "upsell_options": [],
+   "editions": [
+    {
+     "price": 450,
+     "img": "https://static.tildacdn.com/tila3431-6661-4461-b566-353938313062/aida-drink-disk31png.png"
+    },
+    {
+     "price": 990,
+     "img": "https://static.tildacdn.com/tila6165-6661-4232-b261-646137356163/aida-drink-disk30png.png"
+    }
+   ],
+   "url": "https://aidabaran.ru/menu/tproduct/731512193893-limonad-lagidze-isindi",
+   "local_photo": "photos/dishes/napitki__limonad_lagidze_isindi.jpg"
+  }
+ ]
+}

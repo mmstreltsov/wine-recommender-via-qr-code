@@ -1,0 +1,131 @@
+/* ============================================================
+   Дизайн-токены «АйДаБаран» — сняты с aidabaran.ru (Tilda) 07.11.2026
+   Подключение: <link rel="stylesheet" href="tokens.css">
+   Шрифты: исходник aidabaran.ru подключал Google Fonts (Unbounded, Montserrat).
+   В проекте шрифты self-host woff2: файлы — data/aidabaran/assets/fonts/,
+   маршрут — /static/aidabaran/assets/fonts/; Google Fonts не используется — см. docs/40-frontend.md.
+   ============================================================ */
+
+:root {
+  /* --- Цвета --- */
+  --c-accent:        #fdc300;  /* жёлтый: кнопки, активные чипы, счётчик корзины */
+  --c-accent-deep:   #f3bf12;  /* тёмно-жёлтый: hover-вариации, закрытие корзины */
+  --c-accent-shadow: #e7b511;  /* ещё темнее, встречается в состояниях */
+  --c-ink:           #000000;  /* основной текст, рамки */
+  --c-ink-soft:      #020202;  /* почти чёрный, фоны тёмных блоков */
+  --c-surface:       #ffffff;  /* карточки, фон страницы */
+  --c-bg-soft:       #fbfbfb;  /* мягкий фон */
+  --c-line:          #ebebeb;  /* разделители, серые подложки */
+  --c-accent-2:      #ff855d;  /* оранжевый (редко, акценты) */
+
+  /* --- Шрифты --- */
+  --font-display: 'Unbounded', Arial, sans-serif;   /* заголовки, цены, кнопки */
+  --font-text:    'Montserrat', Arial, sans-serif;  /* описания, обычный текст */
+
+  /* --- Радиусы --- */
+  --radius-chip:   10px;   /* чипы категорий, кнопки, карточки */
+  --radius-round:  53px;   /* круглые стрелки слайдеров */
+  --radius-pill:   3000px; /* «пилюли» */
+
+  /* --- Сетка каталога (как на aidabaran.ru/menu) --- */
+  --grid-cols: 3;          /* колонок в каталоге */
+  --card-width: 360px;     /* ширина карточки */
+  --card-img-h: 250px;     /* высота фото в карточке */
+}
+
+/* ============================================================
+   Базовые компоненты — копия поведения aidabaran.ru
+   ============================================================ */
+
+/* Кнопка (в т.ч. «В корзину», «Перейти к оплате») */
+.btn {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--c-ink);
+  background-color: var(--c-accent);
+  border: none;
+  border-radius: var(--radius-chip);
+  box-shadow: none;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: background-color .2s ease-in-out, color .2s ease-in-out;
+}
+.btn:hover  { background-color: var(--c-accent-deep); }
+
+/* Чип категории (фильтр каталога) */
+.chip {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  font-family: var(--font-text);
+  font-size: 10px;
+  color: var(--c-ink);
+  background: var(--c-surface);
+  border: 1px solid var(--c-ink);
+  border-radius: var(--radius-chip);
+  padding: 8px 15px;
+  cursor: pointer;
+}
+.chip:hover,
+.chip.is-active {
+  background-color: var(--c-accent);
+  border-color: var(--c-accent);
+  color: var(--c-ink);
+}
+
+/* Ряд чипов: горизонтальный скролл без переносов */
+.chip-row {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  width: 100%;
+  overflow-x: scroll;
+  box-sizing: border-box;
+}
+
+/* Карточка блюда */
+.dish-card {
+  background: var(--c-surface);
+  border-radius: var(--radius-chip);
+  overflow: hidden;
+}
+.dish-card__img {
+  width: 100%;
+  height: var(--card-img-h);
+  object-fit: cover;
+  display: block;
+}
+.dish-card__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--c-ink);
+}
+.dish-card__descr {
+  font-family: var(--font-text);
+  font-weight: 300;
+  font-size: 12px;
+  color: var(--c-ink);
+}
+.dish-card__price {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+}
+
+/* Каталог: 3 колонки, карточки 360px */
+.catalog {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-cols), 1fr);
+  gap: 20px;
+}
+@media (max-width: 960px) { .catalog { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .catalog { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   Фото с CDN ресторана: resize-варианты Тильды
+   Паттерн: вставить '/-/resize/<WxH>/' перед именем файла оригинала
+   (поведение фронтенда — docs/40-frontend.md, раздел «Фото»).
+   Fallback на локальную копию — через onerror (docs/40-frontend.md).
+   ============================================================ */
