@@ -48,7 +48,7 @@
 
 ```
 backend/
-├── cmd/server/main.go          # композиция: config → store → plugin → http server; подкоманды export-events, availability
+├── cmd/server/main.go          # композиция: config → store → plugin → http server; подкоманды export-events, availability (set/list/find)
 ├── internal/
 │   ├── api/                    # http-хендлеры по контрактам docs/30-contracts/api.md, middleware (сессия, logging, recovery, rate-limit)
 │   ├── domain/                 # чистые типы ядра: Category, MenuItem, Cart, CartLine, Rec, Event (без ресторанной специфики)

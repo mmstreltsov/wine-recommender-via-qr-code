@@ -11,6 +11,7 @@
 | `recommender/matrix.json` | Экспертные пары «блюдо → дополнение» с текстами обоснований | **Да** — данные реком-движка (схема: `docs/30-contracts/recommender.md` §2) |
 | `recommender/heuristics.json` | Правила сочетания категорий | **Да** — фолбэк каскада |
 | `recommender/upsell_map.json` | Словарь «текст апсейла → item_id» | **Да** — M1 наполнение |
+| `recommender/forcart_priorities.json` | Приоритеты «недостающего курса» для ForCart (группы категорий по убыванию) | **Да** — вместо хардкода в Go (контракт: `30.3` §1) |
 | `parser.py` | Обновление menu.json (`menu`) и скачивание локальных фото (`photos`) | Инструмент данных |
 
 ## Фото: CDN + локальный fallback

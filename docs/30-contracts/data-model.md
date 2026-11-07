@@ -14,7 +14,7 @@ type MenuItem struct {
     CategoryID   int
     Name         string
     Price        int       // рубли, целое
-    Description  string    // «600 гр.» и т.п.
+    Description  string    // свободное описание: вес/состав/особенности; см. §3
     KBJU         string    // «Калорийность: 569,1 ккал …» или ""
     PhotoURL     string    // CDN-URL оригинала (ресайз добавляет фронт)
     PhotoFallback string   // локальный путь/URL копии, "" если нет
@@ -87,7 +87,7 @@ type Event struct {
 | `items[].category` | `CategoryID` | по словарю названий → порядок из `parser.py PARTS` (1..14) |
 | `items[].title` | `Name` | как есть |
 | `items[].price` | `Price` | уже int (parser приводит); NULL → позиция пропускается + лог |
-| `items[].description` | `Description` | html-unescape (`&nbsp;` и пр.) + схлопывание пробелов; вес порции — как есть |
+| `items[].description` | `Description` | опциональное свободное описание (вес, состав, способ приготовления, особенности; сюда же попадает КБЖУ-текст при отсутствии структурированного КБЖУ — см. строку kbju); html-unescape (`&nbsp;` и пр.) + схлопывание пробелов |
 | `items[].kbju` | `KBJU` | html-unescape + схлопывание пробелов; КБЖУ — только если содержит подстроку «Калорийность» (регистронезависимо), тогда отрезается префикс «КБЖУ на порцию » (фронт не парсит). Иначе: категория «Напитки» — `Description = {исходное description} + " " + {kbju-текст}` (при пустом description — только kbju-текст), KBJU=`""`; прочие категории — warning в лог, KBJU=`""`. `null` → `""` |
 | `items[].photos[0]` else `items[].editions[0].img` | `PhotoURL` | первый непустой; нет обоих → `""` (позиция без фото допустима, фронт показывает заглушку-плашку) |
 | `items[].local_photo` | `PhotoFallback` | заменить префикс `photos/` на `/static/aidabaran/photos/`; existence-check файла относительно `DATA_DIR/<restaurant>/`; файла нет → `""`. Слаг в Go не вычисляется (транслит parser.py в Go не воспроизводится) |
