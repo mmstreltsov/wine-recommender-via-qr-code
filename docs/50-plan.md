@@ -21,22 +21,29 @@ DoD: валидатор зелёный (запуск: `cd backend && go run ./cm
 ## M2 — Core backend (backend)
 Сделать: goose-миграции; сессии/корзина/события (pgx, репозитории за интерфейсами); хендлеры по
 `30.2` (menu из плагина, cart, events, config, health); middleware (cookie-сессия, logging,
-recovery, rate-limit events); интеграционные тесты API (testcontainers или compose-db).
+recovery, rate-limit events); учёт наличия (FR-36/37): миграция `item_availability`, TTL-кэш
+`AVAILABILITY_TTL_S`, CLI `availability set/list`, фильтры выдач (меню/карточка/рекомы/корзина),
+ошибка `409 item_unavailable`; интеграционные тесты API (testcontainers или compose-db).
 DoD: `docker compose up db` + сервер — все эндпоинты отвечают по контракту; тесты/lint зелёные;
-grep-изоляция internal (нет «aidabaran»); события menu_add_click/rec_add_click пишутся сервером.
+grep-изоляция internal (нет «aidabaran»); события menu_add_click/rec_add_click пишутся сервером;
+выключение позиции CLI при живом сервере исчезает из `/menu` в пределах TTL (фильтр рекомендаций
+проверяется в M3), добавление её в корзину даёт `409 item_unavailable`.
 
 ## M3 — Реком-модуль АйДаБарана (backend, параллельно с M2 после фиксации контрактов)
 Сделать: реализация `Recommender` (ForDish каскад, ForCart правила) по `30.3`; детерминированные
 unit-тесты на фиксированном fixture-меню (эксперт/upsell/heuristic/exclude/пусто).
 DoD: тесты покрывают все ветки каскада; ручная проверка: `/items/{хинкали}/recommendations`
-возвращает осмысленные пары с текстами.
+возвращает осмысленные пары с текстами; фильтр наличия: выключенная CLI позиция не появляется
+в рекомендациях (лента карточки и ForCart), опустевшая лента → блок скрыт.
 
 ## M4 — Frontend (frontend)
 Сделать: скачать woff2 (Unbounded 300–700, Montserrat, кириллица) и закоммитить в
 `data/aidabaran/assets/fonts/`; каркас Vite+React+TS, тема aidabaran, все 5 экранов/состояний
-по `40-frontend`, API-клиент, трекер событий (клиентская часть AN-02), PhotoWithFallback.
+по `40-frontend`, API-клиент, трекер событий (клиентская часть AN-02), PhotoWithFallback;
+UI корзины для недоступной линии — приглушение, бейдж «Нет в наличии», блокировка оплаты (UI-04).
 DoD: полный путь гостя (FR-путь) проходит на мобильном вьюпорте 375px; тесты компонентов на
-ключевые AC (FR-15 no-navigation, FR-29 скрытие блока, FR-31 пустая корзина); lint/тесты зелёные;
+ключевые AC (FR-15 no-navigation, FR-29 скрытие блока, FR-31 пустая корзина, UI-04 недоступная
+линия); lint/тесты зелёные;
 визуальное сравнение с сайтом ресторана (UI-01…03).
 
 ## M5 — Аналитика, деплой, финал

@@ -20,13 +20,20 @@
         ▼                    │ реализует
  [PostgreSQL]      [plugins/aidabaran]  ← СПЕЦИФИКА ресторана:
   sessions,           ├─ загрузка data/aidabaran/menu.json → доменные типы ядра
-  carts, cart_items,  ├─ матрица пар + тексты (data/aidabaran/recommender/)
-  events              └─ Recommender: ForDish / ForCart
+   carts, cart_items,  ├─ матрица пар + тексты (data/aidabaran/recommender/)
+   events, item_availability  └─ Recommender: ForDish / ForCart
 ```
 
 Композиция — **build-time**: `cmd/server/main.go` читает env `RESTAURANT=aidabaran` и собирает
 сервер с соответствующим плагином. Никаких рантайм-плагинов Go (`plugin` package) — это хрупко
 и не нужно: добавление ресторана = новый пакет в `plugins/` + строка в registry + его data-каталог.
+
+Наличие блюд (FR-36): сервер держит in-memory множество недоступных `item_id` — TTL-кэш над
+таблицей `item_availability` (env `AVAILABILITY_TTL_S`, по умолчанию 5 с). Фильтр применяется ко
+всем выдачам — меню, карточки, рекомендации (после каскада) и корзина (FR-37); изменения,
+внесённые CLI при живом сервере, подхватываются без рестарта в пределах TTL (ADR-0006). При
+ошибке обновления кэша (БД недоступна) сервер работает по последнему успешно загруженному срезу
+и логирует ERROR (не fail-open, не 500).
 
 ## 2. Статика vs динамика (ключевое решение)
 
@@ -34,19 +41,20 @@
 |---|---|---|
 | Меню, категории, матрица пар, тексты рекомов | Файлы `data/<restaurant>/`, в памяти процесса при старте | Статика прототипа; обновление = перезапуск. Нет лишней БД-синхронизации |
 | Сессии, корзины, события | PostgreSQL | Динамика; данные исследования |
+| Наличие блюд (отключения) | PostgreSQL `item_availability`, чтение — TTL-кэш в памяти сервера | Операционное состояние зала, меняется без релиза; default-available (пустая таблица = всё доступно, FR-36) |
 | Фотографии | CDN ресторана (primary) + локальные копии (fallback через `onerror`) | Ноль хранения и трафика; см. `data/aidabaran/README.md` |
 
 ## 3. Структура backend
 
 ```
 backend/
-├── cmd/server/main.go          # композиция: config → store → plugin → http server; подкоманда export-events
+├── cmd/server/main.go          # композиция: config → store → plugin → http server; подкоманды export-events, availability
 ├── internal/
 │   ├── api/                    # http-хендлеры по контрактам docs/30-contracts/api.md, middleware (сессия, logging, recovery, rate-limit)
 │   ├── domain/                 # чистые типы ядра: Category, MenuItem, Cart, CartLine, Rec, Event (без ресторанной специфики)
 │   ├── recommender/recommender.go  # interface Recommender + типы Rec/RecSource
-│   ├── store/                  # интерфейсы репозиториев + pgx-реализации (sessions, carts, events)
-│   └── app/                    # сервисы: MenuService, CartService, EventsService
+│   ├── store/                  # интерфейсы репозиториев + pgx-реализации (sessions, carts, events, availability)
+│   └── app/                    # сервисы: MenuService, CartService, EventsService; TTL-кэш наличия (FR-36)
 └── plugins/
     └── aidabaran/
         ├── loader.go           # menu.json → []domain.MenuItem (маппинг полей см. data-model.md)
@@ -106,6 +114,15 @@ CREATE TABLE events (
 );
 CREATE INDEX idx_events_name_ts ON events (name, ts);
 CREATE INDEX idx_events_session ON events (session_id);
+
+-- 0002_item_availability.sql (FR-36, ADR-0006)
+CREATE TABLE item_availability (
+    item_id      BIGINT PRIMARY KEY,         -- без FK: меню — статика в памяти;
+                                             -- item_id валидируется CLI против меню из DATA_DIR
+    is_available BOOLEAN NOT NULL,
+    updated_at   TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+-- Семантика default-available: отсутствующая строка = позиция доступна.
 ```
 
 Валидация `item_id` против меню — в сервисном слое (меню в памяти), не FK: меню не в БД.
@@ -136,6 +153,7 @@ frontend/src/
 | `RESTAURANT` | `aidabaran` | выбор плагина и data-каталога |
 | `DATA_DIR` | `../data` | корень данных ресторанов; по умолчанию `../data` — запуск из `backend/`, как в AGENTS.md |
 | `COOKIE_MAX_AGE_H` | `12` | жизнь анонимной сессии |
+| `AVAILABILITY_TTL_S` | `5` | TTL (сек) in-memory кэша наличия блюд (FR-36): задержка подхвата изменений, внесённых CLI |
 
 `.env` в git не попадает; `.env.example` — в корне репо (создаётся в M2).
 
@@ -159,4 +177,4 @@ frontend/src/
 ## 8. ADR
 
 См. `docs/adr/` — краткие записи по значимым решениям (стек, плагин-модель, статика/динамика,
-без-ML рекомы, анонимность).
+без-ML рекомы, анонимность, наличие блюд).

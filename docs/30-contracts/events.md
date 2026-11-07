@@ -25,7 +25,7 @@
 | `cart_open` | фронт | открыт экран корзины | `{"lines_count": int, "total": int}` |
 | `cart_qty_change` | сервер | `PATCH /cart/items/{id}` | `{"item_id": id, "from": int, "to": int}` |
 | `cart_item_remove` | сервер | `DELETE /cart/items/{id}` | `{"item_id": id}` |
-| `pay_click` | фронт | клик «Оплатить» (до перехода на заглушку) | `{"total": int, "lines_count": int}` |
+| `pay_click` | фронт | клик «Оплатить» (до перехода на заглушку); при блокировке оплаты из-за недоступных линий (UI-04, FR-37) событие НЕ шлётся | `{"total": int, "lines_count": int}` |
 | `stub_view` | фронт | открыт экран-заглушка | `{}` |
 
 Ограничения payload: строго плоский JSON (только скалярные значения верхнего уровня, глубина 1),

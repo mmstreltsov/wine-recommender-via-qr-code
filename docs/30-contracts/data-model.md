@@ -23,7 +23,12 @@ type MenuItem struct {
 }
 type Upsell struct { Name string; AddPrice int }
 
-type CartLine struct { ItemID int64; Qty int; AddedFrom string }
+type CartLine struct {
+    ItemID    int64
+    Qty       int
+    AddedFrom string  // menu | rec_feed | rec_cart
+    Available bool     // вычисляется при чтении: false = позиция недоступна (FR-36/37); в БД не хранится
+}
 type Cart  struct { SessionID string; Lines []CartLine; UpdatedAt time.Time }
 
 type Event struct {
@@ -101,3 +106,13 @@ type Event struct {
 Ограничения валидации (граница API): `item_id` ∈ меню; `qty` ∈ [1,20]; `table` ∈ [1,999];
 `name` события ∈ таксономии; payload — строго плоский JSON (только скалярные значения верхнего
 уровня, глубина 1), ≤ 1 КБ.
+
+## 6. Наличие блюд (availability, FR-36/37)
+
+- Таблица `item_availability`: `item_id BIGINT PK`, `is_available BOOLEAN NOT NULL`,
+  `updated_at TIMESTAMPTZ NOT NULL DEFAULT now()` (схема — `20-architecture.md` §4). Без FK на
+  меню: `item_id` валидируется CLI `availability set` против меню, загруженного из `DATA_DIR`.
+- Семантика **default-available**: отсутствующая строка = позиция доступна; в таблице — только
+  явные отключения/включения (вносятся заказчиком через CLI, ADR-0006).
+- `CartLine.Available` (JSON `cart.lines[].available`) — вычисляемое при чтении корзины поле,
+  в `cart_items` НЕ хранится: `is_available=false` → линия отдаётся с `"available": false`.
