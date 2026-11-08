@@ -560,19 +560,55 @@ func TestFR36_Integration_AvailabilityTTLCycle(t *testing.T) {
 
 func TestNFR04_Integration_Events204And400(t *testing.T) {
 	srv, pool, _ := newIntegrationServer(t)
+	for _, headers := range []map[string]string{
+		{"Content-Type": "text/plain"},
+		{"Content-Type": "application/json", "Origin": "null"},
+		{"Content-Type": "application/json", "Origin": "http://other.test"},
+		{"Content-Type": "application/json", "Sec-Fetch-Site": "same-site"},
+	} {
+		req, err := http.NewRequest(http.MethodPost, srv.URL+"/api/v1/events", bytes.NewBufferString(`{"name":"page_open","payload":{}}`))
+		if err != nil {
+			t.Fatal(err)
+		}
+		for key, value := range headers {
+			req.Header.Set(key, value)
+		}
+		resp, err := http.DefaultClient.Do(req)
+		if err != nil {
+			t.Fatal(err)
+		}
+		_ = resp.Body.Close()
+		if resp.StatusCode != http.StatusBadRequest || len(resp.Cookies()) != 0 {
+			t.Fatal("unsafe event write must be rejected before session creation")
+		}
+	}
+	var sessions int
+	if err := pool.QueryRow(context.Background(), `SELECT count(*) FROM sessions`).Scan(&sessions); err != nil || sessions != 0 {
+		t.Fatalf("rejected writes created sessions: count=%d err=%v", sessions, err)
+	}
 	c := newItClient()
 	resp := c.get(t, srv.URL+"/api/v1/menu?table=3")
 	_ = resp.Body.Close()
 	ok := func(body string) {
-		r := c.post(t, srv.URL+"/api/v1/events", body)
+		req, err := http.NewRequest(http.MethodPost, srv.URL+"/api/v1/events", bytes.NewBufferString(body))
+		if err != nil {
+			t.Fatal(err)
+		}
+		req.Header.Set("Content-Type", "application/json")
+		req.Header.Set("Origin", srv.URL)
+		req.Header.Set("Sec-Fetch-Site", "same-origin")
+		r, err := c.do(req)
+		if err != nil {
+			t.Fatal(err)
+		}
 		_ = r.Body.Close()
 		if r.StatusCode != http.StatusNoContent {
 			t.Fatalf("POST /events %s: want 204, got %d", body, r.StatusCode)
 		}
 	}
 	ok(`{"name":"page_open","payload":{}}`)
-	ok(`{"name":"rec_impression","payload":{"context":"dish","rec_item_id":366609864022}}`)
-	ok(`{"name":"rec_impression","payload":{"context":"cart","rec_item_id":999999}}`)
+	ok(`{"name":"rec_impression","payload":{"context":"dish","rec_item_id":366609864022,"rec_source":"expert"}}`)
+	ok(`{"name":"rec_impression","payload":{"context":"cart","rec_item_id":999999,"rec_source":"heuristic"}}`)
 	bad := func(body string) {
 		r := c.post(t, srv.URL+"/api/v1/events", body)
 		_ = r.Body.Close()
@@ -583,6 +619,12 @@ func TestNFR04_Integration_Events204And400(t *testing.T) {
 	bad(`{"name":"nope","payload":{}}`)
 	bad(`{"name":"menu_view","payload":{"x":{"y":1}}}`)
 	bad(`{"name":`)
+	bad(`{"name":"page_open","payload":{"note":"synthetic free text"}}`)
+	bad(`{"name":"category_select","payload":{"category_id":"text"}}`)
+	bad(`{"name":"rec_impression","payload":{"context":"dish","rec_item_id":999999}}`)
+	bad(`{"name":"rec_impression","payload":{"context":"dish","rec_item_id":999999,"rec_source":"arbitrary"}}`)
+	bad(`{"name":"rec_feed_visible","payload":{"dish_id":999999,"recs_count":14}}`)
+	bad(`{"name":"menu_view","payload":{}} {"name":"stub_view","payload":{}}`)
 	// events.md §1: серверные имена от клиента → 400 (ровно один источник).
 	bad(`{"name":"menu_add_click","payload":{"item_id":1}}`)
 	bad(`{"name":"rec_add_click","payload":{"item_id":1,"context":"dish"}}`)

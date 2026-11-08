@@ -2,6 +2,8 @@ package api
 
 import (
 	"encoding/json"
+	"errors"
+	"io"
 	"net/http"
 	"strconv"
 )
@@ -19,7 +21,15 @@ type setQtyRequest struct {
 
 func decodeJSON(w http.ResponseWriter, r *http.Request, v any) error {
 	r.Body = http.MaxBytesReader(w, r.Body, maxBodyBytes)
-	return json.NewDecoder(r.Body).Decode(v)
+	decoder := json.NewDecoder(r.Body)
+	decoder.DisallowUnknownFields()
+	if err := decoder.Decode(v); err != nil {
+		return err
+	}
+	if err := decoder.Decode(new(any)); err != io.EOF {
+		return errors.New("expected a single JSON value")
+	}
+	return nil
 }
 
 func (s *Server) handleCartGet(w http.ResponseWriter, r *http.Request) {

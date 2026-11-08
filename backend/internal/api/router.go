@@ -64,6 +64,7 @@ func NewRouter(d RouterDeps) http.Handler {
 	}
 	var h http.Handler = mux
 	h = newSessionMiddleware(d.Sessions, d.CookieMaxAge).Middleware(h)
+	h = withMutationGuard(h)
 	h = withLogging(h)
 	h = withRecovery(h)
 	h = withSecurityHeaders(h)

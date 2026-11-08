@@ -249,6 +249,7 @@ func TestFR37_CartEndpointErrors(t *testing.T) {
 		t.Fatalf("missing item_id must 400, got %d", resp.StatusCode)
 	}
 	req, _ := http.NewRequest("PATCH", srv.URL+"/api/v1/cart/items/999", bytes.NewBufferString(`{"qty":2}`))
+	req.Header.Set("Content-Type", "application/json")
 	resp, err := client.Do(req)
 	if err != nil {
 		t.Fatal(err)
