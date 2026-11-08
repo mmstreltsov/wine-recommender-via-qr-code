@@ -1,0 +1,158 @@
+{
+  "restaurant": "recommender fixture",
+  "source": "fixture",
+  "items_count": 13,
+  "items": [
+    {
+      "uid": 101,
+      "title": "Салат по-грузински",
+      "category": "Салаты",
+      "price": 590,
+      "description": "Овощи и ореховая заправка",
+      "kbju": null,
+      "photos": [],
+      "upsell_options": [
+        {"name": "Сулугуни 200₽", "add_price": 200},
+        {"name": "Тигровые креветки (50г) 420₽", "add_price": 420}
+      ],
+      "editions": []
+    },
+    {
+      "uid": 102,
+      "title": "Салат из печных овощей",
+      "category": "Салаты",
+      "price": 640,
+      "description": "",
+      "kbju": null,
+      "photos": [],
+      "upsell_options": [],
+      "editions": []
+    },
+    {
+      "uid": 201,
+      "title": "Хинкали с говядиной",
+      "category": "Хинкали",
+      "price": 480,
+      "description": "5 шт",
+      "kbju": null,
+      "photos": [],
+      "upsell_options": [
+        {"name": "Ткемали 90₽", "add_price": 90},
+        {"name": "Сацебели 100₽", "add_price": 100}
+      ],
+      "editions": []
+    },
+    {
+      "uid": 202,
+      "title": "Хинкали с сыром",
+      "category": "Хинкали",
+      "price": 460,
+      "description": "5 шт",
+      "kbju": null,
+      "photos": [],
+      "upsell_options": [
+        {"name": "Тархун 200₽", "add_price": 200}
+      ],
+      "editions": []
+    },
+    {
+      "uid": 203,
+      "title": "Хинкали с бараниной",
+      "category": "Хинкали",
+      "price": 520,
+      "description": "5 шт",
+      "kbju": null,
+      "photos": [],
+      "upsell_options": [],
+      "editions": []
+    },
+    {
+      "uid": 301,
+      "title": "Кучмача",
+      "category": "Горячие закуски",
+      "price": 540,
+      "description": "",
+      "kbju": null,
+      "photos": [],
+      "upsell_options": [],
+      "editions": []
+    },
+    {
+      "uid": 401,
+      "title": "Сацебели",
+      "category": "Соусы",
+      "price": 190,
+      "description": "120 гр",
+      "kbju": null,
+      "photos": [],
+      "upsell_options": [],
+      "editions": []
+    },
+    {
+      "uid": 402,
+      "title": "Ткемали",
+      "category": "Соусы",
+      "price": 170,
+      "description": "120 гр",
+      "kbju": null,
+      "photos": [],
+      "upsell_options": [],
+      "editions": []
+    },
+    {
+      "uid": 501,
+      "title": "Пахвала",
+      "category": "Десерты",
+      "price": 380,
+      "description": "",
+      "kbju": null,
+      "photos": [],
+      "upsell_options": [],
+      "editions": []
+    },
+    {
+      "uid": 502,
+      "title": "Чурчхела",
+      "category": "Десерты",
+      "price": 310,
+      "description": "",
+      "kbju": null,
+      "photos": [],
+      "upsell_options": [],
+      "editions": []
+    },
+    {
+      "uid": 601,
+      "title": "Лобиани",
+      "category": "Тандырный хлеб",
+      "price": 350,
+      "description": "",
+      "kbju": null,
+      "photos": [],
+      "upsell_options": [],
+      "editions": []
+    },
+    {
+      "uid": 701,
+      "title": "Тархун",
+      "category": "Напитки",
+      "price": 260,
+      "description": "250 мл",
+      "kbju": null,
+      "photos": [],
+      "upsell_options": [],
+      "editions": []
+    },
+    {
+      "uid": 702,
+      "title": "Ситро",
+      "category": "Напитки",
+      "price": 240,
+      "description": "250 мл",
+      "kbju": null,
+      "photos": [],
+      "upsell_options": [],
+      "editions": []
+    }
+  ]
+}

@@ -14,7 +14,8 @@
 - Наружу НЕ выносить стеки, пути, детали БД (NFR-04).
 - HTTP-статусы: 400 / 404 / 409 / 429 / 500.
 
-Сессия (FR-33): middleware на каждый запрос проверяет cookie `session`; если нет — создаёт UUID,
+Сессия (FR-33): middleware на каждый запрос `/api/v1` (кроме `/api/v1/health` — healthcheck сессий
+не создаёт и IP-лимит не расходует) проверяет cookie `session`; если нет — создаёт UUID,
 ставит `Set-Cookie: session=<uuid>; HttpOnly; SameSite=Lax; Max-Age=<COOKIE_MAX_AGE_H×3600>; Path=/`
 (Max-Age вычисляется из env, 43200 — пример при 12ч; атрибут `Secure` добавляется всегда, когда
 запрос пришёл по TLS, в деве без TLS — опускается) и создаёт запись `sessions`. `table_id`: фронт

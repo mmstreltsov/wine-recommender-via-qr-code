@@ -94,8 +94,8 @@ type heuristicsFile struct {
 }
 
 type heuristicRule struct {
-	FromCategory  string   `json:"from_category"`
-	ToCategories  []string `json:"to_categories"`
+	FromCategory string   `json:"from_category"`
+	ToCategories []string `json:"to_categories"`
 }
 
 type upsellMapFile struct {

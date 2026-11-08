@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "rules": [
+    { "from_category": "Салаты", "to_categories": ["Хинкали"] },
+    { "from_category": "Хинкали", "to_categories": ["Соусы", "Десерты", "Напитки"] },
+    { "from_category": "Напитки", "to_categories": ["Десерты"] }
+  ]
+}
