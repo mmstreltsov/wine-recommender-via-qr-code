@@ -1,0 +1,26 @@
+{
+ "version": 1,
+ "rules": [
+  {
+   "from_category": "Салаты",
+   "to_categories": [
+    "Соусы",
+    "Напитки"
+   ]
+  },
+  {
+   "from_category": "Соусы",
+   "to_categories": [
+    "Напитки",
+    "Салаты"
+   ]
+  },
+  {
+   "from_category": "Напитки",
+   "to_categories": [
+    "Салаты",
+    "Соусы"
+   ]
+  }
+ ]
+}

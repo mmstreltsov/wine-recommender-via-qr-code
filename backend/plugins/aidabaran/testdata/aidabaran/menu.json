@@ -1,0 +1,157 @@
+{
+ "restaurant": "Тестовое мини-меню",
+ "source": "fixture",
+ "parsed_at": "2026-11-08",
+  "items_count": 13,
+ "items": [
+  {
+   "uid": 101,
+   "title": "Салат с ореховой заправкой",
+   "category": "Салаты",
+   "price": 1390,
+   "description": "600&nbsp;гр.\tподано с  зеленью",
+   "kbju": "КБЖУ на порцию Калорийность: 569,1&nbsp;ккал Белки: 11,2 г Жиры: 48,3 г",
+   "photos": ["https://cdn.test/salat.jpg"],
+   "upsell_options": [
+    {"name": "Тигровые креветки (50г) 420₽", "add_price": 420},
+    {"name": "Просто опция без цены", "add_price": 0}
+   ],
+   "editions": [{"price": 1390, "img": "https://cdn.test/salat-e.jpg"}],
+   "url": "https://example.test/101",
+   "local_photo": "photos/dishes/salat.jpg"
+  },
+  {
+   "uid": 102,
+   "title": "Позиция без цены",
+   "category": "Салаты",
+   "price": null,
+   "description": "должна быть пропущена",
+   "kbju": null,
+   "photos": [],
+   "upsell_options": [],
+   "editions": []
+  },
+  {
+   "uid": 103,
+   "title": "",
+   "category": "Салаты",
+   "price": 500,
+   "description": "",
+   "kbju": null,
+   "photos": [],
+   "upsell_options": [],
+   "editions": []
+  },
+   {
+    "uid": 104,
+    "title": "Салат без КБЖУ",
+    "category": "Салаты",
+    "price": 690,
+    "description": "",
+    "kbju": "Состав: мука,&nbsp;вода",
+    "photos": ["https://cdn.test/salat2.jpg"],
+    "upsell_options": [],
+    "editions": []
+   },
+   {
+    "uid": 105,
+    "title": "Позиция с неизвестной категорией",
+    "category": "Нет такой",
+    "price": 100,
+    "description": "",
+    "kbju": null,
+    "photos": [],
+    "upsell_options": [],
+    "editions": []
+   },
+  {
+   "uid": 201,
+   "title": "Морс клюквенный",
+   "category": "Напитки",
+   "price": 350,
+   "description": "200&nbsp;мл",
+   "kbju": "Освежающий напиток  со&nbsp;льдом",
+   "photos": ["https://cdn.test/mors.jpg"],
+   "upsell_options": [],
+   "editions": []
+  },
+  {
+   "uid": 202,
+   "title": "Чай грузинский",
+   "category": "Напитки",
+   "price": 250,
+   "description": "",
+   "kbju": "Сладкий&nbsp;чай",
+   "photos": ["https://cdn.test/tea.jpg"],
+   "upsell_options": [],
+   "editions": []
+  },
+  {
+   "uid": 203,
+   "title": "Холодный чай с калориями",
+   "category": "Напитки",
+   "price": 300,
+   "description": "Холодный чай",
+   "kbju": "Калорийность: 45&nbsp;ккал на 100 мл",
+   "photos": ["https://cdn.test/ice-tea.jpg"],
+   "upsell_options": [],
+   "editions": []
+  },
+  {
+   "uid": 301,
+   "title": "Сацебели",
+   "category": "Соусы",
+   "price": 190,
+   "description": "120 гр",
+   "kbju": null,
+   "photos": [],
+   "upsell_options": [],
+   "editions": [{"price": 190, "img": "https://cdn.test/sause-fb.jpg"}]
+  },
+  {
+   "uid": 302,
+   "title": "Соус без фото",
+   "category": "Соусы",
+   "price": 90,
+   "description": "50 гр",
+   "kbju": null,
+   "photos": [""],
+   "upsell_options": [],
+   "editions": []
+  },
+  {
+   "uid": 303,
+   "title": "Соус с отсутствующим локальным фото",
+   "category": "Соусы",
+   "price": 120,
+   "description": "50 гр",
+   "kbju": null,
+   "photos": ["https://cdn.test/s303.jpg"],
+   "upsell_options": [],
+   "editions": [],
+   "local_photo": "photos/dishes/missing.jpg"
+  },
+   {
+    "uid": 304,
+    "title": "Соус с КБЖУ без префикса",
+    "category": "Соусы",
+    "price": 150,
+    "description": "50 гр",
+    "kbju": "КАЛОРИЙНОСТЬ: 80 ккал",
+    "photos": ["https://cdn.test/s304.jpg"],
+    "upsell_options": [],
+    "editions": []
+   },
+   {
+    "uid": 305,
+    "title": "Соус с пустым фото и изданием",
+    "category": "Соусы",
+    "price": 160,
+    "description": "50 гр",
+    "kbju": null,
+    "photos": [""],
+    "upsell_options": [],
+    "editions": [{"price": 160, "img": "https://cdn.test/sause-ed.jpg"}]
+   }
+ ]
+}
