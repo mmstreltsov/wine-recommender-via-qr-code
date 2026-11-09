@@ -1,0 +1,2 @@
+# SVG backend uses stdlib XML, without Pillow/pypng or native libraries.
+qrcode==8.2 --hash=sha256:16e64e0716c14960108e85d853062c9e8bba5ca8252c0b4d0231b9df4060ff4f

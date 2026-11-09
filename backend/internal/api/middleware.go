@@ -2,11 +2,15 @@ package api
 
 import (
 	"context"
+	"crypto/sha256"
 	"log"
 	"net"
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
+
+	"svoyshef/internal/store"
 )
 
 type statusRecorder struct {
@@ -30,7 +34,7 @@ func withRecovery(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		defer func() {
 			if rec := recover(); rec != nil {
-				log.Printf("panic: %v", rec)
+				log.Print("ERROR operation=handle_request code=panic")
 				writeError(w, http.StatusInternalServerError, "internal", "Внутренняя ошибка сервера")
 			}
 		}()
@@ -46,7 +50,7 @@ func withLogging(next http.Handler) http.Handler {
 		if rec.status == 0 {
 			rec.status = http.StatusOK
 		}
-		log.Printf("%s %s %d %s", r.Method, r.URL.Path, rec.status, time.Since(start).Round(time.Millisecond))
+		log.Printf("operation=http_request status=%d duration=%s", rec.status, time.Since(start).Round(time.Millisecond))
 	})
 }
 
@@ -62,19 +66,14 @@ func SessionFrom(ctx context.Context) (*Session, bool) {
 	return s, ok
 }
 
-type sessionStore interface {
-	Create(ctx context.Context, id string, tableID *int) error
-	Get(ctx context.Context, id string) (found bool, tableID *int, err error)
-}
-
 type sessionMiddleware struct {
-	sessions    sessionStore
+	sessions    store.SessionStore
 	cookieName  string
 	cookieMaxAg int
 	ipLimiter   *slidingWindowLimiter
 }
 
-func newSessionMiddleware(sessions sessionStore, cookieMaxAge time.Duration) *sessionMiddleware {
+func newSessionMiddleware(sessions store.SessionStore, cookieMaxAge time.Duration) *sessionMiddleware {
 	return &sessionMiddleware{
 		sessions:    sessions,
 		cookieName:  "session",
@@ -110,13 +109,14 @@ func (m *sessionMiddleware) Middleware(next http.Handler) http.Handler {
 		ctx := r.Context()
 		var sess *Session
 		if c, err := r.Cookie(m.cookieName); err == nil && isValidUUID(c.Value) {
-			found, tableID, err := m.sessions.Get(ctx, c.Value)
+			hash := sha256.Sum256([]byte(strings.ToLower(c.Value)))
+			id, tableID, err := m.sessions.GetByCredentialHash(ctx, hash)
 			if err != nil {
 				writeAppError(w, err)
 				return
 			}
-			if found {
-				sess = &Session{ID: c.Value, TableID: tableID}
+			if id != "" {
+				sess = &Session{ID: id, TableID: tableID}
 			}
 		}
 		if sess == nil {
@@ -126,14 +126,16 @@ func (m *sessionMiddleware) Middleware(next http.Handler) http.Handler {
 				return
 			}
 			id := newUUIDv4()
+			credential := newUUIDv4()
+			hash := sha256.Sum256([]byte(credential))
 			tableID := parseTableID(r.URL.Query().Get("table"))
-			if err := m.sessions.Create(ctx, id, tableID); err != nil {
+			if err := m.sessions.Create(ctx, id, tableID, hash, time.Duration(m.cookieMaxAg)*time.Second); err != nil {
 				writeAppError(w, err)
 				return
 			}
 			http.SetCookie(w, &http.Cookie{
 				Name:     m.cookieName,
-				Value:    id,
+				Value:    credential,
 				Path:     "/",
 				MaxAge:   m.cookieMaxAg,
 				HttpOnly: true,

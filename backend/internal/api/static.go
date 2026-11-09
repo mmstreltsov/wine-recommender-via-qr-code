@@ -57,6 +57,11 @@ func (h *staticHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 		return
 	}
+	// Шрифты self-host woff2 (UI-01) неизменны — контент-addressed вручную не меняем,
+	// поэтому кэшируем на год immutable (NFR-02, рекомендация security-M4).
+	if len(sub) == 3 && sub[0] == "assets" && sub[1] == "fonts" && strings.HasSuffix(sub[2], ".woff2") {
+		w.Header().Set("Cache-Control", "public, max-age=31536000, immutable")
+	}
 	http.ServeFile(w, r, abs)
 }
 
@@ -70,6 +75,10 @@ func newSpaHandler(dir string) *spaHandler {
 
 func (h *spaHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("X-Content-Type-Options", "nosniff")
+	if r.URL.Path == "/api" || strings.HasPrefix(r.URL.Path, "/api/") {
+		writeError(w, http.StatusNotFound, "not_found", "Маршрут не найден")
+		return
+	}
 	if r.Method != http.MethodGet && r.Method != http.MethodHead {
 		http.NotFound(w, r)
 		return

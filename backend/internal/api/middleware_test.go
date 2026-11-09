@@ -9,37 +9,50 @@ import (
 	"strings"
 	"sync"
 	"testing"
+	"time"
 )
 
+type fakeSession struct {
+	id        string
+	tableID   *int
+	expiresAt time.Time
+}
+
 type fakeSessions struct {
-	mu       sync.Mutex
-	sessions map[string]*int
-	created  []struct {
-		id      string
-		tableID *int
-	}
+	mu        sync.Mutex
+	sessions  map[[32]byte]fakeSession
+	created   []fakeSession
+	getErr    error
+	createErr error
 }
 
 func newFakeSessions() *fakeSessions {
-	return &fakeSessions{sessions: map[string]*int{}}
+	return &fakeSessions{sessions: map[[32]byte]fakeSession{}}
 }
 
-func (f *fakeSessions) Create(ctx context.Context, id string, tableID *int) error {
+func (f *fakeSessions) Create(ctx context.Context, id string, tableID *int, hash [32]byte, maxAge time.Duration) error {
 	f.mu.Lock()
 	defer f.mu.Unlock()
-	f.sessions[id] = tableID
-	f.created = append(f.created, struct {
-		id      string
-		tableID *int
-	}{id, tableID})
+	if f.createErr != nil {
+		return f.createErr
+	}
+	session := fakeSession{id: id, tableID: tableID, expiresAt: time.Now().Add(maxAge)}
+	f.sessions[hash] = session
+	f.created = append(f.created, session)
 	return nil
 }
 
-func (f *fakeSessions) Get(ctx context.Context, id string) (bool, *int, error) {
+func (f *fakeSessions) GetByCredentialHash(ctx context.Context, hash [32]byte) (string, *int, error) {
 	f.mu.Lock()
 	defer f.mu.Unlock()
-	tid, ok := f.sessions[id]
-	return ok, tid, nil
+	if f.getErr != nil {
+		return "", nil, f.getErr
+	}
+	s, ok := f.sessions[hash]
+	if !ok || !s.expiresAt.After(time.Now()) {
+		return "", nil, nil
+	}
+	return s.id, s.tableID, nil
 }
 
 func (f *fakeSessions) count() int {

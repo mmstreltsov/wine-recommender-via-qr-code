@@ -38,7 +38,7 @@ export function safeRemoteImage(value: string): string {
   try {
     const url = new URL(value)
     if (url.protocol !== 'https:' || url.username || url.password || url.port || url.search || url.hash) return ''
-    if (!['tildacdn.com', 'tildacdn.net'].some((host) => url.hostname === host || url.hostname.endsWith(`.${host}`))) return ''
+    if (!['static.tildacdn.com', 'optim.tildacdn.com', 'static.tildacdn.net', 'optim.tildacdn.net'].includes(url.hostname)) return ''
     return url.href
   } catch {
     return ''

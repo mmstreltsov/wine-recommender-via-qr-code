@@ -2,6 +2,7 @@ package api
 
 import (
 	"context"
+	"crypto/sha256"
 	"crypto/tls"
 	"encoding/json"
 	"net/http"
@@ -10,6 +11,7 @@ import (
 	"net/url"
 	"strings"
 	"testing"
+	"time"
 
 	"svoyshef/internal/app"
 	"svoyshef/internal/domain"
@@ -20,9 +22,9 @@ type guardSessionStore struct {
 	lookups int
 }
 
-func (s *guardSessionStore) Get(ctx context.Context, id string) (bool, *int, error) {
+func (s *guardSessionStore) GetByCredentialHash(ctx context.Context, hash [32]byte) (string, *int, error) {
 	s.lookups++
-	return s.fakeSessions.Get(ctx, id)
+	return s.fakeSessions.GetByCredentialHash(ctx, hash)
 }
 
 func TestNFR04_WriteGuardBeforeSession(t *testing.T) {
@@ -130,14 +132,15 @@ func TestNFR04_WriteGuardProtectsExistingCartAndEvents(t *testing.T) {
 		t.Run(method, func(t *testing.T) {
 			sessions := newFakeSessions()
 			id := newUUIDv4()
-			if err := sessions.Create(context.Background(), id, nil); err != nil {
+			credential := newUUIDv4()
+			if err := sessions.Create(context.Background(), id, nil, sha256.Sum256([]byte(credential)), time.Hour); err != nil {
 				t.Fatal(err)
 			}
 			deps, cart, _ := fullDeps(t, sessions)
 			cart.lines = []domain.CartLine{{ItemID: 11, Qty: 1, AddedFrom: "menu"}}
 			for _, path := range []string{"/api/v1/cart/items/11", "/api/v1/events"} {
 				req := httptest.NewRequest(method, path, strings.NewReader(`{"qty":2}`))
-				req.AddCookie(&http.Cookie{Name: "session", Value: id})
+				req.AddCookie(&http.Cookie{Name: "session", Value: credential})
 				req.Header.Set("Origin", "http://sibling.example.test")
 				req.Header.Set("Content-Type", "application/json")
 				rec := httptest.NewRecorder()

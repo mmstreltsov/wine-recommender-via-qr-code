@@ -1,6 +1,8 @@
 # M4: checkpoint для следующей сессии
 
-**Статус: M4 реализована, но НЕ закрыта.** По решению пользователя оставшиеся проверки отложены ради фиксации текущего состояния в git. Этот отчёт не означает приёмку; `docs/10-requirements.md` не помечает M4 принятой. Результаты ниже переданы координатором и агентами; при подготовке checkpoint проверки не запускались.
+**Текущий статус: M4 закрыта 08.11.2026**, см. раздел «Закрытие M4» ниже и [финальный QA](m4-final-qa-report.md). Начальный checkpoint ниже сохранён как история до приёмки; его отложенные статусы не являются текущими. M5 закрыта в локальном скоупе по QA/security/architect; финальное ревью документации ревьюером требований ожидается: [план](../50-plan.md#закрытие-m5-09112026), [M5 QA](m5-final-qa-report.md), [M5 security](m5-security-final-report.md).
+
+Исходный статус checkpoint: M4 реализована, но не закрыта; оставшиеся проверки отложены по решению пользователя. Результаты ниже переданы координатором и агентами; при подготовке исходного checkpoint проверки не запускались.
 
 ## Реализовано
 
@@ -34,9 +36,9 @@
 2. Lighthouse Slow 4G для NFR-02.
 3. Проверка на реальных iOS Safari и Android Chrome.
 4. Финальная трассировка в `docs/10-requirements.md` через предусмотренные апрувы; только затем решение о закрытии M4.
-5. M5: export CSV, полный Docker Compose, QR и интеграция TLS reverse proxy / Secure cookie.
+5. M5: export CSV, полный Docker Compose, QR. По актуальному скоупу M5 поставка локальная; публичный TLS reverse proxy / Secure cookie за прокси требуют отдельной работы и аудита, не входят в закрытие M5.
 
-Актуальный результат автоматических frontend-проверок: **49 тестов / 5 файлов**.
+Результат автоматических frontend-проверок на момент исходного checkpoint: **49 тестов / 5 файлов**; актуальный M5: **74 / 6**, см. [QA](m5-final-qa-report.md#results).
 
 ## Временное QA-окружение
 
@@ -59,4 +61,4 @@
 
 Финальный security-аудит вехи (diff b173e51..HEAD + трассировка): **CRITICAL 0 / HIGH 0 / MEDIUM 0 / LOW 1 / INFO 7** — гейт закрытия пройден. Остаточный LOW: minimatch (GHSA-g3hv-75wg-m249) только в dev-цепочке, прод-audit 0. Рекомендации M5: TLS+Secure cookie+HSTS и CSP (defense-in-depth), immutable-кэш шрифтов, bump minimatch.
 
-Артефакты: `m4-final-qa-report.md`, `m4-security-final-report.md` и `m4-final-qa/` (results, скриншоты, lighthouse*.json) — во временной директории opencode; в git не входят.
+Отчёты перенесены в репозиторий: [m4-final-qa-report.md](m4-final-qa-report.md), [m4-security-final-report.md](m4-security-final-report.md). Raw-артефакты `m4-final-qa/` (results, скриншоты, lighthouse*.json) остаются во временной директории opencode, вне git. Рекомендация M4 о публичном TLS не означает его реализацию в M5: актуальные границы и риски см. в [M5 security](m5-security-final-report.md#среда-и-ограничения).

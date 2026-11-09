@@ -44,6 +44,15 @@ describe('FR-26 photos', () => {
     rerender(<PhotoWithFallback photoUrl="" photoFallback="/static/new.jpg" size={1200} alt="Блюдо" />)
     expect(screen.getByRole('img')).toHaveAttribute('src', '/static/new.jpg')
   })
+
+  it.each(['https://tildacdn.com/photos/dish.jpg', 'https://other.tildacdn.net/photos/dish.jpg'])(
+    'TestFR26_NFR04_disallowed_CDN_source_uses_local_fallback_%s', (photoUrl) => {
+      render(<PhotoWithFallback photoUrl={photoUrl} photoFallback={dish.photo_fallback} size={400} alt={dish.name} />)
+      expect(screen.getByRole('img')).toHaveAttribute('src', dish.photo_fallback)
+      fireEvent.error(screen.getByRole('img'))
+      expect(screen.getByRole('img').tagName).toBe('DIV')
+    },
+  )
 })
 
 describe('Recommendations', () => {

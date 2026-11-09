@@ -15,7 +15,7 @@ func writeJSON(w http.ResponseWriter, status int, v any) {
 	w.Header().Set("Cache-Control", "no-store")
 	w.WriteHeader(status)
 	if err := json.NewEncoder(w).Encode(v); err != nil {
-		log.Printf("write response: %v", err)
+		log.Print("ERROR operation=write_response code=internal")
 	}
 }
 
@@ -48,6 +48,6 @@ func writeAppError(w http.ResponseWriter, err error) {
 		writeJSON(w, status, errorEnvelope{Error: errorBody{Code: ue.Code, Message: ue.Message, ItemID: ue.ItemID}})
 		return
 	}
-	log.Printf("internal error: %v", err)
+	log.Print("ERROR operation=handle_request code=internal")
 	writeError(w, http.StatusInternalServerError, "internal", "Внутренняя ошибка сервера")
 }

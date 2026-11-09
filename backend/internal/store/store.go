@@ -11,8 +11,8 @@ import (
 var ErrQtyLimit = errors.New("qty limit exceeded")
 
 type SessionStore interface {
-	Create(ctx context.Context, id string, tableID *int) error
-	Get(ctx context.Context, id string) (found bool, tableID *int, err error)
+	Create(ctx context.Context, id string, tableID *int, credentialHash [32]byte, maxAge time.Duration) error
+	GetByCredentialHash(ctx context.Context, credentialHash [32]byte) (id string, tableID *int, err error)
 }
 
 type CartStore interface {

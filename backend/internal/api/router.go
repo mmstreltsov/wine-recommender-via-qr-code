@@ -71,11 +71,33 @@ func NewRouter(d RouterDeps) http.Handler {
 	return h
 }
 
-// withSecurityHeaders: nosniff на все ответы; Cache-Control: no-store для /api/v1
-// (JSON API — без промежуточного кэширования).
+// contentSecurityPolicy (NFR-04, defense-in-depth): ограничивает источники
+// контента на всех ответах бэкенда. 'unsafe-inline' в style-src НЕ нужен —
+// фронтенд не использует инлайн-стили (frontend/src без style=-атрибутов,
+// собранный dist подключает только внешние css/js; проверяется тестом
+// TestNFR04_CSPNoUnsafeInline). img-src: фото блюд — CDN ресторана
+// (static/optim на tildacdn.com/net, включая редиректы ресайза); allowlist входит
+// в safeRemoteImage (frontend/src/api/validation.ts), без wildcard-поддоменов.
+// connect-src 'self' — SPA ходит только в свой origin.
+// Дев (vite :5173) не затрагивается: страницу отдаёт vite без этого заголовка,
+// CSP действует лишь на ответы бэкенда; /api приходит через vite-прокси
+// (same-origin), HMR-ws — соединение с vite-источником, не с бэкендом.
+const contentSecurityPolicy = "default-src 'self'; " +
+	"img-src 'self' https://static.tildacdn.com https://optim.tildacdn.com https://static.tildacdn.net https://optim.tildacdn.net; " +
+	"script-src 'self'; " +
+	"style-src 'self'; " +
+	"connect-src 'self'; " +
+	"font-src 'self'; " +
+	"base-uri 'self'; " +
+	"frame-ancestors 'none'; " +
+	"form-action 'self'"
+
+// withSecurityHeaders: nosniff и CSP на все ответы; Cache-Control: no-store
+// для /api/v1 (JSON API — без промежуточного кэширования).
 func withSecurityHeaders(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("X-Content-Type-Options", "nosniff")
+		w.Header().Set("Content-Security-Policy", contentSecurityPolicy)
 		if r.URL.Path == "/api/v1" || strings.HasPrefix(r.URL.Path, "/api/v1/") {
 			w.Header().Set("Cache-Control", "no-store")
 		}

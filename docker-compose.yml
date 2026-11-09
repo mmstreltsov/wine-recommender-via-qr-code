@@ -1,21 +1,51 @@
-# Dev-профиль: значения postgres — локальные dev-учётные данные (не секреты).
-# Prod-значения передаются только через env (см. .env.example), не коммитятся.
+# NFR-05: full local prototype, no profiles. Prepare env before starting.
 services:
   db:
-    image: postgres:16-alpine
+    image: postgres:16-alpine3.23@sha256:dd13b38648acf4290f7a51b025ad7dc1f6964d3afe0c723a5f836e1484d1a486
     environment:
-      POSTGRES_USER: svoyshef
-      POSTGRES_PASSWORD: svoyshef
-      POSTGRES_DB: svoyshef
+      POSTGRES_USER: ${POSTGRES_USER:?set POSTGRES_USER in env}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in env}
+      POSTGRES_DB: ${POSTGRES_DB:?set POSTGRES_DB in env}
     ports:
-      - "127.0.0.1:5432:5432"
+      - "127.0.0.1:${DB_PORT:-5432}:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U svoyshef -d svoyshef"]
+      test: ["CMD-SHELL", "pg_isready -U \"$$POSTGRES_USER\" -d \"$$POSTGRES_DB\""]
       interval: 5s
       timeout: 3s
       retries: 10
+
+  # NFR-05: `docker compose up` на чистой машине → сайт на :8080.
+  # Дев-режим по-прежнему: `docker compose up -d db` + локальные backend/vite.
+  backend:
+    build: .
+    ports:
+      - "127.0.0.1:${BACKEND_PORT:-8080}:8080"
+    environment:
+      DATABASE_URL: ${DATABASE_URL:?set container DATABASE_URL in env (host db, port 5432)}
+      RESTAURANT: aidabaran
+      DATA_DIR: /app/data
+      FRONTEND_DIST: /app/frontend/dist
+      PORT: "8080"
+      COOKIE_MAX_AGE_H: ${COOKIE_MAX_AGE_H:-12}
+      AVAILABILITY_TTL_S: ${AVAILABILITY_TTL_S:-5}
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    volumes:
+      # фото и данные пилота с машины; сервер их только читает (CLI availability пишет в БД, не в файлы)
+      - ./data:/app/data:ro
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/api/v1/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
 
 volumes:
   postgres-data:

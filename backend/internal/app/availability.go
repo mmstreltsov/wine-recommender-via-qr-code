@@ -58,7 +58,7 @@ func (c *AvailabilityCache) refresh() {
 	defer c.mu.Unlock()
 	c.refreshing = false
 	if err != nil {
-		log.Printf("ERROR availability cache refresh failed, keeping last snapshot (%d items): %v", len(c.unavailable), err)
+		log.Printf("ERROR operation=availability_refresh code=internal keeping_last_snapshot items=%d", len(c.unavailable))
 		return
 	}
 	fresh := make(map[int64]struct{}, len(ids))

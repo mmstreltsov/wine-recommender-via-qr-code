@@ -1,0 +1,29 @@
+# VCS и локальные артефакты
+.git
+.gitignore
+.DS_Store
+**/.env
+**/.env.*
+!**/.env.example
+**/*.env
+**/.venv
+**/__pycache__
+*.log
+events.csv
+
+# не нужны в build context
+docs
+scripts
+
+# node
+**/node_modules
+frontend/dist
+**/*.tsbuildinfo
+
+# go-артефакты
+backend/bin
+*.test
+coverage.out
+
+# локальные фото ресторана (~89 МБ, вне git): в образ не идут, на проде — бинд-маунт ./data
+data/aidabaran/photos

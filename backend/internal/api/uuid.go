@@ -3,11 +3,12 @@ package api
 import (
 	"crypto/rand"
 	"encoding/hex"
+	"io"
 )
 
 func newUUIDv4() string {
 	var b [16]byte
-	if _, err := rand.Read(b[:]); err != nil {
+	if _, err := io.ReadFull(rand.Reader, b[:]); err != nil {
 		panic(err)
 	}
 	b[6] = (b[6] & 0x0f) | 0x40
@@ -35,6 +36,9 @@ func isHexDigit(c rune) bool {
 
 func isValidUUID(s string) bool {
 	if len(s) != 36 {
+		return false
+	}
+	if s[14] != '4' || (s[19] != '8' && s[19] != '9' && s[19] != 'a' && s[19] != 'A' && s[19] != 'b' && s[19] != 'B') {
 		return false
 	}
 	for i, c := range s {

@@ -58,7 +58,7 @@ backend/
 └── plugins/
     └── aidabaran/
         ├── loader.go           # menu.json → []domain.MenuItem (маппинг полей см. data-model.md)
-        ├── recommender.go      # реализация interface: матрица → эвристики → апсейлы
+        ├── recommender.go      # реализация interface: expert → upsell → heuristic
         ├── texts.go            # шаблоны текстов для эвристических пар
         └── testdata/           # fixtures для тестов плагина
 ```
@@ -123,9 +123,22 @@ CREATE TABLE item_availability (
     updated_at   TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 -- Семантика default-available: отсутствующая строка = позиция доступна.
+
+-- 0003: additive auth hardening (FR-33, NFR-04, ADR-0005)
+ALTER TABLE sessions
+    ADD COLUMN credential_hash BYTEA NULL UNIQUE,
+    ADD COLUMN expires_at TIMESTAMPTZ NULL,
+    ADD CONSTRAINT sessions_credential_expiry_check CHECK (
+        (credential_hash IS NULL AND expires_at IS NULL) OR
+        (credential_hash IS NOT NULL AND expires_at IS NOT NULL
+         AND octet_length(credential_hash) = 32));
 ```
 
 Валидация `item_id` против меню — в сервисном слое (меню в памяти), не FK: меню не в БД.
+`sessions.id` остаётся аналитическим UUIDv4; независимый cookie-credential хранится только как
+SHA256 канонического lowercase UUID. Auth — hash AND `expires_at > now()`, никогда id.
+Миграция 0003 не backfill'ит hash из id и не удаляет sessions/carts/events или их связи;
+оба NULL — legacy без доступа. Абсолютный expiry и fail-closed — `30-contracts/api.md`.
 
 ## 5. Frontend
 
@@ -152,6 +165,7 @@ frontend/src/
 | `DATABASE_URL` | `postgres://…` | DSN Postgres |
 | `RESTAURANT` | `aidabaran` | выбор плагина и data-каталога |
 | `DATA_DIR` | `../data` | корень данных ресторанов; по умолчанию `../data` — запуск из `backend/`, как в AGENTS.md |
+| `FRONTEND_DIST` | `../frontend/dist` | каталог собранного SPA, который backend раздаёт статикой (прод, см. §7) |
 | `COOKIE_MAX_AGE_H` | `12` | жизнь анонимной сессии |
 | `AVAILABILITY_TTL_S` | `5` | TTL (сек) in-memory кэша наличия блюд (FR-36): задержка подхвата изменений, внесённых CLI |
 
@@ -161,7 +175,10 @@ frontend/src/
 
 - Go-модуль — `svoyshef`.
 - В `backend/` — Makefile с мишенями `build`, `test`, `lint`, `migrate-up`, `migrate-down`, `run`.
+  DSN для миграций — только env, без echo и argv; sessionID, credential/hash и raw pgx-ошибки не логируются.
 - goose — без глобальной установки: `go run github.com/pressly/goose/v3/cmd/goose …`.
+  Миграции применяются автоматически при старте `serve` и CLI-подкомандах (`runMigrations`
+  в `cmd/server/main.go`); ручной `make migrate-up` — дев-удобство, для прода не требуется.
 - Миграции — `backend/migrations/`, именование sequential `NNNN_name.sql`.
 - `docker-compose.yml` — в корне репо, создаётся в M2 (сервис `db`: `postgres:16-alpine` +
   healthcheck `pg_isready`); прод-профиль — в M5.
@@ -169,9 +186,18 @@ frontend/src/
 
 ## 7. Деплой
 
-- Дева: `docker compose up` (postgres, backend с air/live — по желанию, vite dev отдельно).
-- Прод (прототип): `docker compose up -d` на VPS; backend слушает :8080 и раздаёт
-  `frontend/dist` статикой + `/api/v1`. Наличие HTTPS/домена — на этапе выезда на VPS.
+- Дева: `docker compose up -d db` + `go run ./cmd/server` (backend :8080) + `npm run dev`
+  (vite :5173, проксирует `/api` на :8080).
+- Локальная поставка (прототип, M5): `docker compose up` без флагов поднимает полный стек db+backend;
+  backend на :8080 раздаёт `/api/v1` + SPA из `FRONTEND_DIST` + `/static` из `DATA_DIR`.
+  Миграции применяются автоматически при старте `serve` (см. §6).
+- Фото: прод-образ НЕ содержит `data/aidabaran/photos` (вне git, ~89 МБ); compose
+  бинд-маунтит `./data:/app/data` — на машине с полным `data/` работают фолбэк-фото;
+  на чистом клоне сайт работает с CDN-фото и деградацией фолбэка (осознанное решение;
+  FR-26 проверяется на пилотной машине).
+- Публикуемые порты M5 — только loopback (`127.0.0.1`); публичный деплой/TLS/домен — этап VPS
+  после M5, в M5 не входит; CSP-заголовок добавляется в M5
+  (defense-in-depth).
 - Health-check: `GET /api/v1/health`.
 
 ## 8. ADR

@@ -49,7 +49,7 @@ func (s *CartService) Add(ctx context.Context, sessionID string, tableID *int, i
 		return nil, err
 	}
 	if err := s.recordAddEvent(ctx, sessionID, tableID, itemID, source); err != nil {
-		log.Printf("ERROR record add event failed (session=%s item=%d source=%s): %v", sessionID, itemID, source, err)
+		log.Print("ERROR operation=record_add_event code=internal")
 	}
 	return s.View(ctx, sessionID)
 }
@@ -84,7 +84,7 @@ func (s *CartService) SetQty(ctx context.Context, sessionID string, tableID *int
 		"from":    prev,
 		"to":      qty,
 	}); err != nil {
-		log.Printf("ERROR record cart_qty_change event failed (session=%s item=%d): %v", sessionID, itemID, err)
+		log.Print("ERROR operation=record_cart_qty_change code=internal")
 	}
 	return s.View(ctx, sessionID)
 }
@@ -100,7 +100,7 @@ func (s *CartService) Remove(ctx context.Context, sessionID string, tableID *int
 	if err := s.events.RecordServerEvent(ctx, sessionID, tableID, "cart_item_remove", map[string]any{
 		"item_id": itemID,
 	}); err != nil {
-		log.Printf("ERROR record cart_item_remove event failed (session=%s item=%d): %v", sessionID, itemID, err)
+		log.Print("ERROR operation=record_cart_item_remove code=internal")
 	}
 	return s.View(ctx, sessionID)
 }

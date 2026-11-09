@@ -3,6 +3,7 @@ package store
 import (
 	"context"
 	"encoding/json"
+	"time"
 
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
@@ -58,4 +59,38 @@ func (s *EventStorePG) InsertBatch(ctx context.Context, events []domain.Event) e
 		}
 	}
 	return nil
+}
+
+// ExportedEvent — строка выгрузки AN-04; Payload — канонический текст jsonb
+// как хранится в БД (payload::text), без повторной сериализации в Go.
+type ExportedEvent struct {
+	TS        time.Time
+	SessionID string
+	TableID   *int
+	Name      string
+	Payload   string
+}
+
+// ExportRows выбирает события для export-events (events.md §4): from/toExcl —
+// полуинтервал [from, toExcl); nil = граница открыта; порядок ts, id.
+func (s *EventStorePG) ExportRows(ctx context.Context, from, toExcl *time.Time) ([]ExportedEvent, error) {
+	rows, err := s.pool.Query(ctx, `
+		SELECT ts, session_id, table_id, name, payload::text
+		FROM events
+		WHERE ($1::timestamptz IS NULL OR ts >= $1)
+			AND ($2::timestamptz IS NULL OR ts < $2)
+		ORDER BY ts, id`, from, toExcl)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var out []ExportedEvent
+	for rows.Next() {
+		var e ExportedEvent
+		if err := rows.Scan(&e.TS, &e.SessionID, &e.TableID, &e.Name, &e.Payload); err != nil {
+			return nil, err
+		}
+		out = append(out, e)
+	}
+	return out, rows.Err()
 }

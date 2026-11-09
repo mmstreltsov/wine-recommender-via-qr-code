@@ -1,9 +1,16 @@
 package app
 
 import (
+	"bytes"
 	"context"
+	"crypto/rand"
 	"errors"
+	"log"
+	"strings"
 	"testing"
+	"time"
+
+	"github.com/jackc/pgx/v5/pgconn"
 
 	"svoyshef/internal/domain"
 	"svoyshef/internal/store"
@@ -72,9 +79,12 @@ func (f *fakeEventRecorder) RecordServerEvent(ctx context.Context, sessionID str
 	return nil
 }
 
-type failingEventRecorder struct{}
+type failingEventRecorder struct{ err error }
 
-func (failingEventRecorder) RecordServerEvent(ctx context.Context, sessionID string, tableID *int, name string, payload map[string]any) error {
+func (f failingEventRecorder) RecordServerEvent(ctx context.Context, sessionID string, tableID *int, name string, payload map[string]any) error {
+	if f.err != nil {
+		return f.err
+	}
 	return errors.New("events store down")
 }
 
@@ -303,5 +313,40 @@ func TestAN02_EventFailureDoesNotBreakCartMutation(t *testing.T) {
 	}
 	if len(view.Lines) != 1 || view.Lines[0].Item.ID != 201 {
 		t.Fatalf("delete result wrong: %+v", view.Lines)
+	}
+}
+
+func TestNFR04_CartAndAvailabilityLogsOmitCredentials(t *testing.T) {
+	var logs bytes.Buffer
+	previous := log.Writer()
+	log.SetOutput(&logs)
+	t.Cleanup(func() { log.SetOutput(previous) })
+	sessionID := rand.Text()
+	driverData := rand.Text()
+	err := &pgconn.PgError{Code: "23505", Message: sessionID + driverData, Detail: driverData}
+	avail := &fakeAvailability{off: map[int64]struct{}{}}
+	carts := &fakeCartStore{lines: []domain.CartLine{{ItemID: 101, Qty: 1, AddedFrom: "menu"}}}
+	svc := NewCartService(testMenu(), carts, failingEventRecorder{err: err}, StubRecommender{}, avail)
+	ctx := context.Background()
+	if _, err := svc.Add(ctx, sessionID, nil, 201, "menu"); err != nil {
+		t.Fatal("add must succeed")
+	}
+	if _, err := svc.SetQty(ctx, sessionID, nil, 101, 2); err != nil {
+		t.Fatal("set qty must succeed")
+	}
+	if _, err := svc.Remove(ctx, sessionID, nil, 101); err != nil {
+		t.Fatal("remove must succeed")
+	}
+	cache := NewAvailabilityCache(&fakeAvailabilityStore{err: err}, time.Minute)
+	cache.refresh()
+	log.SetOutput(previous)
+	out := logs.String()
+	if strings.Contains(out, sessionID) || strings.Contains(out, driverData) {
+		t.Fatal("log contains a session credential or raw database error")
+	}
+	for _, operation := range []string{"record_add_event", "record_cart_qty_change", "record_cart_item_remove", "availability_refresh"} {
+		if !strings.Contains(out, "operation="+operation+" code=internal") {
+			t.Errorf("missing safe log for operation %s", operation)
+		}
 	}
 }

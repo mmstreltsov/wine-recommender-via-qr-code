@@ -3,11 +3,13 @@ package main
 import (
 	"bytes"
 	"context"
+	"crypto/sha256"
 	"encoding/json"
 	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"os"
+	"strings"
 	"sync"
 	"testing"
 	"time"
@@ -31,10 +33,20 @@ func newItClient() *itClient {
 	return &itClient{jar: map[string]string{}, http: &http.Client{}}
 }
 
-func (c *itClient) sessionID() string {
+func (c *itClient) credential() string {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 	return c.jar["session"]
+}
+
+func (c *itClient) analyticSessionID(t *testing.T, pool *pgxpool.Pool) string {
+	t.Helper()
+	hash := sha256.Sum256([]byte(strings.ToLower(c.credential())))
+	var id string
+	if err := pool.QueryRow(context.Background(), `SELECT id::text FROM sessions WHERE credential_hash = $1`, hash[:]).Scan(&id); err != nil {
+		t.Fatal("analytic session lookup failed")
+	}
+	return id
 }
 
 func (c *itClient) do(req *http.Request) (*http.Response, error) {
@@ -157,7 +169,11 @@ func newIntegrationServer(t *testing.T) (*httptest.Server, *pgxpool.Pool, *aidab
 	t.Helper()
 	dsn := os.Getenv("M2_IT_DATABASE_URL")
 	if dsn == "" {
-		t.Skip("M2_IT_DATABASE_URL не задан: интеграционные сценарии требуют docker compose up -d db")
+		t.Skip("M2_IT_DATABASE_URL не задан: см. README.md, раздел Isolated Acceptance")
+	}
+	parsed, err := pgxpool.ParseConfig(dsn)
+	if err != nil || parsed.ConnConfig.Database != "m5_integration" || parsed.ConnConfig.Host != "127.0.0.1" || parsed.ConnConfig.Port != 55432 || len(parsed.ConnConfig.Fallbacks) != 0 {
+		t.Fatal("integration tests require disposable 127.0.0.1:55432/m5_integration")
 	}
 	ctx := context.Background()
 	cfg := config{
@@ -181,7 +197,7 @@ func newIntegrationServer(t *testing.T) (*httptest.Server, *pgxpool.Pool, *aidab
 		cfgp.MaxConns = 1
 		cfgp.ConnConfig.Tracer = &tracelog.TraceLog{
 			Logger: tracelog.LoggerFunc(func(ctx context.Context, level tracelog.LogLevel, msg string, data map[string]any) {
-				fmt.Fprintf(os.Stderr, "PGX %s %s %v\n", level, msg, data)
+				fmt.Fprintf(os.Stderr, "PGX operation=database_trace level=%s\n", level)
 			}),
 			LogLevel: tracelog.LogLevelDebug,
 		}
@@ -291,7 +307,8 @@ func TestFR33_Integration_CookieAttributes(t *testing.T) {
 		t.Fatalf("cookie attrs wrong: %+v", c)
 	}
 	var tableID *int
-	if err := pool.QueryRow(context.Background(), `SELECT table_id FROM sessions WHERE id = $1::uuid`, c.Value).Scan(&tableID); err != nil {
+	hash := sha256.Sum256([]byte(c.Value))
+	if err := pool.QueryRow(context.Background(), `SELECT table_id FROM sessions WHERE credential_hash = $1`, hash[:]).Scan(&tableID); err != nil {
 		t.Fatalf("session row missing: %v", err)
 	}
 	if tableID != nil {
@@ -304,7 +321,7 @@ func TestFR34_Integration_TableLifecycle(t *testing.T) {
 	c := newItClient()
 	resp := c.get(t, srv.URL+"/api/v1/menu?table=12")
 	_ = resp.Body.Close()
-	sid := c.sessionID()
+	sid := c.analyticSessionID(t, pool)
 	var tableID *int
 	if err := pool.QueryRow(context.Background(), `SELECT table_id FROM sessions WHERE id = $1::uuid`, sid).Scan(&tableID); err != nil {
 		t.Fatalf("session row: %v", err)
@@ -330,7 +347,7 @@ func TestFR34_Integration_TableLifecycle(t *testing.T) {
 	c2 := newItClient()
 	resp3 := c2.get(t, srv.URL+"/api/v1/menu?table=abc")
 	_ = resp3.Body.Close()
-	if err := pool.QueryRow(context.Background(), `SELECT table_id FROM sessions WHERE id = $1::uuid`, c2.sessionID()).Scan(&tableID); err != nil {
+	if err := pool.QueryRow(context.Background(), `SELECT table_id FROM sessions WHERE id = $1::uuid`, c2.analyticSessionID(t, pool)).Scan(&tableID); err != nil {
 		t.Fatal(err)
 	}
 	if tableID != nil {
@@ -416,7 +433,7 @@ func TestAN02_Integration_CartCycleServerEvents(t *testing.T) {
 	}
 	_ = resp.Body.Close()
 
-	rows := itEventRows(t, pool, c.sessionID())
+	rows := itEventRows(t, pool, c.analyticSessionID(t, pool))
 	wantNames := []string{"menu_add_click", "rec_add_click", "rec_add_click", "cart_qty_change", "cart_item_remove"}
 	if len(rows) != len(wantNames) {
 		t.Fatalf("expected %d events, got %d: %+v", len(wantNames), len(rows), rows)
@@ -449,7 +466,7 @@ func TestAN02_Integration_CartCycleServerEvents(t *testing.T) {
 	}
 
 	var tableID *int
-	if err := pool.QueryRow(context.Background(), `SELECT DISTINCT table_id FROM events WHERE session_id = $1::uuid`, c.sessionID()).Scan(&tableID); err != nil {
+	if err := pool.QueryRow(context.Background(), `SELECT DISTINCT table_id FROM events WHERE session_id = $1::uuid`, c.analyticSessionID(t, pool)).Scan(&tableID); err != nil {
 		t.Fatalf("events table_id: %v", err)
 	}
 	if tableID == nil || *tableID != 12 {
@@ -468,7 +485,7 @@ func TestAN03_Integration_RecAddClickContextAndSession(t *testing.T) {
 		t.Fatalf("add: %d", resp.StatusCode)
 	}
 	_ = resp.Body.Close()
-	rows := itEventRows(t, pool, c.sessionID())
+	rows := itEventRows(t, pool, c.analyticSessionID(t, pool))
 	if len(rows) != 1 || rows[0].Name != "rec_add_click" {
 		t.Fatalf("expected single rec_add_click, got %+v", rows)
 	}
@@ -631,7 +648,7 @@ func TestNFR04_Integration_Events204And400(t *testing.T) {
 	bad(`{"name":"cart_qty_change","payload":{"item_id":1,"from":1,"to":2}}`)
 	bad(`{"name":"cart_item_remove","payload":{"item_id":1}}`)
 
-	rows := itEventRows(t, pool, c.sessionID())
+	rows := itEventRows(t, pool, c.analyticSessionID(t, pool))
 	if len(rows) != 3 {
 		t.Fatalf("expected 3 stored events, got %d", len(rows))
 	}
