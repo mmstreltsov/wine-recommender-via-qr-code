@@ -477,7 +477,7 @@ func TestFR11_TemplateBoundsAllCategories(t *testing.T) {
 	}
 	cats = append(cats, "Такой категории нет")
 	for _, name := range cats {
-		assertTextBounds(t, pairText("Баже", "Ткемали", name))
+		assertTextBounds(t, pairText("Баже", "Ткемали", "Соусы", name))
 	}
 }
 
@@ -498,17 +498,17 @@ func TestFR12_LongNamesFit220(t *testing.T) {
 	}
 	cats = append(cats, "Такой категории нет")
 	for _, name := range cats {
-		assertTextBounds(t, pairText(long71, long67, name))
+		assertTextBounds(t, pairText(long71, long67, "Супы", name))
 	}
 	ultra1 := nameOfLen(80)
 	ultra2 := nameOfLen(80)
 	for _, name := range []string{"Хинкали", "Напитки", "Такой категории нет"} {
-		assertTextBounds(t, pairText(ultra1, ultra2, name))
+		assertTextBounds(t, pairText(ultra1, ultra2, "Супы", name))
 	}
 	huge1 := nameOfLen(95)
 	huge2 := nameOfLen(95)
 	for _, name := range []string{"Хинкали", "Напитки", "Такой категории нет"} {
-		assertTextBounds(t, pairText(huge1, huge2, name))
+		assertTextBounds(t, pairText(huge1, huge2, "Супы", name))
 	}
 }
 

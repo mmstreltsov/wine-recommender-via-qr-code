@@ -9,10 +9,12 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"os"
+	"slices"
 	"strings"
 	"sync"
 	"testing"
 	"time"
+	"unicode/utf8"
 
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/jackc/pgx/v5/tracelog"
@@ -732,20 +734,93 @@ func TestFR32_Integration_PatchQtyBounds(t *testing.T) {
 }
 
 const (
-	itKhinkaliID   = int64(655892482392) // Хинкали говядина-свинина 3 шт (Хинкали)
-	itTkemaliID    = int64(231821651422) // Ткемали (Соусы), expert-пара хинкали, score 0.9
-	itSeasonVegID  = int64(293109021772) // Сезонные овощи с ароматной зеленью (Холодные закуски), expert 0.7
-	itGrillVegID   = int64(733465955822) // Овощи на гриле (Овощи на углях и гарниры), expert 0.7
-	itTarrhunID    = int64(875106956773) // Лимонад Тархун с грушей (Напитки), expert 0.65
-	itDolmaID      = int64(164834011242) // Традиционная долма (Горячие закуски), expert 0.6
-	itBigSaladID   = int64(876201943922) // Большой овощной салат (Салаты), heuristic-топ от хинкали
-	itMedovikID    = int64(939802252842) // Медовик (Десерты)
-	itCompoteID    = int64(923360279353) // Компот сезонный (Напитки), expert-пара медовика
-	itCreamSauceID = int64(397344866022) // Сливочно-пряный (Соусы), heuristic-топ Соусов
+	itKhinkaliID    = int64(655892482392) // Хинкали говядина-свинина 3 шт (Хинкали)
+	itTkemaliID     = int64(231821651422) // Ткемали (Соусы), expert 0.72
+	itWalnutSaladID = int64(366609864022) // Овощной салат с грецким орехом (Салаты), expert 0.80
+	itGrillVegID    = int64(733465955822) // Овощи на гриле (Овощи на углях и гарниры), expert 0.76
+	itPomegranateID = int64(445870875313) // Гранатовый фреш (Напитки), expert 0.65
+	itIceCreamID    = int64(951817158352) // Мороженое (Десерты), expert 0.55
+	itMedovikID     = int64(939802252842) // Медовик (Десерты)
+	itAppleFreshID  = int64(784383492083) // Яблочный фреш (Напитки), expert-пара медовика
+	itCreamSauceID  = int64(397344866022) // Сливочно-пряный (Соусы), heuristic-топ Соусов
 
 	khinkaliCategoryID = 5  // «Хинкали»
 	saucesCategoryID   = 11 // «Соусы»
+	itMedovikReason    = "Яблочный фреш дополнит медовик с цветочным мёдом фруктовой кислинкой: она контрастирует со сладкой медовой нотой, не добавляя второго медового аромата."
 )
+
+var itKhinkaliFeed = []struct {
+	id       int64
+	category int
+	reason   string
+}{
+	{itWalnutSaladID, 1, "К хинкали с говядиной и свининой — овощной салат с грецким орехом: свежие овощи контрастируют с мягким тестом, а ореховый вкус оттеняет мясную начинку."},
+	{itGrillVegID, 10, "Овощи на гриле добавят хинкали с говядиной и свининой мягкую овощную сладость: она оттеняет несладкую мясную начинку и даёт другой вкус рядом с тестом."},
+	{itTkemaliID, 11, "К хинкали с говядиной и свининой — ткемали: фруктовая кислинка соуса даёт контраст мясной начинке. Его можно добавлять понемногу к отдельным кусочкам."},
+	{itPomegranateID, 14, "Гранатовый фреш даст хинкали с говядиной и свининой терпкую фруктовую ноту: сладко-кислый напиток контрастирует с мясной начинкой в мягком тесте."},
+	{itIceCreamID, 12, "После хинкали с говядиной и свининой — мороженое как отдельный финал: холодная сладкая текстура сменит несладкую мясную начинку и мягкое тесто, не как гарнир к мясу."},
+}
+
+func assertItKhinkaliFeed(t *testing.T, recs []itRecView, excluded ...int64) {
+	t.Helper()
+	index := 0
+	for _, want := range itKhinkaliFeed {
+		if slices.Contains(excluded, want.id) {
+			continue
+		}
+		if index >= len(recs) {
+			t.Fatalf("лента хинкали: отсутствует позиция %d на месте %d", want.id, index)
+		}
+		got := recs[index]
+		if got.Item.ID != want.id || got.Item.CategoryID != want.category || got.Source != "expert" || got.ReasonText != want.reason {
+			t.Fatalf("rec %d: want {%d category=%d expert %q}, got %+v", index, want.id, want.category, want.reason, got)
+		}
+		if n := utf8.RuneCountInString(got.ReasonText); n < 60 || n > 220 {
+			t.Fatalf("FR-11/12: reason length=%d, want 60–220", n)
+		}
+		index++
+	}
+	if len(recs) != index {
+		t.Fatalf("лента хинкали: want %d позиций, got %d: %+v", index, len(recs), recs)
+	}
+}
+
+// FR-10/11/12/19: keep exact integration content expectations executable without a database.
+func TestFR10_RealDataIntegrationContentExpectations(t *testing.T) {
+	r, err := aidabaran.LoadRecommender("../../../data", "aidabaran")
+	if err != nil {
+		t.Fatal(err)
+	}
+	menu, err := aidabaran.LoadMenu("../../../data", "aidabaran")
+	if err != nil {
+		t.Fatal(err)
+	}
+	categories := make(map[int64]int, len(menu.Items))
+	for _, item := range menu.Items {
+		categories[item.ID] = item.CategoryID
+	}
+	for _, excluded := range [][]int64{nil, {itPomegranateID}, {itTkemaliID}} {
+		recs, err := r.ForDish(context.Background(), itKhinkaliID, excluded)
+		if err != nil {
+			t.Fatal(err)
+		}
+		views := make([]itRecView, 0, len(recs))
+		for _, rec := range recs {
+			var view itRecView
+			view.Item.ID, view.Item.CategoryID = rec.ItemID, categories[rec.ItemID]
+			view.Source, view.ReasonText = rec.Source, rec.ReasonText
+			views = append(views, view)
+		}
+		assertItKhinkaliFeed(t, views, excluded...)
+	}
+	recs, err := r.ForDish(context.Background(), itMedovikID, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(recs) != 1 || recs[0].ItemID != itAppleFreshID || categories[recs[0].ItemID] != 14 || recs[0].Source != "expert" || recs[0].ReasonText != itMedovikReason {
+		t.Fatalf("medovik integration content expectation mismatch: %+v", recs)
+	}
+}
 
 type itRecView struct {
 	Item struct {
@@ -829,34 +904,11 @@ func TestFR10_Integration_RecFeedRealEngine(t *testing.T) {
 	_ = resp.Body.Close()
 
 	recs := itGetRecs(t, c, srv, itKhinkaliID)
-	// Фактическая лента хинкали по данным M1 (детерминизм; порядок score DESC → catID ASC):
-	// Ткемали (expert 0.9), Сезонные овощи (expert 0.7), Овощи на гриле (expert 0.7),
-	// Тархун (expert 0.65), Долма (expert 0.6), Большой овощной салат (heuristic 0.4).
-	// Остальные категории-кандидаты без пары пропускаются.
-	want := []struct {
-		id     int64
-		source string
-	}{
-		{itTkemaliID, "expert"},
-		{itSeasonVegID, "expert"},
-		{itGrillVegID, "expert"},
-		{itTarrhunID, "expert"},
-		{itDolmaID, "expert"},
-		{itBigSaladID, "heuristic"},
-	}
-	if len(recs) != len(want) {
-		t.Fatalf("лента хинкали: want %d позиций, got %d: %+v", len(want), len(recs), recs)
-	}
+	assertItKhinkaliFeed(t, recs)
 	cats := make(map[int]bool)
-	for i, r := range recs {
-		if r.Item.ID != want[i].id || r.Source != want[i].source {
-			t.Fatalf("rec %d: want {%d %s}, got {%d %s}", i, want[i].id, want[i].source, r.Item.ID, r.Source)
-		}
+	for _, r := range recs {
 		if r.Item.CategoryID == khinkaliCategoryID {
 			t.Fatalf("позиция из категории самого блюда в ленте: %+v", r)
-		}
-		if r.ReasonText == "" || len(r.ReasonText) < 60 {
-			t.Fatalf("FR-11: пустой/короткий reason_text у %d: %q", r.Item.ID, r.ReasonText)
 		}
 		cats[r.Item.CategoryID] = true
 	}
@@ -865,14 +917,9 @@ func TestFR10_Integration_RecFeedRealEngine(t *testing.T) {
 	}
 
 	// FR-28: позиция, добавленная в корзину, исчезает из ленты.
-	itAddToCart(t, c, srv, itTarrhunID, "rec_feed")
+	itAddToCart(t, c, srv, itPomegranateID, "rec_feed")
 	recs2 := itGetRecs(t, c, srv, itKhinkaliID)
-	if recsContain(recs2, itTarrhunID) {
-		t.Fatalf("FR-28: позиция из корзины осталась в ленте: %+v", recs2)
-	}
-	if len(recs2) != len(recs)-1 {
-		t.Fatalf("после добавления в корзину want %d позиций, got %d", len(recs)-1, len(recs2))
-	}
+	assertItKhinkaliFeed(t, recs2, itPomegranateID)
 }
 
 // TestFR19_Integration_CartRecommendationRealEngine: ForCart реального движка (FR-19/20/21).
@@ -887,30 +934,27 @@ func TestFR19_Integration_CartRecommendationRealEngine(t *testing.T) {
 	}
 
 	// Медовик (Десерты) + хинкали: первый непокрытый курс — «Напитки»,
-	// последняя позиция — хинкали → expert-пара Тархун (FR-21: категории «Напитки» в корзине нет).
+	// последняя позиция — хинкали → expert-пара гранат (FR-21: категории «Напитки» в корзине нет).
 	itAddToCart(t, c, srv, itMedovikID, "menu")
 	itAddToCart(t, c, srv, itKhinkaliID, "menu")
 	cart := itGetCart(t, c, srv)
 	if cart.Recommendation == nil {
 		t.Fatal("FR-19: recommendation = null после добавления двух позиций")
 	}
-	if cart.Recommendation.Item.ID != itTarrhunID || cart.Recommendation.Source != "expert" {
-		t.Fatalf("recommendation: want Тархун/expert, got %+v", cart.Recommendation)
-	}
-	if cart.Recommendation.ReasonText == "" {
-		t.Fatal("FR-11: recommendation без reason_text")
+	if cart.Recommendation.Item.ID != itPomegranateID || cart.Recommendation.Item.CategoryID != 14 || cart.Recommendation.Source != "expert" || cart.Recommendation.ReasonText != itKhinkaliFeed[3].reason {
+		t.Fatalf("recommendation: want гранат/expert с точным reason/category, got %+v", cart.Recommendation)
 	}
 
 	// FR-20: состав изменился (последняя позиция — медовик) → рекомендация сменилась
-	// на expert-пару медовика (Компот, Напитки).
+	// на expert-пару медовика (Яблочный фреш, Напитки).
 	resp = c.delete(t, srv.URL+fmt.Sprintf("/api/v1/cart/items/%d", itKhinkaliID))
 	if resp.StatusCode != http.StatusOK {
 		t.Fatalf("delete хинкали: %d", resp.StatusCode)
 	}
 	_ = resp.Body.Close()
 	cart = itGetCart(t, c, srv)
-	if cart.Recommendation == nil || cart.Recommendation.Item.ID != itCompoteID {
-		t.Fatalf("FR-20: после удаления want рекомендация Компот, got %+v", cart.Recommendation)
+	if cart.Recommendation == nil || cart.Recommendation.Item.ID != itAppleFreshID || cart.Recommendation.Item.CategoryID != 14 || cart.Recommendation.Source != "expert" || cart.Recommendation.ReasonText != itMedovikReason {
+		t.Fatalf("FR-20: после удаления want Яблочный фреш/expert с точным reason/category, got %+v", cart.Recommendation)
 	}
 }
 
@@ -923,9 +967,7 @@ func TestFR37_Integration_RecPostFilter(t *testing.T) {
 	_ = resp.Body.Close()
 
 	recs := itGetRecs(t, c, srv, itKhinkaliID)
-	if !recsContain(recs, itTkemaliID) {
-		t.Fatalf("исходная лента должна содержать Ткемали: %+v", recs)
-	}
+	assertItKhinkaliFeed(t, recs)
 
 	// (c) лента: off топ-1 (Ткемали, «Соусы») → позиция исчезает из ленты в пределах TTL+2с,
 	// замена по каскаду НЕ ищется: категория «Соусы» исключается целиком, heuristic-топ
@@ -937,22 +979,19 @@ func TestFR37_Integration_RecPostFilter(t *testing.T) {
 		return !recsContain(itGetRecs(t, c, srv, itKhinkaliID), itTkemaliID)
 	}, "Ткемали исчезает из /recommendations в пределах TTL+2с")
 	filtered := itGetRecs(t, c, srv, itKhinkaliID)
-	if len(filtered) != 5 {
-		t.Fatalf("после off Ткемали want 5 позиций, got %d: %+v", len(filtered), filtered)
-	}
+	assertItKhinkaliFeed(t, filtered, itTkemaliID)
 	for _, r := range filtered {
 		if r.Item.CategoryID == saucesCategoryID || r.Item.ID == itCreamSauceID {
 			t.Fatalf("замена недоступного кандидата не ищется, категория исключена целиком: %+v", r)
 		}
 	}
 
-	// (c) корзина: [хинкали] → ForCart даёт Тархун (единственный кандидат группы «Напитки»:
-	// expert-пара; upsell-маппинг пуст; heuristic «Хинкали→Напитки» отсутствует).
+	// (c) корзина: [хинкали] → гранат; off expert-кандидата гасит курс без heuristic-замены.
 	itAddToCart(t, c, srv, itKhinkaliID, "menu")
-	if cart := itGetCart(t, c, srv); cart.Recommendation == nil || cart.Recommendation.Item.ID != itTarrhunID {
-		t.Fatalf("ForCart для [хинкали]: want Тархун, got %+v", cart.Recommendation)
+	if cart := itGetCart(t, c, srv); cart.Recommendation == nil || cart.Recommendation.Item.ID != itPomegranateID || cart.Recommendation.Item.CategoryID != 14 || cart.Recommendation.Source != "expert" || cart.Recommendation.ReasonText != itKhinkaliFeed[3].reason {
+		t.Fatalf("ForCart для [хинкали]: want гранат/expert с точным reason/category, got %+v", cart.Recommendation)
 	}
-	if err := availability.Upsert(context.Background(), itTarrhunID, false); err != nil {
+	if err := availability.Upsert(context.Background(), itPomegranateID, false); err != nil {
 		t.Fatal(err)
 	}
 	waitUntil(t, itTTL+2*time.Second, func() bool {
@@ -960,16 +999,13 @@ func TestFR37_Integration_RecPostFilter(t *testing.T) {
 	}, "recommendation → null при недоступности единственного кандидата")
 
 	// FR-29: off оставшихся кандидатов ленты → лента опустела → recs=[] (блок скрыт).
-	if err := availability.Upsert(context.Background(), itSeasonVegID, false); err != nil {
+	if err := availability.Upsert(context.Background(), itWalnutSaladID, false); err != nil {
 		t.Fatal(err)
 	}
 	if err := availability.Upsert(context.Background(), itGrillVegID, false); err != nil {
 		t.Fatal(err)
 	}
-	if err := availability.Upsert(context.Background(), itDolmaID, false); err != nil {
-		t.Fatal(err)
-	}
-	if err := availability.Upsert(context.Background(), itBigSaladID, false); err != nil {
+	if err := availability.Upsert(context.Background(), itIceCreamID, false); err != nil {
 		t.Fatal(err)
 	}
 	waitUntil(t, itTTL+2*time.Second, func() bool {
@@ -977,7 +1013,7 @@ func TestFR37_Integration_RecPostFilter(t *testing.T) {
 	}, "лента рекомендаций опустела → recs=[]")
 
 	// (d) POST недоступной позиции → 409 item_unavailable (по-прежнему).
-	resp = c.post(t, srv.URL+"/api/v1/cart/items", fmt.Sprintf(`{"item_id":%d,"source":"menu"}`, itTarrhunID))
+	resp = c.post(t, srv.URL+"/api/v1/cart/items", fmt.Sprintf(`{"item_id":%d,"source":"menu"}`, itPomegranateID))
 	if resp.StatusCode != http.StatusConflict {
 		t.Fatalf("POST недоступной позиции: want 409, got %d", resp.StatusCode)
 	}
@@ -988,7 +1024,7 @@ func TestFR37_Integration_RecPostFilter(t *testing.T) {
 		} `json:"error"`
 	}
 	decodeBody(t, resp, &errBody)
-	if errBody.Error.Code != "item_unavailable" || errBody.Error.ItemID == nil || *errBody.Error.ItemID != itTarrhunID {
+	if errBody.Error.Code != "item_unavailable" || errBody.Error.ItemID == nil || *errBody.Error.ItemID != itPomegranateID {
 		t.Fatalf("409 body wrong: %+v", errBody)
 	}
 }

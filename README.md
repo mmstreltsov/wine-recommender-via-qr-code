@@ -69,6 +69,30 @@ rewriting browser Origin or weakening guards. Trusted proxy/origin configuration
 TLS, public domain, firewall and a fresh security review are separate follow-up
 work. Loopback QR links cannot be opened from a guest's phone.
 
+## Editing Recommendations
+
+Pairings and reasons are static content, prepared offline (no runtime LLM).
+Sources: `data/aidabaran/recommender/matrix.json` (directed expert pairs with
+`score` and `reason_text`), `heuristics.json` (category fallback rules),
+`forcart_priorities.json` (cart course priorities), and the Go fallback templates
+in `backend/plugins/aidabaran/texts.go`. The matrix is directional: `A → B` does
+not imply `B → A`. Scores are editorial priorities, not purchase probabilities.
+Review reports: `docs/reports/gastronomy-*.md`.
+
+After editing JSON data, validate and restart the backend (no DB/volume removal):
+
+```bash
+cd backend && go run ./cmd/validate-matrix
+docker compose restart backend
+```
+
+Changing Go templates (or any backend/frontend code) requires a rebuild:
+`docker compose up -d --build --no-deps backend`.
+
+The read-only reviewer role `.opencode/agents/georgian-gastronomy.md` is offline
+tooling for content review; it does not affect guest runtime and loads only after
+a full OpenCode restart.
+
 ## Isolated Acceptance
 
 Do not operate on an existing project just to test a new build. Choose a new
