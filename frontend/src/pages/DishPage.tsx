@@ -115,10 +115,12 @@ function DishDetails({ itemId }: { itemId: number }) {
       <Header title={config.restaurant.name} logoUrl={config.restaurant.logo_url} cartCount={count} />
       <DishBackLink />
       {state === 'loading' && (
-        <div aria-hidden="true">
-          <div className="skeleton skeleton--hero" />
-          <div className="skeleton skeleton--line" />
-          <div className="skeleton skeleton--line" />
+        <div role="status">Загружаем блюдо…
+          <div aria-hidden="true">
+            <div className="skeleton skeleton--hero" />
+            <div className="skeleton skeleton--line" />
+            <div className="skeleton skeleton--line" />
+          </div>
         </div>
       )}
       {(state === 'error' || state === 'notfound') && (

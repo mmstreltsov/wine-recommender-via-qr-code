@@ -58,6 +58,23 @@ beforeEach(() => {
 })
 
 describe('Menu', () => {
+  it('TestFR05_delayed_recommendations_show_loading_at_top_without_add', async () => {
+    const response = deferred<{ recs: typeof rec[] }>()
+    vi.mocked(api.getRecommendations).mockReturnValueOnce(response.promise)
+    renderPage('/')
+    const opener = await screen.findByRole('link', { name: new RegExp(dish.name) })
+    Object.defineProperty(window, 'scrollY', { configurable: true, value: 800 })
+    vi.mocked(window.scrollTo).mockClear()
+    fireEvent.click(opener)
+    expect(screen.getByText('Загружаем блюдо…')).toHaveAttribute('role', 'status')
+    expect(window.scrollTo).toHaveBeenCalledWith(0, 0)
+    expect(api.addItem).not.toHaveBeenCalled()
+    await act(async () => { response.resolve({ recs: [rec] }); await response.promise })
+    await screen.findByRole('heading', { name: dish.name })
+    expect(tracker.trackDishCardOpen).toHaveBeenCalledWith(101, 'menu')
+    expect(api.addItem).not.toHaveBeenCalled()
+  })
+
   it('TestFR25_filter_and_all_chip_event_zero_only_on_user_selection', async () => {
     renderPage('/')
     await screen.findByRole('link', { name: new RegExp(dish.name) })

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { readPageState, usePageRestore } from '../app/dish-navigation'
+import { readLocationPageState, usePageRestore } from '../app/dish-navigation'
 import { getCachedConfig, getMenu } from '../api/client'
 import type { MenuResponse } from '../api/types'
 import { trackCategorySelect, trackMenuViewOnce } from '../api/tracker'
@@ -20,7 +20,7 @@ export default function MenuPage() {
   const [menu, setMenu] = useState<MenuResponse | null>(null)
   const config = getCachedConfig()
   const [attempt, setAttempt] = useState(0)
-  const [active, setActive] = useState<ChipId>(() => readPageState(location.state).view?.category ?? 'all')
+  const [active, setActive] = useState<ChipId>(() => readLocationPageState(location).view?.category ?? 'all')
   const { count } = useCartCount()
   usePageRestore(state === 'ready' || state === 'error', active)
 
