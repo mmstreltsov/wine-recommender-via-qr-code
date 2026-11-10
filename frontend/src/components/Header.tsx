@@ -10,10 +10,10 @@ interface Props {
 export function Header({ title, logoUrl, cartCount }: Props) {
   return (
     <header className="header">
-      <div className="header__brand">
+      <Link to="/" className="header__brand" aria-label={`${title} — в меню`}>
         {safeLocalImage(logoUrl) && <img className="header__logo" src={safeLocalImage(logoUrl)} alt="" onError={(event) => { event.currentTarget.hidden = true }} />}
         <span className="header__title">{title}</span>
-      </div>
+      </Link>
       <Link
         to="/cart"
         className="header__cart"

@@ -16,7 +16,8 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.4; font-weight: 60
 .page__title { font-size: clamp(25px, 5vw, 40px); letter-spacing: -.04em; margin: 18px 0 16px; }
 .page__empty { padding: 60px 0; text-align: center; }
 .header { min-height: 96px; display: flex; align-items: center; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--c-line); }
-.header__brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.header__brand { display: flex; align-items: center; gap: 12px; min-width: 44px; min-height: 44px; }
+.header__brand:hover .header__title { text-decoration: underline; }
 .header__logo { width: 52px; height: 52px; object-fit: contain; }
 .header__title { font: 600 clamp(14px, 3vw, 20px)/1.4 var(--font-display); overflow-wrap: anywhere; }
 .header__cart { position: relative; display: flex; justify-content: center; align-items: center; min-width: 52px; min-height: 52px; border-radius: var(--radius-chip); background: var(--c-bg-soft); }
