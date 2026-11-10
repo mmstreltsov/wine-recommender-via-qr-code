@@ -23,8 +23,8 @@ func TestFR10_RealDataGastronomyAllCards(t *testing.T) {
 	if err := loadJSONFile("../../../data/aidabaran/recommender/matrix.json", &matrix); err != nil {
 		t.Fatal(err)
 	}
-	if len(menu.Items) != 125 || len(menu.Categories) != 14 || len(matrix.Pairs) != 210 {
-		t.Fatalf("want 125 items/14 categories/210 pairs, got %d/%d/%d", len(menu.Items), len(menu.Categories), len(matrix.Pairs))
+	if len(menu.Items) != 125 || len(menu.Categories) != 14 || len(matrix.Pairs) != 414 {
+		t.Fatalf("want 125 items/14 categories/414 pairs, got %d/%d/%d", len(menu.Items), len(menu.Categories), len(matrix.Pairs))
 	}
 	items := make(map[int64]domain.MenuItem, len(menu.Items))
 	for _, item := range menu.Items {
@@ -38,7 +38,7 @@ func TestFR10_RealDataGastronomyAllCards(t *testing.T) {
 		977604609092: true, 292582418782: true, 914964949052: true,
 		513971294142: true, 303938634302: true, 988436681252: true,
 		759806895422: true, 159551626192: true, 761682796242: true,
-		173154936692: true,
+		173154936692: true, 293109021772: true, 605443137872: true,
 	}
 	// Named included sauces; no free-form language/portion inference in this test.
 	withSauce := map[int64]bool{
@@ -71,8 +71,8 @@ func TestFR10_RealDataGastronomyAllCards(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
-			if len(recs) == 0 {
-				t.Fatal("edited source has no recommendations")
+			if len(recs) < 3 {
+				t.Fatalf("want at least 3 distinct target categories per source, got %d recommendations", len(recs))
 			}
 			seenIDs, seenCategories := map[int64]bool{}, map[int]bool{}
 			for i, rec := range recs {
@@ -98,8 +98,8 @@ func TestFR10_RealDataGastronomyAllCards(t *testing.T) {
 			}
 		})
 	}
-	if len(selected) != 210 {
-		t.Errorf("want all 210 expert pairs selected, got %d", len(selected))
+	if len(selected) != 414 {
+		t.Errorf("want all 414 expert pairs selected, got %d", len(selected))
 	}
 	for _, category := range menu.Categories {
 		if !targetCategories[category.ID] {
@@ -124,13 +124,13 @@ func TestFR19_RealDataGastronomyDirectedAdditions(t *testing.T) {
 		cart int64
 	}{
 		{"khinkali_no_dolma_or_600g_salad", 655892482392, []int64{366609864022, 733465955822, 231821651422, 445870875313, 951817158352}, []int{1, 10, 11, 14, 12}, 445870875313},
-		{"grill_satsebeli_no_second_sauce", 219414720772, []int64{573190167622, 844016957853}, []int{10, 14}, 844016957853},
-		{"grill_mint_sauce_and_salad", 577945503202, []int64{445870875313}, []int{14}, 445870875313},
-		{"dorado_grill_pomegranate_sauce", 759806895422, []int64{301501361763}, []int{14}, 301501361763},
-		{"dorado_steam_pomegranate_sauce", 159551626192, []int64{301501361763}, []int{14}, 301501361763},
-		{"cod_sauce_and_vegetables_no_new_hot_dish", 183588997633, []int64{301501361763}, []int{14}, 301501361763},
-		{"salmon_included_zucchini", 538899551122, []int64{301501361763}, []int{14}, 301501361763},
-		{"ribs_for_group", 988436681252, []int64{301501361763}, []int{14}, 301501361763},
+		{"grill_satsebeli_no_second_sauce", 219414720772, []int64{573190167622, 693049741272, 844016957853}, []int{10, 1, 14}, 844016957853},
+		{"grill_mint_sauce_and_salad", 577945503202, []int64{588160226782, 445870875313, 951817158352}, []int{2, 14, 12}, 445870875313},
+		{"dorado_grill_pomegranate_sauce", 759806895422, []int64{693049741272, 301501361763, 939802252842}, []int{1, 14, 12}, 301501361763},
+		{"dorado_steam_pomegranate_sauce", 159551626192, []int64{876369952933, 301501361763, 951817158352}, []int{1, 14, 12}, 301501361763},
+		{"cod_sauce_and_vegetables_no_new_hot_dish", 183588997633, []int64{267806359892, 301501361763, 951817158352}, []int{1, 14, 12}, 301501361763},
+		{"salmon_included_zucchini", 538899551122, []int64{366609864022, 301501361763, 939802252842}, []int{1, 14, 12}, 301501361763},
+		{"ribs_for_group", 988436681252, []int64{267806359892, 301501361763, 939802252842}, []int{1, 14, 12}, 301501361763},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
 			recs, err := r.ForDish(context.Background(), tc.dish, nil)
@@ -154,5 +154,34 @@ func TestFR19_RealDataGastronomyDirectedAdditions(t *testing.T) {
 				t.Fatalf("ForCart want %d/expert/drinks with same reason, got %+v", tc.cart, rec)
 			}
 		})
+	}
+}
+
+// FR-10/28/29: exclusions affect one call, not the stored candidates or categories.
+func TestFR28_RealDataGastronomyExclusionsDoNotPersist(t *testing.T) {
+	r, _ := realData(t)
+	ctx := context.Background()
+	const dishID = 655892482392
+	original, err := r.ForDish(ctx, dishID, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(original) != 5 {
+		t.Fatalf("want 5 original khinkali categories, got %d", len(original))
+	}
+	candidateIDs := recIDs(original)
+	filtered, err := r.ForDish(ctx, dishID, candidateIDs)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(filtered) != 0 {
+		t.Fatalf("excluded candidates must leave no categories, got %v", recIDs(filtered))
+	}
+	restored, err := r.ForDish(ctx, dishID, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !reflect.DeepEqual(restored, original) {
+		t.Fatalf("nil exclusions must restore the complete original feed: got %+v, want %+v", restored, original)
 	}
 }
