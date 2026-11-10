@@ -58,13 +58,16 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.4; font-weight: 60
 .rec-feed { margin-top: 24px; padding-top: 28px; border-top: 2px solid var(--c-ink); }
 .rec-feed__title { font-size: clamp(19px, 4vw, 26px); margin-bottom: 24px; letter-spacing: -.025em; }
 .rec-feed__list { display: flex; flex-direction: column; gap: 16px; }
-.rec-card { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 16px; padding: 16px; border-radius: var(--radius-chip); background: var(--c-bg-soft); border: 1px solid var(--c-line); }
-.rec-card__img { width: 88px; height: 88px; border-radius: var(--radius-chip); }
-.rec-card__body { min-width: 0; }
+.rec-card { width: 100%; max-width: 600px; min-width: 0; border-radius: var(--radius-chip); background: var(--c-bg-soft); border: 1px solid var(--c-line); }
+.rec-card__link { display: block; min-height: 44px; border-radius: var(--radius-chip); }
+.rec-card__link:hover { background: var(--c-line); }
+.rec-card__visual { width: 100%; aspect-ratio: 4/3; }
+.rec-card__img { width: 100%; height: 100%; aspect-ratio: 4/3; border-radius: var(--radius-chip) var(--radius-chip) 0 0; }
+.rec-card__body { min-width: 0; padding: 20px; }
 .rec-card__title { display: block; font: 600 13px/1.5 var(--font-display); overflow-wrap: anywhere; }
 .rec-card__price { display: block; margin-top: 10px; font: 500 13px var(--font-display); }
 .rec-card__reason { margin-top: 14px; font-size: 13px; overflow-wrap: anywhere; }
-.rec-card__action { grid-column: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.rec-card__action { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 0 20px 20px; }
 .rec-card__error, .dish__add-error { font-size: 13px; margin-top: 12px; }
 .cart-list { margin: 28px 0 0; padding: 0; list-style: none; }
 .cart-line { position: relative; display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 16px; padding: 24px 44px 24px 0; border-bottom: 1px solid var(--c-line); }
@@ -101,8 +104,6 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.4; font-weight: 60
 @media (min-width: 561px) {
   .page { padding-inline: 32px; }
   .catalog { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .rec-card { grid-template-columns: 140px minmax(0, 1fr); padding: 20px; gap: 20px; }
-  .rec-card__img { width: 140px; height: 140px; grid-row: span 2; }
   .rec-card__title { font-size: 15px; }
   .cart-line { grid-template-columns: 100px minmax(0, 1fr) auto; padding-right: 44px; gap: 20px; }
   .cart-line__img { width: 100px; height: 100px; }

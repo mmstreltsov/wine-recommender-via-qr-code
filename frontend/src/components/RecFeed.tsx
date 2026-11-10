@@ -20,7 +20,7 @@ export function RecFeed({ dishId, title, recs, scope }: Props) {
 
   return (
     <section className="rec-feed" aria-label={title}>
-      <h2 className="rec-feed__title" ref={ref}>{title}</h2>
+      <h2 className="rec-feed__title" ref={ref} tabIndex={-1}>{title}</h2>
       <div className="rec-feed__list">
         {recs.map((rec) => (
           <RecCard key={rec.item.id} rec={rec} context="dish" scope={scope} />

@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import { readPageState, usePageRestore } from '../app/dish-navigation'
 import { getCachedConfig, getMenu } from '../api/client'
 import type { MenuResponse } from '../api/types'
 import { trackCategorySelect, trackMenuViewOnce } from '../api/tracker'
@@ -13,12 +15,14 @@ import type { MenuItemSummary } from '../api/types'
 type LoadState = 'loading' | 'error' | 'ready'
 
 export default function MenuPage() {
+  const location = useLocation()
   const [state, setState] = useState<LoadState>('loading')
   const [menu, setMenu] = useState<MenuResponse | null>(null)
   const config = getCachedConfig()
   const [attempt, setAttempt] = useState(0)
-  const [active, setActive] = useState<ChipId>('all')
+  const [active, setActive] = useState<ChipId>(() => readPageState(location.state).view?.category ?? 'all')
   const { count } = useCartCount()
+  usePageRestore(state === 'ready' || state === 'error', active)
 
   useEffect(() => {
     let alive = true
@@ -52,7 +56,7 @@ export default function MenuPage() {
         logoUrl={config?.restaurant.logo_url ?? ''}
         cartCount={count}
       />
-      <div className="menu-heading"><p className="eyebrow">Выбирайте, сочетайте, наслаждайтесь</p><h1 className="page__title">Онлайн-меню</h1><p>Любимые блюда и немного вдохновения для вашего заказа.</p></div>
+      <div className="menu-heading"><p className="eyebrow">Выбирайте, сочетайте, наслаждайтесь</p><h1 id="page-heading" className="page__title" tabIndex={-1}>Онлайн-меню</h1><p>Любимые блюда и немного вдохновения для вашего заказа.</p></div>
       {state === 'loading' && (
         <div className="catalog" aria-hidden="true">
           {Array.from({ length: 6 }, (_, i) => (
@@ -73,7 +77,7 @@ export default function MenuPage() {
           {items.length > 0 ? (
             <div className="catalog">
               {items.map((item) => (
-                <DishCard key={item.id} item={item} />
+                <DishCard key={item.id} item={item} category={active} />
               ))}
             </div>
           ) : (

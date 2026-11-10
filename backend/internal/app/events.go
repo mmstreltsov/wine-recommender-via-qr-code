@@ -17,7 +17,7 @@ var clientEventNames = map[string]map[string]func(any) bool{
 	"category_select": {"category_id": eventInteger(0, maxEventInteger)},
 	"dish_card_open": {
 		"item_id": eventInteger(1, maxEventInteger),
-		"source":  eventEnum("menu"),
+		"source":  eventEnum("menu", "rec_feed", "rec_cart"),
 	},
 	"rec_feed_visible": {
 		"dish_id":    eventInteger(1, maxEventInteger),

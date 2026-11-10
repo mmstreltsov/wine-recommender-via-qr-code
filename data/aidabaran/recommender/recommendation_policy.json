@@ -1,0 +1,18 @@
+{
+  "display_groups": [
+    {"rank": 0, "categories": ["Соусы"]},
+    {"rank": 1, "categories": ["Тандырный хлеб", "Овощи на углях и гарниры"]},
+    {"rank": 2, "categories": ["Салаты", "Холодные закуски", "Горячие закуски"]},
+    {"rank": 3, "categories": ["Супы", "Хачапури", "Хинкали", "Чебуреки", "Основные блюда", "Блюда на углях"]},
+    {"rank": 5, "categories": ["Десерты"]},
+    {"rank": 6, "categories": ["Напитки"]}
+  ],
+  "soup_bakery": {
+    "source_category": "Супы",
+    "target_categories": ["Тандырный хлеб", "Хачапури"],
+    "preferred_category": "Тандырный хлеб"
+  },
+  "substantial_categories": ["Хачапури", "Хинкали", "Чебуреки", "Основные блюда", "Блюда на углях"],
+  "substantial_item_ids": [],
+  "no_main_anchor_categories": ["Овощи на углях и гарниры", "Соусы", "Тандырный хлеб"]
+}

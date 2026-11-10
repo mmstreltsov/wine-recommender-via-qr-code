@@ -1,0 +1,14 @@
+{
+  "display_groups": [
+    {"rank": 0, "categories": ["Соусы"]},
+    {"rank": 2, "categories": ["Салаты"]},
+    {"rank": 6, "categories": ["Напитки"]}
+  ],
+  "soup_bakery": {
+    "source_category": "Салаты",
+    "target_categories": ["Соусы", "Напитки"],
+    "preferred_category": "Соусы"
+  },
+  "substantial_categories": ["Напитки"],
+  "no_main_anchor_categories": ["Соусы"]
+}

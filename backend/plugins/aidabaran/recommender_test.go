@@ -76,11 +76,11 @@ func TestFR10_ExpertMaxScoreAndSortOrderTieBreak(t *testing.T) {
 		t.Fatalf("ForDish: %v", err)
 	}
 	got := recIDs(recs)
-	want := []int64{402, 701, 501, 601}
+	want := []int64{402, 601, 501, 701}
 	if !reflect.DeepEqual(got, want) {
 		t.Fatalf("recs = %v, want %v", got, want)
 	}
-	wantScore := []float64{0.9, 0.85, 0.75, 0.7}
+	wantScore := []float64{0.9, 0.7, 0.75, 0.85}
 	for i, rec := range recs {
 		if rec.Score != wantScore[i] {
 			t.Errorf("rec %d score = %v, want %v", rec.ItemID, rec.Score, wantScore[i])
@@ -128,7 +128,7 @@ func TestFR10_UpsellBranchFirstByOrder(t *testing.T) {
 		t.Fatalf("ForDish: %v", err)
 	}
 	got := recIDs(recs)
-	want := []int64{701, 402, 501}
+	want := []int64{402, 501, 701}
 	if !reflect.DeepEqual(got, want) {
 		t.Fatalf("recs = %v, want %v", got, want)
 	}
@@ -182,7 +182,7 @@ func TestFR10_Limit13(t *testing.T) {
 		}
 	}
 	h := Heuristics{Rules: []heuristicRule{{FromCategory: "Категория 01", ToCategories: tos}}}
-	r := NewRecommender(cats, items, Matrix{}, h, UpsellMap{}, CoursePriorities{})
+	r := NewRecommender(cats, items, Matrix{}, h, UpsellMap{}, CoursePriorities{}, RecommendationPolicy{})
 	recs, err := r.ForDish(context.Background(), 1001, nil)
 	if err != nil {
 		t.Fatalf("ForDish: %v", err)
@@ -204,7 +204,7 @@ func TestFR28_ForDishExcludesInCart(t *testing.T) {
 		t.Fatalf("ForDish: %v", err)
 	}
 	got := recIDs(recs)
-	want := []int64{701, 501, 601}
+	want := []int64{601, 501, 701}
 	if !reflect.DeepEqual(got, want) {
 		t.Fatalf("recs = %v, want %v", got, want)
 	}
@@ -258,7 +258,7 @@ func TestFR10_ExcludesSelfItemID(t *testing.T) {
 		ReasonText:       "Пара-самоссылка через override: движок обязан исключить сам itemID и скрыть категорию целиком, замена не ищется.",
 	}}}
 	h := Heuristics{Rules: []heuristicRule{{FromCategory: "Салаты", ToCategories: []string{"Напитки"}}}}
-	r := NewRecommender(cats, items, m, h, UpsellMap{}, CoursePriorities{})
+	r := NewRecommender(cats, items, m, h, UpsellMap{}, CoursePriorities{}, RecommendationPolicy{})
 	recs, err := r.ForDish(context.Background(), 10, nil)
 	if err != nil {
 		t.Fatalf("ForDish: %v", err)
@@ -330,25 +330,25 @@ func TestFR20_RecChangesWithCart(t *testing.T) {
 	}
 }
 
-func TestFR21_AllCoursesCoveredExpertAnyCategory(t *testing.T) {
+func TestFR21_AllCoursesCoveredNoUnrestrictedExpert(t *testing.T) {
 	r := fixtureRecommender(t)
 	rec, err := r.ForCart(context.Background(), cartLines(401, 203, 701, 501, 101), nil)
 	if err != nil {
 		t.Fatalf("ForCart: %v", err)
 	}
-	if rec == nil || rec.ItemID != 402 || rec.Source != "expert" || rec.Score != 0.9 {
-		t.Fatalf("want 402 expert 0.9 (категория уже в корзине, позиция другая), got %+v", rec)
+	if rec != nil {
+		t.Fatalf("covered courses and substantial present -> nil, got %+v", rec)
 	}
 }
 
-func TestFR21_HeuristicFallbackWhenNoPairs(t *testing.T) {
+func TestFR21_NoUnrestrictedHeuristicFallback(t *testing.T) {
 	r := fixtureRecommender(t)
 	rec, err := r.ForCart(context.Background(), cartLines(203, 401, 402, 701, 501, 502, 601, 101), nil)
 	if err != nil {
 		t.Fatalf("ForCart: %v", err)
 	}
-	if rec == nil || rec.ItemID != 201 || rec.Source != "heuristic" || rec.Score != 0.4 {
-		t.Fatalf("все пары последней позиции в корзине -> heuristic 201, got %+v", rec)
+	if rec != nil {
+		t.Fatalf("substantial present -> no second main, got %+v", rec)
 	}
 }
 
@@ -374,7 +374,7 @@ func TestFR21_GroupCategoriesAscendingID(t *testing.T) {
 		{"Холодные закуски", "Салаты"},
 		{"Напитки"},
 	}}
-	r := NewRecommender(cats, items, Matrix{}, h, UpsellMap{}, prio)
+	r := NewRecommender(cats, items, Matrix{}, h, UpsellMap{}, prio, RecommendationPolicy{})
 	ctx := context.Background()
 
 	rec, err := r.ForCart(ctx, cartLines(100), nil)
@@ -400,8 +400,8 @@ func TestFR21_GroupCategoriesAscendingID(t *testing.T) {
 	if err != nil {
 		t.Fatalf("ForCart: %v", err)
 	}
-	if rec != nil {
-		t.Fatalf("обе категории группы исчерпаны -> nil без переключения на следующий курс (Напитки жив, 900), got %+v", rec)
+	if rec == nil || rec.ItemID != 900 || rec.Source != "heuristic" {
+		t.Fatalf("exhausted group -> next course, want 900 heuristic, got %+v", rec)
 	}
 }
 
@@ -411,8 +411,8 @@ func TestFR28_ForCartSkipsCartPositions(t *testing.T) {
 	if err != nil {
 		t.Fatalf("ForCart: %v", err)
 	}
-	if rec == nil || rec.ItemID != 401 || rec.Score != 0.8 {
-		t.Fatalf("402 в корзине -> следующая по каскаду пара 401 (0.8), got %+v", rec)
+	if rec != nil {
+		t.Fatalf("covered courses do not permit another sauce, got %+v", rec)
 	}
 }
 

@@ -169,9 +169,27 @@ func TestAN05_EventEnumsExcludeFreeText(t *testing.T) {
 			assertClientPayloadRejected(t, "rec_impression", payload)
 		}
 	}
-	payload := maps.Clone(validClientPayloads["dish_card_open"])
-	payload["source"] = "rec_feed"
-	assertClientPayloadRejected(t, "dish_card_open", payload)
+	for _, invalid := range []any{"", "Rec_feed", "cart", "https://example.test", float64(1), nil} {
+		payload := maps.Clone(validClientPayloads["dish_card_open"])
+		payload["source"] = invalid
+		assertClientPayloadRejected(t, "dish_card_open", payload)
+	}
+}
+
+func TestAN02_DishCardOpenSources(t *testing.T) {
+	for _, source := range []string{"menu", "rec_feed", "rec_cart"} {
+		t.Run(source, func(t *testing.T) {
+			st := &fakeEventStore{}
+			payload := maps.Clone(validClientPayloads["dish_card_open"])
+			payload["source"] = source
+			if err := NewEventsService(st).RecordClientEvent(context.Background(), "s1", nil, "dish_card_open", payload); err != nil {
+				t.Fatal(err)
+			}
+			if len(st.events) != 1 || st.events[0].Name != "dish_card_open" || st.events[0].Payload["source"] != source {
+				t.Fatalf("wrong stored event: %+v", st.events)
+			}
+		})
+	}
 }
 
 func TestNFR04_PayloadSizeLimit1KB(t *testing.T) {

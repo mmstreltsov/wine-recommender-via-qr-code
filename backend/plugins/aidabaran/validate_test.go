@@ -286,6 +286,7 @@ func TestFR10_ValidateFilesMatrixFileMissing(t *testing.T) {
 	copyFixture(filepath.Join(recDir, "heuristics.json"), filepath.Join("testdata", "aidabaran", "recommender", "heuristics.json"))
 	copyFixture(filepath.Join(recDir, "upsell_map.json"), filepath.Join("testdata", "aidabaran", "recommender", "upsell_map.json"))
 	copyFixture(filepath.Join(recDir, "forcart_priorities.json"), filepath.Join("testdata", "aidabaran", "recommender", "forcart_priorities.json"))
+	copyFixture(filepath.Join(recDir, "recommendation_policy.json"), filepath.Join("testdata", "aidabaran", "recommender", "recommendation_policy.json"))
 
 	report, err := ValidateFiles(dir, "aidabaran")
 	if err != nil {

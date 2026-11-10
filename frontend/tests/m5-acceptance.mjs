@@ -353,8 +353,22 @@ try {
       await rec.scrollIntoViewIfNeeded();
       await wait(300);
       await page.evaluate(() => { globalThis.__acceptanceMark = 'same-document'; });
+      const linesBeforeOpen = (await api(page, '/cart')).lines;
+      const recID = recs.recs[0].item.id;
+      const geometry = await rec.evaluate(el => {
+        const photo = el.querySelector('.rec-card__visual').getBoundingClientRect();
+        const text = el.querySelector('.rec-card__body').getBoundingClientRect();
+        return { ratio: photo.width / photo.height, above: photo.bottom <= text.top + 1, width: photo.width, cardWidth: el.getBoundingClientRect().width };
+      });
+      assert.ok(Math.abs(geometry.ratio - 4 / 3) < 0.01 && geometry.above);
+      assert.ok(geometry.width <= 600 && geometry.cardWidth <= width);
       await rec.locator('.rec-card__title').click();
-      assert.equal(new URL(page.url()).pathname, `/dish/${dishID}`);
+      await page.waitForFunction(id => globalThis.location.pathname === `/dish/${id}` && document.querySelector('.dish__title'), recID);
+      assert.equal(new URL(page.url()).pathname, `/dish/${recID}`);
+      assert.deepEqual((await api(page, '/cart')).lines, linesBeforeOpen);
+      await until(() => events(start).some(e => e.name === 'dish_card_open' && e.payload.item_id === recID && e.payload.source === 'rec_feed'), 'rec detail open source missing');
+      await page.locator('.back-link').click();
+      await page.waitForFunction(id => globalThis.location.pathname === `/dish/${id}` && document.querySelector('.dish__title'), dishID);
       await rec.getByRole('button').click();
       await badge(page, 1);
       assert.equal(await page.evaluate(() => globalThis.__acceptanceMark), 'same-document');
@@ -393,6 +407,12 @@ try {
       const previousRec = cart.recommendation.item.id;
       await page.locator('.rec-card').scrollIntoViewIfNeeded();
       await wait(300);
+      await page.locator('.rec-card__link').click();
+      await page.waitForFunction(id => globalThis.location.pathname === `/dish/${id}` && document.querySelector('.dish__title'), previousRec);
+      assert.deepEqual((await api(page, '/cart')).lines, cart.lines);
+      await until(() => events(start).some(e => e.name === 'dish_card_open' && e.payload.item_id === previousRec && e.payload.source === 'rec_cart'), 'cart detail open source missing');
+      await page.locator('.back-link').click();
+      await page.waitForSelector('.page--cart .rec-card');
       await page.locator('.rec-card button').click();
       await until(async () => (await page.locator('.cart-line').count()) === 3, 'cart recommendation not added');
       cart = await cartMatches(page);
@@ -551,7 +571,7 @@ try {
     const context = value => ['dish', 'cart'].includes(value);
     const schemas = {
       page_open: {}, menu_view: {}, stub_view: {}, category_select: { category_id: integer },
-      dish_card_open: { item_id: id, source: value => value === 'menu' },
+      dish_card_open: { item_id: id, source: value => ['menu', 'rec_feed', 'rec_cart'].includes(value) },
       rec_feed_visible: { dish_id: id, recs_count: value => integer(value) && value <= 13 },
       rec_impression: { context, rec_item_id: id, rec_source: value => ['expert', 'upsell', 'heuristic'].includes(value) },
       menu_add_click: { item_id: id }, rec_add_click: { item_id: id, context },

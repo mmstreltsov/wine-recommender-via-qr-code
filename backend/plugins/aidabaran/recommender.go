@@ -23,20 +23,27 @@ type UpsellMap = upsellMapFile
 type CoursePriorities = forcartFile
 
 type engine struct {
-	catIDs     []int
-	catName    map[int]string
-	catID      map[string]int
-	items      map[int64]domain.MenuItem
-	catItems   map[int][]domain.MenuItem
-	expert     map[int64][]matrixPair
-	upsellOpts map[int64][]int64
-	heurToList map[int][]int
-	priority   [][]int
+	catIDs           []int
+	catName          map[int]string
+	catID            map[string]int
+	items            map[int64]domain.MenuItem
+	catItems         map[int][]domain.MenuItem
+	expert           map[int64][]matrixPair
+	upsellOpts       map[int64][]int64
+	heurToList       map[int][]int
+	priority         [][]int
+	displayRank      map[int]int
+	soupCategory     int
+	bakery           map[int]bool
+	bakeryPreferred  int
+	substantialCats  map[int]bool
+	substantialItems map[int64]bool
+	noMainAnchors    map[int]bool
 }
 
 var _ recommender.Recommender = (*engine)(nil)
 
-func NewRecommender(categories []domain.Category, items []domain.MenuItem, matrix Matrix, heuristics Heuristics, upsellMap UpsellMap, forcart CoursePriorities) recommender.Recommender {
+func NewRecommender(categories []domain.Category, items []domain.MenuItem, matrix Matrix, heuristics Heuristics, upsellMap UpsellMap, forcart CoursePriorities, policy RecommendationPolicy) recommender.Recommender {
 	e := &engine{
 		catName:    make(map[int]string, len(categories)),
 		catID:      make(map[string]int, len(categories)),
@@ -97,6 +104,7 @@ func NewRecommender(categories []domain.Category, items []domain.MenuItem, matri
 		sort.Ints(ids)
 		e.priority = append(e.priority, ids)
 	}
+	e.applyPolicy(policy)
 	return e
 }
 
@@ -122,7 +130,11 @@ func LoadRecommender(dataDir, restaurant string) (recommender.Recommender, error
 	if err := loadJSONFile(filepath.Join(dir, "forcart_priorities.json"), &forcart); err != nil {
 		return nil, fmt.Errorf("forcart_priorities.json: %w", err)
 	}
-	return NewRecommender(menu.Categories, menu.Items, matrix, heuristics, upsellMap, forcart), nil
+	policy, err := loadPolicy(filepath.Join(dir, "recommendation_policy.json"), menu.Categories, menu.Items)
+	if err != nil {
+		return nil, fmt.Errorf("recommendation_policy.json: %w", err)
+	}
+	return NewRecommender(menu.Categories, menu.Items, matrix, heuristics, upsellMap, forcart, policy), nil
 }
 
 func normalizeUpsellText(s string) string {
@@ -177,17 +189,14 @@ func (e *engine) ForDish(ctx context.Context, itemID int64, excludeInCart []int6
 		}
 		cands = append(cands, cand)
 	}
+	if dish.CategoryID == e.soupCategory {
+		cands = e.soupBakerySlot(cands, excludeInCart)
+	}
 	sort.Slice(cands, func(i, j int) bool {
-		if cands[i].score != cands[j].score {
-			return cands[i].score > cands[j].score
+		if a, b := e.rank(cands[i].item), e.rank(cands[j].item); a != b {
+			return a < b
 		}
-		if cands[i].catID != cands[j].catID {
-			return cands[i].catID < cands[j].catID
-		}
-		if cands[i].item.SortOrder != cands[j].item.SortOrder {
-			return cands[i].item.SortOrder < cands[j].item.SortOrder
-		}
-		return cands[i].item.ID < cands[j].item.ID
+		return displayBetter(cands[i], cands[j])
 	})
 	if len(cands) > forDishLimit {
 		cands = cands[:forDishLimit]
@@ -200,50 +209,146 @@ func (e *engine) ForDish(ctx context.Context, itemID int64, excludeInCart []int6
 }
 
 func (e *engine) ForCart(ctx context.Context, lines []domain.CartLine, excludeInCart []int64) (*recommender.Rec, error) {
-	if len(lines) == 0 {
-		return nil, nil
-	}
 	excluded := make(map[int64]bool, len(lines)+len(excludeInCart))
 	for _, id := range excludeInCart {
 		excluded[id] = true
 	}
+	var anchors []domain.MenuItem
+	cartCats := make(map[int]bool)
+	hasMain := false
 	for _, l := range lines {
 		excluded[l.ItemID] = true
-	}
-	last, ok := e.items[lines[len(lines)-1].ItemID]
-	if !ok {
-		return nil, nil
-	}
-	cartCats := make(map[int]bool)
-	for _, l := range lines {
-		if it, ok := e.items[l.ItemID]; ok {
+		if it, ok := e.items[l.ItemID]; ok && l.Available {
+			anchors = append(anchors, it)
 			cartCats[it.CategoryID] = true
+			hasMain = hasMain || e.substantial(it)
 		}
 	}
-	if group := e.firstUncoveredGroup(cartCats); group != nil {
+	permitted := func(item domain.MenuItem) bool { return !excluded[item.ID] && (!hasMain || !e.substantial(item)) }
+	for _, group := range e.priority {
+		covered := false
 		groupSet := make(map[int]bool, len(group))
 		for _, id := range group {
 			groupSet[id] = true
+			covered = covered || cartCats[id]
 		}
-		allowed := func(c int) bool { return groupSet[c] }
-		if c, ok := e.expertBest(last, allowed, excluded); ok {
+		if covered {
+			continue
+		}
+		if c, ok := e.cartCascade(anchors, func(cat int) bool { return groupSet[cat] }, permitted); ok {
 			return toRec(c), nil
 		}
-		if c, ok := e.upsellBest(last, allowed, excluded); ok {
-			return toRec(c), nil
-		}
-		if c, ok := e.heurGroupTop(last, group, excluded); ok {
-			return toRec(c), nil
-		}
-		return nil, nil
 	}
-	if c, ok := e.expertBest(last, nil, excluded); ok {
-		return toRec(c), nil
-	}
-	if c, ok := e.heurFirstFrom(last, excluded); ok {
-		return toRec(c), nil
+	if !hasMain {
+		var eligible []domain.MenuItem
+		for _, anchor := range anchors {
+			if e.noMainAnchors[anchor.CategoryID] {
+				eligible = append(eligible, anchor)
+			}
+		}
+		if c, ok := e.cartCascade(eligible, nil, func(item domain.MenuItem) bool { return !excluded[item.ID] && e.substantial(item) }); ok {
+			return toRec(c), nil
+		}
 	}
 	return nil, nil
+}
+
+func displayBetter(a, b candidate) bool {
+	if a.score != b.score {
+		return a.score > b.score
+	}
+	if a.catID != b.catID {
+		return a.catID < b.catID
+	}
+	if a.item.SortOrder != b.item.SortOrder {
+		return a.item.SortOrder < b.item.SortOrder
+	}
+	return a.item.ID < b.item.ID
+}
+
+func (e *engine) soupBakerySlot(cands []candidate, excluded []int64) []candidate {
+	suppressed := false
+	for _, id := range excluded {
+		if e.bakery[e.items[id].CategoryID] {
+			suppressed = true
+		}
+	}
+	var winner candidate
+	found := false
+	result := make([]candidate, 0, len(cands))
+	for _, c := range cands {
+		if !e.bakery[c.item.CategoryID] {
+			result = append(result, c)
+			continue
+		}
+		preferred := c.item.CategoryID == e.bakeryPreferred
+		bestPreferred := winner.item.CategoryID == e.bakeryPreferred
+		if !found || (preferred && !bestPreferred) || (preferred == bestPreferred && displayBetter(c, winner)) {
+			winner, found = c, true
+		}
+	}
+	if found && !suppressed {
+		result = append(result, winner)
+	}
+	return result
+}
+
+// FR-19/21: source precedence is global to a missing course, not per anchor.
+func (e *engine) cartCascade(anchors []domain.MenuItem, allowed func(int) bool, permitted func(domain.MenuItem) bool) (candidate, bool) {
+	var best candidate
+	found := false
+	bestAnchor := -1
+	for i, anchor := range anchors {
+		for _, pair := range e.expert[anchor.ID] {
+			item, ok := e.items[pair.RecID]
+			if !ok || !permitted(item) || (allowed != nil && !allowed(e.pairCategory(pair, item))) {
+				continue
+			}
+			c := candidate{item: item, catID: e.pairCategory(pair, item), score: pair.Score, source: "expert", text: pair.ReasonText}
+			if found && !cartExpertBetter(c, i, best, bestAnchor) {
+				continue
+			}
+			best = c
+			bestAnchor, found = i, true
+		}
+	}
+	if found {
+		return best, true
+	}
+	for i := len(anchors) - 1; i >= 0; i-- {
+		anchor := anchors[i]
+		for _, id := range e.upsellOpts[anchor.ID] {
+			item, ok := e.items[id]
+			if ok && permitted(item) && (allowed == nil || allowed(item.CategoryID)) {
+				return candidate{item: item, catID: item.CategoryID, score: scoreUpsell, source: "upsell", text: e.textFor(anchor, item)}, true
+			}
+		}
+	}
+	for i := len(anchors) - 1; i >= 0; i-- {
+		anchor := anchors[i]
+		for _, catID := range e.catIDs {
+			if allowed != nil && !allowed(catID) {
+				continue
+			}
+			if c, ok := e.heurTop(anchor, catID); ok && permitted(c.item) {
+				return c, true
+			}
+		}
+	}
+	return candidate{}, false
+}
+
+func cartExpertBetter(a candidate, anchorA int, b candidate, anchorB int) bool {
+	if a.score != b.score {
+		return a.score > b.score
+	}
+	if anchorA != anchorB {
+		return anchorA > anchorB
+	}
+	if a.item.SortOrder != b.item.SortOrder {
+		return a.item.SortOrder < b.item.SortOrder
+	}
+	return a.item.ID < b.item.ID
 }
 
 func toRec(c candidate) *recommender.Rec {
@@ -335,31 +440,6 @@ func (e *engine) heurTop(dish domain.MenuItem, catID int) (candidate, bool) {
 	return e.heurCand(dish, catID)
 }
 
-func (e *engine) heurGroupTop(dish domain.MenuItem, group []int, excluded map[int64]bool) (candidate, bool) {
-	for _, catID := range group {
-		if !e.heurHas(dish.CategoryID, catID) {
-			continue
-		}
-		tops := e.catItems[catID]
-		if len(tops) == 0 || excluded[tops[0].ID] {
-			continue
-		}
-		return e.heurCand(dish, catID)
-	}
-	return candidate{}, false
-}
-
-func (e *engine) heurFirstFrom(dish domain.MenuItem, excluded map[int64]bool) (candidate, bool) {
-	for _, catID := range e.heurToList[dish.CategoryID] {
-		tops := e.catItems[catID]
-		if len(tops) == 0 || excluded[tops[0].ID] {
-			continue
-		}
-		return e.heurCand(dish, catID)
-	}
-	return candidate{}, false
-}
-
 func (e *engine) heurCand(dish domain.MenuItem, catID int) (candidate, bool) {
 	tops := e.catItems[catID]
 	if len(tops) == 0 {
@@ -375,20 +455,4 @@ func (e *engine) heurHas(fromCat, toCat int) bool {
 		}
 	}
 	return false
-}
-
-func (e *engine) firstUncoveredGroup(cartCats map[int]bool) []int {
-	for _, group := range e.priority {
-		covered := false
-		for _, id := range group {
-			if cartCats[id] {
-				covered = true
-				break
-			}
-		}
-		if !covered {
-			return group
-		}
-	}
-	return nil
 }

@@ -1,8 +1,10 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { trackStubView } from '../api/tracker'
+import { usePageRestore } from '../app/dish-navigation'
 
 export default function PayStubPage() {
+  usePageRestore(true)
   useEffect(() => {
     trackStubView()
   }, [])

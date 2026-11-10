@@ -56,13 +56,19 @@ describe('FR-26 photos', () => {
 })
 
 describe('Recommendations', () => {
-  it('TestFR15_recommendation_body_has_no_navigation', () => {
-    render(<MemoryRouter initialEntries={['/dish/101']}><RecCard rec={rec} context="dish" scope={100} /><Location /></MemoryRouter>)
-    fireEvent.click(screen.getByText(rec.item.name))
-    fireEvent.click(screen.getByText(rec.reason_text))
-    fireEvent.click(screen.getByRole('img'))
-    expect(screen.getByRole('status')).toHaveTextContent('/dish/101')
-    expect(screen.queryByRole('link')).not.toBeInTheDocument()
+  it.each(['dish', 'cart'] as const)('TestFR15_RI09_recommendation_link_and_sibling_add_%s', (context) => {
+    render(<MemoryRouter initialEntries={[context === 'dish' ? '/dish/101' : '/cart']}><RecCard rec={rec} context={context} scope={100} /><Location /></MemoryRouter>)
+    const link = screen.getByRole('link')
+    expect(link).toHaveAttribute('href', '/dish/202')
+    expect(link).toContainElement(screen.getByText(rec.item.name))
+    expect(link).toContainElement(screen.getByText(rec.reason_text))
+    expect(link).toContainElement(screen.getByRole('img'))
+    expect(link).not.toContainElement(screen.getByRole('button'))
+    expect(link.querySelector('button,a')).toBeNull()
+    expect(screen.getByRole('img').getAttribute('src')).toContain('/1200x1200/')
+    expect(link.firstElementChild).toHaveClass('rec-card__visual')
+    fireEvent.click(link)
+    expect(screen.getByRole('status')).toHaveTextContent('/dish/202')
   })
 
   it('TestFR29_empty_feed_is_hidden', () => {
@@ -72,7 +78,7 @@ describe('Recommendations', () => {
   })
 
   it('TestAN02_visibility_observes_compact_heading_at_50_percent_not_entire_feed', () => {
-    const { rerender } = render(<RecFeed recs={[rec]} dishId={101} title="Хорошо сочетается с" scope={102} />)
+    const { rerender } = render(<RecFeed recs={[rec]} dishId={101} title="Хорошо сочетается с" scope={102} />, { wrapper: MemoryRouter })
     const heading = screen.getByRole('heading')
     const body = screen.getByRole('region')
     expect(TestIntersectionObserver.instances.some((observer) => observer.targets.has(heading))).toBe(true)

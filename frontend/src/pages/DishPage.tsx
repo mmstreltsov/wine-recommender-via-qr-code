@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
+import { DishBackLink, readPageState, usePageRestore } from '../app/dish-navigation'
 import { ApiError, addItem, getCachedConfig, getItem, getRecommendations, onCartUpdate } from '../api/client'
 import type { MenuItemFull, Recommendation } from '../api/types'
 import { nextImpressionScope, trackDishCardOpen } from '../api/tracker'
@@ -17,10 +18,13 @@ const ADDED_RESET_MS = 1500
 
 export default function DishPage() {
   const { id } = useParams()
-  return <DishDetails key={id} itemId={id && /^\d+$/.test(id) ? Number(id) : NaN} />
+  const location = useLocation()
+  return <DishDetails key={`${location.key}:${id}`} itemId={id && /^[1-9]\d*$/.test(id) ? Number(id) : NaN} />
 }
 
 function DishDetails({ itemId }: { itemId: number }) {
+  const location = useLocation()
+  const source = readPageState(location.state).entry?.source ?? 'menu'
   const { count, cart } = useCartCount()
   const config = getCachedConfig()
 
@@ -34,6 +38,7 @@ function DishDetails({ itemId }: { itemId: number }) {
   const requestRef = useRef(0)
   const alive = useRef(true)
   const resetTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  usePageRestore(state !== 'loading')
 
   const load = useCallback(async () => {
     if (!Number.isSafeInteger(itemId) || itemId < 1) {
@@ -50,13 +55,13 @@ function DishDetails({ itemId }: { itemId: number }) {
       setState('ready')
       if (!trackedRef.current) {
         trackedRef.current = true
-        trackDishCardOpen(itemId)
+        trackDishCardOpen(itemId, source)
       }
     } catch (err) {
       if (!alive.current || request !== requestRef.current) return
       setState(err instanceof ApiError && err.status === 404 ? 'notfound' : 'error')
     }
-  }, [itemId])
+  }, [itemId, source])
 
   useEffect(() => {
     alive.current = true
@@ -76,7 +81,7 @@ function DishDetails({ itemId }: { itemId: number }) {
         setRecs((previous) => previous.filter((rec) => !updated.lines.some((line) => line.item.id === rec.item.id)))
         void getRecommendations(itemId).then((data) => {
           if (active && current === revision) setRecs(data.recs)
-        }).catch(() => { if (active && current === revision) setState('error') })
+        }).catch(() => {})
       }, ADDED_RESET_MS)
     })
     return () => { active = false; clearTimeout(refreshTimer); unsubscribe() }
@@ -94,7 +99,7 @@ function DishDetails({ itemId }: { itemId: number }) {
     setAddState('busy')
     setAddFailed(false)
     try {
-      await addItem(item.id, 'menu')
+      await addItem(item.id, source)
       if (!alive.current) return
       setAddState('added')
       resetTimer.current = setTimeout(() => setAddState('idle'), ADDED_RESET_MS)
@@ -108,9 +113,7 @@ function DishDetails({ itemId }: { itemId: number }) {
   return (
     <main className="page page--dish" aria-busy={state === 'loading'}>
       <Header title={config.restaurant.name} logoUrl={config.restaurant.logo_url} cartCount={count} />
-      <Link to="/" className="back-link">
-        ← В меню
-      </Link>
+      <DishBackLink />
       {state === 'loading' && (
         <div aria-hidden="true">
           <div className="skeleton skeleton--hero" />
@@ -131,7 +134,7 @@ function DishDetails({ itemId }: { itemId: number }) {
             className="dish__img"
           />
           <div className="dish__head">
-            <h1 className="dish__title">{item.name}</h1>
+            <h1 id="page-heading" className="dish__title" tabIndex={-1}>{item.name}</h1>
             <div className="dish__buy">
               <span className="dish__price">{formatPrice(item.price)}</span>
               <button

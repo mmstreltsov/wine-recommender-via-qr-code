@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom'
+import { DishLink } from '../app/dish-navigation'
 import { formatPrice } from '../app/format'
 import type { MenuItemSummary } from '../api/types'
 import { PhotoWithFallback } from './PhotoWithFallback'
 
-export function DishCard({ item }: { item: MenuItemSummary }) {
+export function DishCard({ item, category = 'all' }: { item: MenuItemSummary; category?: number | 'all' }) {
   return (
-    <Link to={`/dish/${item.id}`} className="dish-card">
+    <DishLink itemId={item.id} source="menu" category={category} className="dish-card">
       <PhotoWithFallback
         photoUrl={item.photo_url}
         photoFallback={item.photo_fallback}
@@ -17,6 +17,6 @@ export function DishCard({ item }: { item: MenuItemSummary }) {
         <h3 className="dish-card__title">{item.name}</h3>
         <span className="dish-card__price">{formatPrice(item.price)}</span>
       </div>
-    </Link>
+    </DishLink>
   )
 }

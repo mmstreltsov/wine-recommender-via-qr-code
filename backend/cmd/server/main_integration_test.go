@@ -754,11 +754,11 @@ var itKhinkaliFeed = []struct {
 	category int
 	reason   string
 }{
-	{itWalnutSaladID, 1, "К хинкали с говядиной и свининой — овощной салат с грецким орехом: свежие овощи контрастируют с мягким тестом, а ореховый вкус оттеняет мясную начинку."},
-	{itGrillVegID, 10, "Овощи на гриле добавят хинкали с говядиной и свининой мягкую овощную сладость: она оттеняет несладкую мясную начинку и даёт другой вкус рядом с тестом."},
 	{itTkemaliID, 11, "К хинкали с говядиной и свининой — ткемали: фруктовая кислинка соуса даёт контраст мясной начинке. Его можно добавлять понемногу к отдельным кусочкам."},
-	{itPomegranateID, 14, "Гранатовый фреш даст хинкали с говядиной и свининой терпкую фруктовую ноту: сладко-кислый напиток контрастирует с мясной начинкой в мягком тесте."},
+	{itGrillVegID, 10, "Овощи на гриле добавят хинкали с говядиной и свининой мягкую овощную сладость: она оттеняет несладкую мясную начинку и даёт другой вкус рядом с тестом."},
+	{itWalnutSaladID, 1, "К хинкали с говядиной и свининой — овощной салат с грецким орехом: свежие овощи контрастируют с мягким тестом, а ореховый вкус оттеняет мясную начинку."},
 	{itIceCreamID, 12, "После хинкали с говядиной и свининой — мороженое как отдельный финал: холодная сладкая текстура сменит несладкую мясную начинку и мягкое тесто, не как гарнир к мясу."},
+	{itPomegranateID, 14, "Гранатовый фреш даст хинкали с говядиной и свининой терпкую фруктовую ноту: сладко-кислый напиток контрастирует с мясной начинкой в мягком тесте."},
 }
 
 func assertItKhinkaliFeed(t *testing.T, recs []itRecView, excluded ...int64) {
@@ -817,8 +817,24 @@ func TestFR10_RealDataIntegrationContentExpectations(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if len(recs) != 1 || recs[0].ItemID != itAppleFreshID || categories[recs[0].ItemID] != 14 || recs[0].Source != "expert" || recs[0].ReasonText != itMedovikReason {
-		t.Fatalf("medovik integration content expectation mismatch: %+v", recs)
+	want := []struct {
+		id       int64
+		category int
+		score    float64
+		reason   string
+	}{
+		{267806359892, 1, 0.56, "Овощной салат с сулугуни подайте перед медовиком: солоноватый сыр задаст несладкий старт, после которого цветочный мёд даст выраженный сладкий контраст. Это два отдельных курса."},
+		{381279700502, 2, 0.55, "Перед медовиком можно начать с овощных рулетиков с грецким орехом: мягкая ореховая нота закуски естественно предшествует цветочному мёду. Подавайте их отдельно от десерта."},
+		{itAppleFreshID, 14, 0.65, itMedovikReason},
+	}
+	if len(recs) != len(want) {
+		t.Fatalf("medovik want 3, got %+v", recs)
+	}
+	for i, expected := range want {
+		got := recs[i]
+		if got.ItemID != expected.id || categories[got.ItemID] != expected.category || got.Source != "expert" || got.Score != expected.score || got.ReasonText != expected.reason {
+			t.Fatalf("medovik rec %d: got %+v, want %+v", i, got, expected)
+		}
 	}
 }
 
@@ -933,19 +949,18 @@ func TestFR19_Integration_CartRecommendationRealEngine(t *testing.T) {
 		t.Fatalf("пустая корзина: recommendation want null, got %+v", cart.Recommendation)
 	}
 
-	// Медовик (Десерты) + хинкали: первый непокрытый курс — «Напитки»,
-	// последняя позиция — хинкали → expert-пара гранат (FR-21: категории «Напитки» в корзине нет).
+	// FR-19/21: равные expert scores в напитках выигрывает новейший anchor — хинкали.
 	itAddToCart(t, c, srv, itMedovikID, "menu")
 	itAddToCart(t, c, srv, itKhinkaliID, "menu")
 	cart := itGetCart(t, c, srv)
 	if cart.Recommendation == nil {
 		t.Fatal("FR-19: recommendation = null после добавления двух позиций")
 	}
-	if cart.Recommendation.Item.ID != itPomegranateID || cart.Recommendation.Item.CategoryID != 14 || cart.Recommendation.Source != "expert" || cart.Recommendation.ReasonText != itKhinkaliFeed[3].reason {
+	if cart.Recommendation.Item.ID != itPomegranateID || cart.Recommendation.Item.CategoryID != 14 || cart.Recommendation.Source != "expert" || cart.Recommendation.ReasonText != itKhinkaliFeed[4].reason {
 		t.Fatalf("recommendation: want гранат/expert с точным reason/category, got %+v", cart.Recommendation)
 	}
 
-	// FR-20: состав изменился (последняя позиция — медовик) → рекомендация сменилась
+	// FR-20: удалён anchor хинкали → рекомендация сменилась
 	// на expert-пару медовика (Яблочный фреш, Напитки).
 	resp = c.delete(t, srv.URL+fmt.Sprintf("/api/v1/cart/items/%d", itKhinkaliID))
 	if resp.StatusCode != http.StatusOK {
@@ -988,7 +1003,7 @@ func TestFR37_Integration_RecPostFilter(t *testing.T) {
 
 	// (c) корзина: [хинкали] → гранат; off expert-кандидата гасит курс без heuristic-замены.
 	itAddToCart(t, c, srv, itKhinkaliID, "menu")
-	if cart := itGetCart(t, c, srv); cart.Recommendation == nil || cart.Recommendation.Item.ID != itPomegranateID || cart.Recommendation.Item.CategoryID != 14 || cart.Recommendation.Source != "expert" || cart.Recommendation.ReasonText != itKhinkaliFeed[3].reason {
+	if cart := itGetCart(t, c, srv); cart.Recommendation == nil || cart.Recommendation.Item.ID != itPomegranateID || cart.Recommendation.Item.CategoryID != 14 || cart.Recommendation.Source != "expert" || cart.Recommendation.ReasonText != itKhinkaliFeed[4].reason {
 		t.Fatalf("ForCart для [хинкали]: want гранат/expert с точным reason/category, got %+v", cart.Recommendation)
 	}
 	if err := availability.Upsert(context.Background(), itPomegranateID, false); err != nil {

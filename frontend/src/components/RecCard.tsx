@@ -6,6 +6,7 @@ import { useInView } from '../app/useInView'
 import { formatPrice } from '../app/format'
 import { useCartCount } from '../app/cart-context'
 import { PhotoWithFallback } from './PhotoWithFallback'
+import { DishLink } from '../app/dish-navigation'
 
 interface Props {
   rec: Recommendation
@@ -61,19 +62,23 @@ export function RecCard({ rec, context, scope, disabled = false, onPendingChange
   }
 
   return (
-    <div className="rec-card" ref={ref} data-item-id={rec.item.id}>
-      <PhotoWithFallback
-        photoUrl={rec.item.photo_url}
-        photoFallback={rec.item.photo_fallback}
-        size={400}
-        alt={rec.item.name}
-        className="rec-card__img"
-      />
-      <div className="rec-card__body">
-        <span className="rec-card__title">{rec.item.name}</span>
-        <span className="rec-card__price">{formatPrice(rec.item.price)}</span>
-        <p className="rec-card__reason">{rec.reason_text}</p>
-      </div>
+    <div className="rec-card" data-item-id={rec.item.id}>
+      <DishLink itemId={rec.item.id} source={context === 'dish' ? 'rec_feed' : 'rec_cart'} className="rec-card__link">
+        <div className="rec-card__visual" ref={ref}>
+          <PhotoWithFallback
+            photoUrl={rec.item.photo_url}
+            photoFallback={rec.item.photo_fallback}
+            size={1200}
+            alt={rec.item.name}
+            className="rec-card__img"
+          />
+        </div>
+        <div className="rec-card__body">
+          <span className="rec-card__title">{rec.item.name}</span>
+          <span className="rec-card__price">{formatPrice(rec.item.price)}</span>
+          <p className="rec-card__reason">{rec.reason_text}</p>
+        </div>
+      </DishLink>
       <div className="rec-card__action">
         <button
           type="button"

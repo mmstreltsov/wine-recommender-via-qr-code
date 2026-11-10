@@ -4,6 +4,7 @@ import { getCart, getCachedConfig, onCartUpdate, removeCartItem, setItemQty } fr
 import type { CartResponse } from '../api/types'
 import { nextImpressionScope, trackCartOpen, trackPayClick } from '../api/tracker'
 import { useCartCount } from '../app/cart-context'
+import { usePageRestore } from '../app/dish-navigation'
 import { formatPrice } from '../app/format'
 import { CartLine } from '../components/CartLine'
 import { ErrorRetry } from '../components/ErrorRetry'
@@ -29,6 +30,7 @@ export default function CartPage() {
   const revision = useRef(0)
   const opened = useRef(false)
   const blockedFeedback = useRef<HTMLParagraphElement>(null)
+  usePageRestore(state !== 'loading')
 
   const load = useCallback(async () => {
     setState('loading')
@@ -113,7 +115,7 @@ export default function CartPage() {
       <Link to="/" className="back-link">
         ← В меню
       </Link>
-      <h1 className="page__title">Корзина</h1>
+      <h1 id="page-heading" className="page__title" tabIndex={-1}>Корзина</h1>
       {state === 'loading' && (
         <div aria-hidden="true">
           {Array.from({ length: 2 }, (_, i) => (
@@ -158,7 +160,7 @@ export default function CartPage() {
           </div>
           {cart.recommendation && (
             <section className="rec-feed rec-feed--cart" aria-label={config.rec_block_title}>
-              <h2 className="rec-feed__title">{config.rec_block_title}</h2>
+              <h2 className="rec-feed__title" tabIndex={-1}>{config.rec_block_title}</h2>
               <div className="rec-feed__list">
                 <RecCard key={cart.recommendation.item.id} rec={cart.recommendation} context="cart" scope={scope} disabled={busyId !== null} onPendingChange={setRecPending} />
               </div>

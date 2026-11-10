@@ -134,7 +134,7 @@ func TestFR11_UpsellAndHeuristicUseSafeFallback(t *testing.T) {
 			}
 			r := NewRecommender(categories, []domain.MenuItem{dish, candidate}, Matrix{},
 				Heuristics{Rules: []heuristicRule{{FromCategory: "Чебуреки", ToCategories: []string{"Напитки"}}}},
-				mapping, CoursePriorities{CoursePriority: [][]string{{"Напитки"}}})
+				mapping, CoursePriorities{CoursePriority: [][]string{{"Напитки"}}}, RecommendationPolicy{})
 			recs, err := r.ForDish(context.Background(), dish.ID, nil)
 			if err != nil || len(recs) != 1 {
 				t.Fatalf("ForDish = %v, %v", recs, err)

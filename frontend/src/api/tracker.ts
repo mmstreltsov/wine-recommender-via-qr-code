@@ -1,4 +1,5 @@
 import { isStarted, onStarted } from './client'
+import type { AddSource } from './types'
 
 export type ClientEventName =
   | 'page_open'
@@ -79,8 +80,8 @@ export function trackCategorySelect(category_id: number): void {
   track('category_select', { category_id })
 }
 
-export function trackDishCardOpen(item_id: number): void {
-  track('dish_card_open', { item_id, source: 'menu' })
+export function trackDishCardOpen(item_id: number, source: AddSource = 'menu'): void {
+  track('dish_card_open', { item_id, source })
 }
 
 const seenFeeds = new Set<number>()

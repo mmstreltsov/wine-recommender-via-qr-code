@@ -150,6 +150,9 @@ func ValidateFiles(dataDir, restaurant string) (*ValidationReport, error) {
 	} else {
 		report.Findings = append(report.Findings, validateForcartPriorities(ff.CoursePriority, idx)...)
 	}
+	if _, err := loadPolicy(filepath.Join(recDir, "recommendation_policy.json"), menu.Categories, menu.Items); err != nil {
+		report.Findings = append(report.Findings, fileFinding("recommendation_policy", recDir, "recommendation_policy.json", err))
+	}
 	return report, nil
 }
 

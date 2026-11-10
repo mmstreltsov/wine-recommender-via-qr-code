@@ -61,7 +61,7 @@ it('TestFR01_FR20_UI04_AN02_guest_path_startup_retry_impressions_cart_and_stub_e
   fireEvent.click(await screen.findByRole('link', { name: new RegExp(dish.name) }))
   await screen.findByRole('heading', { name: dish.name })
   const firstHeading = screen.getByRole('heading', { name: config.rec_block_title })
-  const firstCard = screen.getByText(rec.item.name).closest('.rec-card')!
+  const firstCard = screen.getByText(rec.item.name).closest('.rec-card')!.querySelector('.rec-card__visual')!
   act(() => { TestIntersectionObserver.show(firstHeading, 0.49); TestIntersectionObserver.show(firstCard, 0.49) })
   expect(events.filter((event) => event.name === 'rec_impression')).toHaveLength(0)
   act(() => { TestIntersectionObserver.show(firstHeading, 0.5); TestIntersectionObserver.show(firstCard, 0.5); TestIntersectionObserver.show(firstCard, 1) })
@@ -72,7 +72,7 @@ it('TestFR01_FR20_UI04_AN02_guest_path_startup_retry_impressions_cart_and_stub_e
   await screen.findByRole('heading', { name: dish.name })
   act(() => {
     TestIntersectionObserver.show(screen.getByRole('heading', { name: config.rec_block_title }), 0.5)
-    TestIntersectionObserver.show(screen.getByText(rec.item.name).closest('.rec-card')!, 0.5)
+    TestIntersectionObserver.show(screen.getByText(rec.item.name).closest('.rec-card')!.querySelector('.rec-card__visual')!, 0.5)
   })
   expect(events.filter((event) => event.name === 'rec_impression')).toHaveLength(2)
   expect(events.filter((event) => event.name === 'rec_feed_visible')).toHaveLength(2)

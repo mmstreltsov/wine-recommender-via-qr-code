@@ -1,0 +1,17 @@
+{
+  "display_groups": [
+    {"rank": 0, "categories": ["Соусы"]},
+    {"rank": 1, "categories": ["Тандырный хлеб"]},
+    {"rank": 2, "categories": ["Салаты"]},
+    {"rank": 3, "categories": ["Горячие закуски", "Хинкали"]},
+    {"rank": 5, "categories": ["Десерты"]},
+    {"rank": 6, "categories": ["Напитки"]}
+  ],
+  "soup_bakery": {
+    "source_category": "Салаты",
+    "target_categories": ["Тандырный хлеб", "Хинкали"],
+    "preferred_category": "Тандырный хлеб"
+  },
+  "substantial_categories": ["Хинкали"],
+  "no_main_anchor_categories": ["Соусы", "Тандырный хлеб"]
+}

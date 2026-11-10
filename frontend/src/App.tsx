@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { CartCountProvider } from './app/cart-context'
 import { ensureStarted, getConfig } from './api/client'
 import { ErrorRetry } from './components/ErrorRetry'
@@ -8,11 +8,12 @@ import DishPage from './pages/DishPage'
 import MenuPage from './pages/MenuPage'
 import PayStubPage from './pages/PayStubPage'
 
-function ScrollToTop() {
-  const { pathname } = useLocation()
+function ManualScrollRestoration() {
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [pathname])
+    const previous = window.history.scrollRestoration
+    window.history.scrollRestoration = 'manual'
+    return () => { window.history.scrollRestoration = previous }
+  }, [])
   return null
 }
 
@@ -37,7 +38,7 @@ export default function App() {
       {state === 'error' && <main className="page"><ErrorRetry onRetry={retry} /></main>}
       {state === 'ready' && (
         <CartCountProvider>
-          <ScrollToTop />
+          <ManualScrollRestoration />
           <Routes>
             <Route path="/" element={<MenuPage />} />
             <Route path="/dish/:id" element={<DishPage />} />

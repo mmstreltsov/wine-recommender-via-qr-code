@@ -65,6 +65,8 @@ func TestFR10_RealDataGastronomyAllCards(t *testing.T) {
 	}
 	targetCategories := make(map[int]bool)
 	selected := make(map[[2]int64]bool, len(pairs))
+	distribution := map[int]int{}
+	eng := r.(*engine)
 	for _, dish := range menu.Items {
 		t.Run(fmt.Sprint(dish.ID), func(t *testing.T) {
 			recs, err := r.ForDish(context.Background(), dish.ID, nil)
@@ -73,6 +75,19 @@ func TestFR10_RealDataGastronomyAllCards(t *testing.T) {
 			}
 			if len(recs) < 3 {
 				t.Fatalf("want at least 3 distinct target categories per source, got %d recommendations", len(recs))
+			}
+			distribution[len(recs)]++
+			pairCount := 0
+			for key := range pairs {
+				if key[0] == dish.ID {
+					pairCount++
+				}
+			}
+			if dish.ID == 872278461583 {
+				pairCount--
+			}
+			if len(recs) != pairCount {
+				t.Fatalf("only mushroom soup may lose one target: got %d want %d", len(recs), pairCount)
 			}
 			seenIDs, seenCategories := map[int64]bool{}, map[int]bool{}
 			for i, rec := range recs {
@@ -84,8 +99,9 @@ func TestFR10_RealDataGastronomyAllCards(t *testing.T) {
 				}
 				if i > 0 {
 					prev := recs[i-1]
-					if prev.Score < rec.Score || (prev.Score == rec.Score && items[prev.ItemID].CategoryID > target.CategoryID) {
-						t.Fatalf("wrong score/category order: %+v", recs)
+					prevItem := items[prev.ItemID]
+					if eng.rank(prevItem) > eng.rank(target) || (eng.rank(prevItem) == eng.rank(target) && displayBetter(candidate{item: target, catID: target.CategoryID, score: rec.Score}, candidate{item: prevItem, catID: prevItem.CategoryID, score: prev.Score})) {
+						t.Fatalf("wrong display/score/category order: %+v", recs)
 					}
 				}
 				assertTextBounds(t, rec.ReasonText)
@@ -98,8 +114,13 @@ func TestFR10_RealDataGastronomyAllCards(t *testing.T) {
 			}
 		})
 	}
-	if len(selected) != 414 {
-		t.Errorf("want all 414 expert pairs selected, got %d", len(selected))
+	if len(selected) != 413 || !reflect.DeepEqual(distribution, map[int]int{3: 95, 4: 22, 5: 8}) {
+		t.Errorf("want 413 cards, distribution 95/22/8, got %d/%v", len(selected), distribution)
+	}
+	for key := range pairs {
+		if !selected[key] && key != [2]int64{872278461583, 188209721232} {
+			t.Errorf("unexpected missing expert pair %v", key)
+		}
 	}
 	for _, category := range menu.Categories {
 		if !targetCategories[category.ID] {
@@ -123,14 +144,14 @@ func TestFR19_RealDataGastronomyDirectedAdditions(t *testing.T) {
 		cats []int
 		cart int64
 	}{
-		{"khinkali_no_dolma_or_600g_salad", 655892482392, []int64{366609864022, 733465955822, 231821651422, 445870875313, 951817158352}, []int{1, 10, 11, 14, 12}, 445870875313},
+		{"khinkali_no_dolma_or_600g_salad", 655892482392, []int64{231821651422, 733465955822, 366609864022, 951817158352, 445870875313}, []int{11, 10, 1, 12, 14}, 445870875313},
 		{"grill_satsebeli_no_second_sauce", 219414720772, []int64{573190167622, 693049741272, 844016957853}, []int{10, 1, 14}, 844016957853},
-		{"grill_mint_sauce_and_salad", 577945503202, []int64{588160226782, 445870875313, 951817158352}, []int{2, 14, 12}, 445870875313},
-		{"dorado_grill_pomegranate_sauce", 759806895422, []int64{693049741272, 301501361763, 939802252842}, []int{1, 14, 12}, 301501361763},
-		{"dorado_steam_pomegranate_sauce", 159551626192, []int64{876369952933, 301501361763, 951817158352}, []int{1, 14, 12}, 301501361763},
-		{"cod_sauce_and_vegetables_no_new_hot_dish", 183588997633, []int64{267806359892, 301501361763, 951817158352}, []int{1, 14, 12}, 301501361763},
-		{"salmon_included_zucchini", 538899551122, []int64{366609864022, 301501361763, 939802252842}, []int{1, 14, 12}, 301501361763},
-		{"ribs_for_group", 988436681252, []int64{267806359892, 301501361763, 939802252842}, []int{1, 14, 12}, 301501361763},
+		{"grill_mint_sauce_and_salad", 577945503202, []int64{588160226782, 951817158352, 445870875313}, []int{2, 12, 14}, 445870875313},
+		{"dorado_grill_pomegranate_sauce", 759806895422, []int64{693049741272, 939802252842, 301501361763}, []int{1, 12, 14}, 301501361763},
+		{"dorado_steam_pomegranate_sauce", 159551626192, []int64{876369952933, 951817158352, 301501361763}, []int{1, 12, 14}, 301501361763},
+		{"cod_sauce_and_vegetables_no_new_hot_dish", 183588997633, []int64{267806359892, 951817158352, 301501361763}, []int{1, 12, 14}, 301501361763},
+		{"salmon_included_zucchini", 538899551122, []int64{366609864022, 939802252842, 301501361763}, []int{1, 12, 14}, 301501361763},
+		{"ribs_for_group", 988436681252, []int64{267806359892, 939802252842, 301501361763}, []int{1, 12, 14}, 301501361763},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
 			recs, err := r.ForDish(context.Background(), tc.dish, nil)

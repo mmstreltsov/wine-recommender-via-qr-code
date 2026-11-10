@@ -6,6 +6,7 @@ import (
 	"crypto/rand"
 	"errors"
 	"log"
+	"reflect"
 	"strings"
 	"testing"
 	"time"
@@ -13,6 +14,7 @@ import (
 	"github.com/jackc/pgx/v5/pgconn"
 
 	"svoyshef/internal/domain"
+	"svoyshef/internal/recommender"
 	"svoyshef/internal/store"
 )
 
@@ -20,6 +22,53 @@ type fakeCartStore struct {
 	lines  []domain.CartLine
 	calls  []string
 	addErr error
+}
+
+type cartRecSpy struct {
+	lines    []domain.CartLine
+	excluded []int64
+	calls    int
+}
+
+func (s *cartRecSpy) ForDish(context.Context, int64, []int64) ([]recommender.Rec, error) {
+	return nil, nil
+}
+
+func (s *cartRecSpy) ForCart(_ context.Context, lines []domain.CartLine, excluded []int64) (*recommender.Rec, error) {
+	s.calls++
+	s.lines = append([]domain.CartLine(nil), lines...)
+	s.excluded = append([]int64(nil), excluded...)
+	return &recommender.Rec{ItemID: 201, Source: "expert"}, nil
+}
+
+func TestFR20_FR37_CartMutationAnchorOrderAndPostFilter(t *testing.T) {
+	ctx := context.Background()
+	avail := &fakeAvailability{off: map[int64]struct{}{201: {}}}
+	carts := &fakeCartStore{lines: []domain.CartLine{{ItemID: 101, Qty: 1}, {ItemID: 201, Qty: 1}}}
+	spy := &cartRecSpy{}
+	svc := NewCartService(testMenu(), carts, &fakeEventRecorder{}, spy, avail)
+	check := func(view *CartView, err error, ids []int64, available []bool) {
+		t.Helper()
+		if err != nil || view.Recommendation != nil || spy.calls != 1 {
+			t.Fatalf("post-filter must not retry: view=%+v err=%v calls=%d", view, err, spy.calls)
+		}
+		var gotIDs []int64
+		var gotAvailable []bool
+		for _, line := range spy.lines {
+			gotIDs = append(gotIDs, line.ItemID)
+			gotAvailable = append(gotAvailable, line.Available)
+		}
+		if !reflect.DeepEqual(gotIDs, ids) || !reflect.DeepEqual(spy.excluded, ids) || !reflect.DeepEqual(gotAvailable, available) {
+			t.Fatalf("anchor input IDs=%v exclusions=%v availability=%v", gotIDs, spy.excluded, gotAvailable)
+		}
+		spy.calls = 0
+	}
+	view, err := svc.Add(ctx, "s", nil, 101, "menu")
+	check(view, err, []int64{101, 201}, []bool{true, false})
+	view, err = svc.SetQty(ctx, "s", nil, 101, 3)
+	check(view, err, []int64{101, 201}, []bool{true, false})
+	view, err = svc.Remove(ctx, "s", nil, 201)
+	check(view, err, []int64{101}, []bool{true})
 }
 
 func (f *fakeCartStore) Lines(ctx context.Context, sessionID string) ([]domain.CartLine, error) {

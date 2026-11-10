@@ -112,7 +112,7 @@ func (s *CartService) View(ctx context.Context, sessionID string) (*CartView, er
 	}
 	views := make([]CartLineView, 0, len(lines))
 	exclude := make([]int64, 0, len(lines))
-	var lastLines []domain.CartLine
+	var recLines []domain.CartLine
 	total := 0
 	for _, l := range lines {
 		exclude = append(exclude, l.ItemID)
@@ -128,13 +128,13 @@ func (s *CartService) View(ctx context.Context, sessionID string) (*CartView, er
 			AddedFrom: l.AddedFrom,
 			Available: l.Available,
 		})
-		lastLines = append(lastLines, l)
+		recLines = append(recLines, l)
 	}
 	view := &CartView{Lines: views, Total: total, Recommendation: nil}
-	if len(lastLines) == 0 {
+	if len(recLines) == 0 {
 		return view, nil
 	}
-	rec, err := s.rec.ForCart(ctx, lastLines, exclude)
+	rec, err := s.rec.ForCart(ctx, recLines, exclude)
 	if err != nil {
 		return nil, err
 	}
